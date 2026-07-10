@@ -1,0 +1,43 @@
+# This workflow runs inside the git-world-action repo itself.
+# It builds the action and regenerates the preview SVG on every push.
+
+name: Build & Update Preview
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 0 * * *'   # Rebuild preview daily
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install & Build
+        run: |
+          npm install
+          npm run build
+
+      - name: Generate preview SVG
+        uses: ./
+        with:
+          github_user_name: ${{ github.actor }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          svg_out_path: dist/gitworld.svg
+
+      - name: Commit dist/ and SVG
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add dist/
+          git diff --cached --quiet || git commit -m "🤖 Build dist/ and update preview SVG"
+          git push
