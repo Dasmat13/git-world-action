@@ -1,0 +1,24 @@
+name: 'GitWorld Engine'
+description: 'Generate an animated SVG city from your GitHub contribution graph'
+author: 'Dasmat13'
+
+branding:
+  icon: 'map'
+  color: 'green'
+
+inputs:
+  github_user_name:
+    description: 'GitHub username to generate world for'
+    required: true
+    default: ${{ github.actor }}
+  github_token:
+    description: 'GitHub token for API access'
+    required: true
+  svg_out_path:
+    description: 'Output path for the animated SVG'
+    required: false
+    default: 'dist/gitworld.svg'
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
