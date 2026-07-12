@@ -1,191 +1,387 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1080" width="900" height="1080" style="border-radius:16px;overflow:hidden">
-<defs>
-  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%"   stop-color="#010408"/>
-    <stop offset="38%"  stop-color="#060d1f"/>
-    <stop offset="100%" stop-color="#0d1a3a"/>
-  </linearGradient>
-  <linearGradient id="pg" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%"   stop-color="rgba(8,14,28,0.90)"/>
-    <stop offset="100%" stop-color="rgba(4,8,18,0.75)"/>
-  </linearGradient>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0%"   stop-color="#f0c040"  stop-opacity="0.7"/>
-    <stop offset="50%"  stop-color="#e8a020" stop-opacity="0.2"/>
-    <stop offset="100%" stop-color="#f0c040"  stop-opacity="0.6"/>
-  </linearGradient>
-  <filter id="glow"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b"/>
-    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  <filter id="tg"><feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
-    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  <pattern id="scan" x="0" y="0" width="1" height="4" patternUnits="userSpaceOnUse">
-    <rect width="1" height="1" fill="rgba(0,0,0,0.07)"/>
-  </pattern>
-</defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1080" width="900" height="1080" style="border-radius:18px;overflow:hidden">
+  <defs>
+    <!-- Soft Dreamy Sky -->
+    <linearGradient id="ghSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#0f1c3f"/>
+      <stop offset="50%"  stop-color="#1d2d50"/>
+      <stop offset="100%" stop-color="#133b5c"/>
+    </linearGradient>
 
-<!-- BG -->
-<rect width="900" height="1080" fill="url(#sky)"/>
-<rect width="900" height="1080" fill="url(#scan)" opacity="0.6"/>
+    <!-- Soft glow for dandelion/fireflies -->
+    <filter id="glowSoft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
 
-<!-- Stars -->
-<circle class="star" cx="594.0" cy="183.0" r="2" fill="#ffd700" style="animation-delay:0.0s"/><circle class="star" cx="288.0" cy="111.0" r="0.7" fill="#ffd700" style="animation-delay:0.3s"/><circle class="star" cx="882.0" cy="39.0" r="0.7" fill="#ffd700" style="animation-delay:0.6s"/><circle class="star" cx="576.0" cy="222.0" r="1.2" fill="#ffd700" style="animation-delay:0.8s"/><circle class="star" cx="270.0" cy="150.0" r="0.7" fill="#ffd700" style="animation-delay:1.1s"/><circle class="star" cx="864.0" cy="78.0" r="0.7" fill="#ffd700" style="animation-delay:1.4s"/><circle class="star" cx="558.0" cy="6.0" r="1.2" fill="#ffd700" style="animation-delay:1.7s"/><circle class="star" cx="252.0" cy="189.0" r="2" fill="#ffd700" style="animation-delay:2.0s"/><circle class="star" cx="846.0" cy="117.0" r="0.7" fill="#ffd700" style="animation-delay:2.2s"/><circle class="star" cx="540.0" cy="45.0" r="1.2" fill="#ffd700" style="animation-delay:2.5s"/><circle class="star" cx="234.0" cy="228.0" r="0.7" fill="#ffd700" style="animation-delay:2.8s"/><circle class="star" cx="828.0" cy="156.0" r="0.7" fill="#ffd700" style="animation-delay:3.1s"/><circle class="star" cx="522.0" cy="84.0" r="1.2" fill="#ffd700" style="animation-delay:3.4s"/><circle class="star" cx="216.0" cy="12.0" r="0.7" fill="#ffd700" style="animation-delay:3.6s"/><circle class="star" cx="810.0" cy="195.0" r="2" fill="#ffd700" style="animation-delay:3.9s"/><circle class="star" cx="504.0" cy="123.0" r="1.2" fill="#ffd700" style="animation-delay:4.2s"/><circle class="star" cx="198.0" cy="51.0" r="0.7" fill="#ffd700" style="animation-delay:4.5s"/><circle class="star" cx="792.0" cy="234.0" r="0.7" fill="#ffd700" style="animation-delay:4.8s"/><circle class="star" cx="486.0" cy="162.0" r="1.2" fill="#ffd700" style="animation-delay:0.0s"/><circle class="star" cx="180.0" cy="90.0" r="0.7" fill="#ffd700" style="animation-delay:0.3s"/><circle class="star" cx="774.0" cy="18.0" r="0.7" fill="#ffd700" style="animation-delay:0.6s"/><circle class="star" cx="468.0" cy="201.0" r="2" fill="#ffd700" style="animation-delay:0.9s"/><circle class="star" cx="162.0" cy="129.0" r="0.7" fill="#ffd700" style="animation-delay:1.2s"/><circle class="star" cx="756.0" cy="57.0" r="0.7" fill="#ffd700" style="animation-delay:1.4s"/><circle class="star" cx="450.0" cy="240.0" r="1.2" fill="#ffd700" style="animation-delay:1.7s"/><circle class="star" cx="144.0" cy="168.0" r="0.7" fill="#ffd700" style="animation-delay:2.0s"/><circle class="star" cx="738.0" cy="96.0" r="0.7" fill="#ffd700" style="animation-delay:2.3s"/><circle class="star" cx="432.0" cy="24.0" r="1.2" fill="#ffd700" style="animation-delay:2.6s"/><circle class="star" cx="126.0" cy="207.0" r="2" fill="#ffd700" style="animation-delay:2.8s"/><circle class="star" cx="720.0" cy="135.0" r="0.7" fill="#ffd700" style="animation-delay:3.1s"/><circle class="star" cx="414.0" cy="63.0" r="1.2" fill="#ffd700" style="animation-delay:3.4s"/><circle class="star" cx="108.0" cy="246.0" r="0.7" fill="#ffd700" style="animation-delay:3.7s"/><circle class="star" cx="702.0" cy="174.0" r="0.7" fill="#ffd700" style="animation-delay:4.0s"/><circle class="star" cx="396.0" cy="102.0" r="1.2" fill="#ffd700" style="animation-delay:4.2s"/><circle class="star" cx="90.0" cy="30.0" r="0.7" fill="#ffd700" style="animation-delay:4.5s"/><circle class="star" cx="684.0" cy="213.0" r="2" fill="#ffd700" style="animation-delay:4.8s"/><circle class="star" cx="378.0" cy="141.0" r="1.2" fill="#ffd700" style="animation-delay:0.1s"/><circle class="star" cx="72.0" cy="69.0" r="0.7" fill="#ffd700" style="animation-delay:0.4s"/><circle class="star" cx="666.0" cy="252.0" r="0.7" fill="#ffd700" style="animation-delay:0.6s"/><circle class="star" cx="360.0" cy="180.0" r="1.2" fill="#ffd700" style="animation-delay:0.9s"/><circle class="star" cx="54.0" cy="108.0" r="0.7" fill="#ffd700" style="animation-delay:1.2s"/><circle class="star" cx="648.0" cy="36.0" r="0.7" fill="#ffd700" style="animation-delay:1.5s"/><circle class="star" cx="342.0" cy="219.0" r="2" fill="#ffd700" style="animation-delay:1.8s"/><circle class="star" cx="36.0" cy="147.0" r="0.7" fill="#ffd700" style="animation-delay:2.0s"/><circle class="star" cx="630.0" cy="75.0" r="0.7" fill="#ffd700" style="animation-delay:2.3s"/><circle class="star" cx="324.0" cy="3.0" r="1.2" fill="#ffd700" style="animation-delay:2.6s"/><circle class="star" cx="18.0" cy="186.0" r="0.7" fill="#ffd700" style="animation-delay:2.9s"/><circle class="star" cx="612.0" cy="114.0" r="0.7" fill="#ffd700" style="animation-delay:3.2s"/><circle class="star" cx="306.0" cy="42.0" r="1.2" fill="#ffd700" style="animation-delay:3.4s"/><circle class="star" cx="0.0" cy="225.0" r="2" fill="#ffd700" style="animation-delay:3.7s"/><circle class="star" cx="594.0" cy="153.0" r="0.7" fill="#ffd700" style="animation-delay:4.0s"/><circle class="star" cx="288.0" cy="81.0" r="1.2" fill="#ffd700" style="animation-delay:4.3s"/><circle class="star" cx="882.0" cy="9.0" r="0.7" fill="#ffd700" style="animation-delay:4.6s"/><circle class="star" cx="576.0" cy="192.0" r="0.7" fill="#ffd700" style="animation-delay:4.8s"/><circle class="star" cx="270.0" cy="120.0" r="1.2" fill="#ffd700" style="animation-delay:0.1s"/><circle class="star" cx="864.0" cy="48.0" r="0.7" fill="#ffd700" style="animation-delay:0.4s"/><circle class="star" cx="558.0" cy="231.0" r="2" fill="#ffd700" style="animation-delay:0.7s"/><circle class="star" cx="252.0" cy="159.0" r="1.2" fill="#ffd700" style="animation-delay:1.0s"/><circle class="star" cx="846.0" cy="87.0" r="0.7" fill="#ffd700" style="animation-delay:1.2s"/><circle class="star" cx="540.0" cy="15.0" r="0.7" fill="#ffd700" style="animation-delay:1.5s"/><circle class="star" cx="234.0" cy="198.0" r="1.2" fill="#ffd700" style="animation-delay:1.8s"/><circle class="star" cx="828.0" cy="126.0" r="0.7" fill="#ffd700" style="animation-delay:2.1s"/><circle class="star" cx="522.0" cy="54.0" r="0.7" fill="#ffd700" style="animation-delay:2.4s"/><circle class="star" cx="216.0" cy="237.0" r="2" fill="#ffd700" style="animation-delay:2.6s"/><circle class="star" cx="810.0" cy="165.0" r="0.7" fill="#ffd700" style="animation-delay:2.9s"/><circle class="star" cx="504.0" cy="93.0" r="0.7" fill="#ffd700" style="animation-delay:3.2s"/><circle class="star" cx="198.0" cy="21.0" r="1.2" fill="#ffd700" style="animation-delay:3.5s"/><circle class="star" cx="792.0" cy="204.0" r="0.7" fill="#ffd700" style="animation-delay:3.8s"/><circle class="star" cx="486.0" cy="132.0" r="0.7" fill="#ffd700" style="animation-delay:4.0s"/><circle class="star" cx="180.0" cy="60.0" r="1.2" fill="#ffd700" style="animation-delay:4.3s"/>
+  <!-- ═══ SKY BACKDROP ═══ -->
+  <rect width="900" height="1080" fill="url(#ghSky)"/>
+  
+  <!-- Dreamy floating clouds -->
+  
+    <g opacity="0.25" style="animation: floatCloud 40s linear infinite; transform-origin: left; transform: translate(422px, 60px) scale(0.70);">
+      <path d="M 0,40 Q 20,10 50,20 Q 80,-5 120,15 Q 160,0 180,30 Q 210,40 190,60 Q 190,80 150,80 L 30,80 Q -15,70 0,40 Z" fill="#ffffff" />
+    </g>
+    <g opacity="0.40" style="animation: floatCloud 55s linear infinite; transform-origin: left; transform: translate(344px, 105px) scale(0.90);">
+      <path d="M 0,40 Q 20,10 50,20 Q 80,-5 120,15 Q 160,0 180,30 Q 210,40 190,60 Q 190,80 150,80 L 30,80 Q -15,70 0,40 Z" fill="#ffffff" />
+    </g>
+    <g opacity="0.55" style="animation: floatCloud 70s linear infinite; transform-origin: left; transform: translate(266px, 150px) scale(1.10);">
+      <path d="M 0,40 Q 20,10 50,20 Q 80,-5 120,15 Q 160,0 180,30 Q 210,40 190,60 Q 190,80 150,80 L 30,80 Q -15,70 0,40 Z" fill="#ffffff" />
+    </g>
+    <g opacity="0.70" style="animation: floatCloud 85s linear infinite; transform-origin: left; transform: translate(188px, 195px) scale(0.70);">
+      <path d="M 0,40 Q 20,10 50,20 Q 80,-5 120,15 Q 160,0 180,30 Q 210,40 190,60 Q 190,80 150,80 L 30,80 Q -15,70 0,40 Z" fill="#ffffff" />
+    </g>
+  
+  <!-- Floating fireflies or dandelion seeds -->
+  <circle class="floater" cx="630.0" cy="174.0" r="3" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:0.0s"/><circle class="floater" cx="216.0" cy="156.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:0.4s"/><circle class="floater" cx="702.0" cy="138.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:0.8s"/><circle class="floater" cx="288.0" cy="120.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:1.2s"/><circle class="floater" cx="774.0" cy="282.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:1.6s"/><circle class="floater" cx="360.0" cy="264.0" r="3" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:2.0s"/><circle class="floater" cx="846.0" cy="246.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:2.4s"/><circle class="floater" cx="432.0" cy="228.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:2.8s"/><circle class="floater" cx="18.0" cy="210.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:3.2s"/><circle class="floater" cx="504.0" cy="192.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:3.6s"/><circle class="floater" cx="90.0" cy="174.0" r="3" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:4.0s"/><circle class="floater" cx="576.0" cy="156.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:4.4s"/><circle class="floater" cx="162.0" cy="138.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:4.8s"/><circle class="floater" cx="648.0" cy="120.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:5.2s"/><circle class="floater" cx="234.0" cy="282.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:5.6s"/><circle class="floater" cx="720.0" cy="264.0" r="3" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:0.0s"/><circle class="floater" cx="306.0" cy="246.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:0.4s"/><circle class="floater" cx="792.0" cy="228.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:0.8s"/><circle class="floater" cx="378.0" cy="210.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:1.2s"/><circle class="floater" cx="864.0" cy="192.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:1.6s"/><circle class="floater" cx="450.0" cy="174.0" r="3" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:2.0s"/><circle class="floater" cx="36.0" cy="156.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:2.4s"/><circle class="floater" cx="522.0" cy="138.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:2.8s"/><circle class="floater" cx="108.0" cy="120.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:3.2s"/><circle class="floater" cx="594.0" cy="282.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:3.6s"/>
 
-<!-- Celestial -->
-<g filter="url(#glow)">
-  <circle r="14" fill="#c8d8f0">
-    <animateMotion dur="45s" repeatCount="indefinite" path="M -30,280 Q 450,-30 930,280"/>
-  </circle>
+  <!-- ═══ HORIZON GREEN HILLS ═══ -->
+  
+    <!-- Distant Hill -->
+    <path d="M -100,280 Q 250,190 600,250 T 1000,270 L 1000,320 L -100,320 Z" fill="#2d4a34" opacity="0.75" />
+    <!-- Midground Hill with simple tree shapes -->
+    <path d="M -50,290 Q 350,230 750,260 T 1050,295 L 1050,320 L -50,320 Z" fill="#3c6346" />
+    <!-- Foreground Grass Slope -->
+    <path d="M -20,300 Q 200,260 500,295 T 920,290 L 920,320 L -20,320 Z" fill="#4d7c57" />
+  
+  <rect x="0" y="306" width="900" height="10" fill="#4d7c57" />
+
+  <!-- ═══ HERO HEADER ═══ -->
+  <!-- Hand-drawn style soft board behind title -->
+  <g transform="translate(150, 336)">
+    <rect x="1" y="2" width="600" height="114" rx="16" fill="rgba(40, 30, 20, 0.15)"/>
+    <rect x="0" y="0" width="600" height="114" rx="16" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="2"/>
+    <rect x="4" y="4" width="592" height="106" rx="12" fill="none" stroke="#c9a054" stroke-width="1" opacity="0.3" />
+    
+    <!-- Decorative vine framing the header -->
+    <path d="M 20,15 Q 120,5 300,10 T 580,15" fill="none" stroke="#3a5f43" stroke-width="1.2" />
+    <path d="M 20,95 Q 120,105 300,100 T 580,95" fill="none" stroke="#3a5f43" stroke-width="1.2" />
+
+    <text x="300" y="52" font-family="'Outfit', sans-serif" font-size="34" fill="#4a3b32" text-anchor="middle" font-weight="bold">Hi, I'm Dasmat 🌿</text>
+    <text x="300" y="80" font-family="sans-serif" font-size="13.5" fill="#4a3b32" opacity="0.75" text-anchor="middle" letter-spacing="0.5">
+      DevOps Explorer  ·  Full-Stack Software Developer  ·  Open Source Contributor
+    </text>
+    
+    
+    <g transform="translate(14,14) rotate(45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+    
+    <g transform="translate(586,14) rotate(-45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  </g>
+
+  <!-- ═══ ABOUT ME PANEL y=468 h=118 ═══ -->
+  
+<g class="panel">
+  <!-- Dropshadow -->
+  <rect x="22" y="471" width="860" height="118" rx="14" fill="rgba(40,30,20,0.15)"/>
+  <!-- Main Box -->
+  <rect x="20" y="468" width="860" height="118" rx="14" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="2"/>
+  <rect x="24" y="472" width="852" height="110" rx="10" fill="none" stroke="#c9a054" stroke-width="1" opacity="0.4" />
+  
+  <!-- Ivy Corner Decorations -->
+  
+    <g transform="translate(30,478) rotate(-45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,478) rotate(45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(30,576) rotate(-135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,576) rotate(135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+
+  <!-- Label badge -->
+  <rect x="50" y="456" width="189" height="24" rx="12" fill="#3a5f43" stroke="#4a3b32" stroke-width="1.5"/>
+  <text x="62" y="472" font-family="'Outfit', 'Inter', sans-serif" font-size="11.5" fill="#fcfbf7" font-weight="bold" letter-spacing="1.5">🌿  ABOUT THE TRAVELER</text>
 </g>
+  <text x="40" y="505" font-family="sans-serif" font-size="13.5" fill="#4a3b32">
+    🌱  <tspan font-weight="bold" fill="#3a5f43">Core Interests:</tspan> Infrastructure automation, Cloud-Native scaling, Self-healing architectures
+  </text>
+  <text x="40" y="531" font-family="sans-serif" font-size="13.5" fill="#4a3b32">
+    🍃  <tspan font-weight="bold" fill="#3a5f43">Contributing To:</tspan> Kubernetes SIGs, Node.js Core, Express.js, Backstage Ecosystem
+  </text>
+  <text x="40" y="557" font-family="sans-serif" font-size="13.5" fill="#4a3b32">
+    📬  <tspan font-weight="bold" fill="#3a5f43">Contact:</tspan> mey37056@gmail.com   ·   ⚡  Experiments daily with automated recovery pipelines
+  </text>
 
-<!-- Skyline -->
-<rect x="0.0" y="266.4" width="15.8" height="33.6" fill="#e8a020" opacity="0.5" rx="1"/><rect x="17.3" y="268.9" width="15.8" height="31.1" fill="#e8a020" opacity="0.5" rx="1"/><rect x="34.6" y="270.2" width="15.8" height="29.8" fill="#e8a020" opacity="0.5" rx="1"/><rect x="51.9" y="278.6" width="15.8" height="21.4" fill="#e8a020" opacity="0.5" rx="1"/><rect x="69.2" y="282.4" width="15.8" height="17.6" fill="#e8a020" opacity="0.5" rx="1"/><rect x="86.5" y="282.4" width="15.8" height="17.6" fill="#e8a020" opacity="0.5" rx="1"/><rect x="121.2" y="271.9" width="15.8" height="28.1" fill="#e8a020" opacity="0.5" rx="1"/><rect x="207.7" y="278.6" width="15.8" height="21.4" fill="#e8a020" opacity="0.5" rx="1"/><rect x="225.0" y="276.1" width="15.8" height="23.9" fill="#e8a020" opacity="0.5" rx="1"/><rect x="242.3" y="271.9" width="15.8" height="28.1" fill="#e8a020" opacity="0.5" rx="1"/><rect x="259.6" y="287.4" width="15.8" height="12.6" fill="#e8a020" opacity="0.5" rx="1"/><rect x="432.7" y="287.4" width="15.8" height="12.6" fill="#e8a020" opacity="0.5" rx="1"/><rect x="450.0" y="282.4" width="15.8" height="17.6" fill="#e8a020" opacity="0.5" rx="1"/><rect x="605.8" y="278.6" width="15.8" height="21.4" fill="#e8a020" opacity="0.5" rx="1"/><rect x="623.1" y="273.5" width="15.8" height="26.5" fill="#e8a020" opacity="0.5" rx="1"/><rect x="640.4" y="287.4" width="15.8" height="12.6" fill="#e8a020" opacity="0.5" rx="1"/><rect x="657.7" y="262.6" width="15.8" height="37.4" fill="#e8a020" opacity="0.5" rx="1"/><rect x="675.0" y="264.3" width="15.8" height="35.7" fill="#e8a020" opacity="0.5" rx="1"/><rect x="692.3" y="278.6" width="15.8" height="21.4" fill="#e8a020" opacity="0.5" rx="1"/><rect x="709.6" y="278.6" width="15.8" height="21.4" fill="#e8a020" opacity="0.5" rx="1"/><rect x="726.9" y="278.6" width="15.8" height="21.4" fill="#e8a020" opacity="0.5" rx="1"/><rect x="761.5" y="276.1" width="15.8" height="23.9" fill="#e8a020" opacity="0.5" rx="1"/><rect x="778.8" y="276.1" width="15.8" height="23.9" fill="#e8a020" opacity="0.5" rx="1"/><rect x="796.2" y="265.1" width="15.8" height="34.9" fill="#e8a020" opacity="0.5" rx="1"/><rect x="813.5" y="287.4" width="15.8" height="12.6" fill="#e8a020" opacity="0.5" rx="1"/><rect x="830.8" y="271.9" width="15.8" height="28.1" fill="#e8a020" opacity="0.5" rx="1"/><rect x="848.1" y="264.3" width="15.8" height="35.7" fill="#e8a020" opacity="0.5" rx="1"/><rect x="865.4" y="241.2" width="15.8" height="58.8" fill="#e8a020" opacity="0.5" rx="1"/><rect x="882.7" y="271.9" width="15.8" height="28.1" fill="#e8a020" opacity="0.5" rx="1"/>
-<rect x="0" y="300" width="900" height="18" fill="#1a3a1a" opacity="0.7"/>
-<rect x="0" y="300" width="900" height="2"  fill="#2ea043"  opacity="0.9"/>
+  <!-- ═══ WORLD STATE BAR y=600 h=50 ═══ -->
+  
+<g class="panel">
+  <!-- Dropshadow -->
+  <rect x="22" y="603" width="860" height="50" rx="14" fill="rgba(40,30,20,0.15)"/>
+  <!-- Main Box -->
+  <rect x="20" y="600" width="860" height="50" rx="14" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="2"/>
+  <rect x="24" y="604" width="852" height="42" rx="10" fill="none" stroke="#c9a054" stroke-width="1" opacity="0.4" />
+  
+  <!-- Ivy Corner Decorations -->
+  
+    <g transform="translate(30,610) rotate(-45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,610) rotate(45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(30,640) rotate(-135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,640) rotate(135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
 
-<!-- ══ HERO ══════════════════════════════════════════════ -->
-<rect x="0" y="322" width="900" height="142" fill="rgba(0,0,0,0.30)"/>
-<rect x="0" y="322" width="900" height="1.5" fill="#f0c040" opacity="0.25"/>
-<rect x="0" y="463" width="900" height="1.5" fill="#f0c040" opacity="0.15"/>
+  <!-- Label badge -->
+  <rect x="50" y="588" width="226.5" height="24" rx="12" fill="#3a5f43" stroke="#4a3b32" stroke-width="1.5"/>
+  <text x="62" y="604" font-family="'Outfit', 'Inter', sans-serif" font-size="11.5" fill="#fcfbf7" font-weight="bold" letter-spacing="1.5">🏡  CURRENT ENVIRONMENT LOG</text>
+</g>
+  <text x="450" y="632" font-family="sans-serif" font-size="13.5" fill="#4a3b32" text-anchor="middle" font-weight="bold">
+    🌳 Biome: <tspan fill="#3a5f43">JS Kingdom</tspan>
+    <tspan dx="15" fill="#4a3b32" opacity="0.3">|</tspan>
+    <tspan dx="15">🕰️ Time: <tspan fill="#3a5f43">night</tspan></tspan>
+    <tspan dx="15" fill="#4a3b32" opacity="0.3">|</tspan>
+    <tspan dx="15">🌦️ Weather: <tspan fill="#3a5f43">rain</tspan></tspan>
+    <tspan dx="15" fill="#4a3b32" opacity="0.3">|</tspan>
+    <tspan dx="15">🎒 Streak: <tspan fill="#3a5f43">9 days</tspan></tspan>
+  </text>
 
-<text x="450" y="352" font-family="monospace" font-size="10" fill="#ffd700" text-anchor="middle" opacity="0.45" letter-spacing="8">✦  PLAYER ONE  ✦</text>
+  <!-- ═══ TECH STACK PANEL y=664 h=118 ═══ -->
+  
+<g class="panel">
+  <!-- Dropshadow -->
+  <rect x="22" y="667" width="860" height="118" rx="14" fill="rgba(40,30,20,0.15)"/>
+  <!-- Main Box -->
+  <rect x="20" y="664" width="860" height="118" rx="14" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="2"/>
+  <rect x="24" y="668" width="852" height="110" rx="10" fill="none" stroke="#c9a054" stroke-width="1" opacity="0.4" />
+  
+  <!-- Ivy Corner Decorations -->
+  
+    <g transform="translate(30,674) rotate(-45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,674) rotate(45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(30,772) rotate(-135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,772) rotate(135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
 
-<text class="hn" x="450" y="418" font-family="monospace" font-size="50" fill="#f0c040" text-anchor="middle" font-weight="bold" filter="url(#tg)">Hi! I'm Dasmat 👋</text>
+  <!-- Label badge -->
+  <rect x="50" y="652" width="234" height="24" rx="12" fill="#3a5f43" stroke="#4a3b32" stroke-width="1.5"/>
+  <text x="62" y="668" font-family="'Outfit', 'Inter', sans-serif" font-size="11.5" fill="#fcfbf7" font-weight="bold" letter-spacing="1.5">🎒  PACKED GEAR (TECH STACK)</text>
+</g>
+  
+    <rect x="32" y="694" width="134" height="28" rx="14" fill="#e8f0fe" stroke="#4a3b32" stroke-width="1" />
+    <text x="99" y="712" font-family="sans-serif" font-size="11.5" fill="#1a73e8" font-weight="bold" text-anchor="middle">Kubernetes</text>
+    
+    <rect x="172" y="694" width="134" height="28" rx="14" fill="#e1f5fe" stroke="#4a3b32" stroke-width="1" />
+    <text x="239" y="712" font-family="sans-serif" font-size="11.5" fill="#0288d1" font-weight="bold" text-anchor="middle">Docker</text>
+    
+    <rect x="312" y="694" width="134" height="28" rx="14" fill="#e8f4fd" stroke="#4a3b32" stroke-width="1" />
+    <text x="379" y="712" font-family="sans-serif" font-size="11.5" fill="#1976d2" font-weight="bold" text-anchor="middle">TypeScript</text>
+    
+    <rect x="452" y="694" width="134" height="28" rx="14" fill="#e0f7fa" stroke="#4a3b32" stroke-width="1" />
+    <text x="519" y="712" font-family="sans-serif" font-size="11.5" fill="#0097a7" font-weight="bold" text-anchor="middle">Go</text>
+    
+    <rect x="592" y="694" width="134" height="28" rx="14" fill="#e8f5e9" stroke="#4a3b32" stroke-width="1" />
+    <text x="659" y="712" font-family="sans-serif" font-size="11.5" fill="#2e7d32" font-weight="bold" text-anchor="middle">Node.js</text>
+    
+    <rect x="732" y="694" width="134" height="28" rx="14" fill="#f3e5f5" stroke="#4a3b32" stroke-width="1" />
+    <text x="799" y="712" font-family="sans-serif" font-size="11.5" fill="#7b1fa2" font-weight="bold" text-anchor="middle">Terraform</text>
+    
+    <rect x="32" y="734" width="134" height="28" rx="14" fill="#efebe9" stroke="#4a3b32" stroke-width="1" />
+    <text x="99" y="752" font-family="sans-serif" font-size="11.5" fill="#5d4037" font-weight="bold" text-anchor="middle">Python</text>
+    
+    <rect x="172" y="734" width="134" height="28" rx="14" fill="#fff3e0" stroke="#4a3b32" stroke-width="1" />
+    <text x="239" y="752" font-family="sans-serif" font-size="11.5" fill="#e65100" font-weight="bold" text-anchor="middle">AWS</text>
+    
+    <rect x="312" y="734" width="134" height="28" rx="14" fill="#eceff1" stroke="#4a3b32" stroke-width="1" />
+    <text x="379" y="752" font-family="sans-serif" font-size="11.5" fill="#37474f" font-weight="bold" text-anchor="middle">Linux</text>
+    
+    <rect x="452" y="734" width="134" height="28" rx="14" fill="#fbe9e7" stroke="#4a3b32" stroke-width="1" />
+    <text x="519" y="752" font-family="sans-serif" font-size="11.5" fill="#d84315" font-weight="bold" text-anchor="middle">Grafana</text>
+    
+    <rect x="592" y="734" width="134" height="28" rx="14" fill="#ffebee" stroke="#4a3b32" stroke-width="1" />
+    <text x="659" y="752" font-family="sans-serif" font-size="11.5" fill="#c62828" font-weight="bold" text-anchor="middle">Prometheus</text>
+    
+    <rect x="732" y="734" width="134" height="28" rx="14" fill="#e0f2f1" stroke="#4a3b32" stroke-width="1" />
+    <text x="799" y="752" font-family="sans-serif" font-size="11.5" fill="#00695c" font-weight="bold" text-anchor="middle">Backstage</text>
+    
 
-<text x="450" y="450" font-family="monospace" font-size="13" fill="#ffd700" text-anchor="middle" opacity="0.8">DevOps &amp; Cloud-Native Explorer  ·  Full-Stack Dev  ·  Open Source Contributor</text>
+  <!-- ═══ ACTIVE QUESTS PANEL y=796 h=162 ═══ -->
+  
+<g class="panel">
+  <!-- Dropshadow -->
+  <rect x="22" y="799" width="860" height="162" rx="14" fill="rgba(40,30,20,0.15)"/>
+  <!-- Main Box -->
+  <rect x="20" y="796" width="860" height="162" rx="14" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="2"/>
+  <rect x="24" y="800" width="852" height="154" rx="10" fill="none" stroke="#c9a054" stroke-width="1" opacity="0.4" />
+  
+  <!-- Ivy Corner Decorations -->
+  
+    <g transform="translate(30,806) rotate(-45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,806) rotate(45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(30,948) rotate(-135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,948) rotate(135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
 
-<rect class="cur" x="648" y="426" width="12" height="3" fill="#f0c040"/>
+  <!-- Label badge -->
+  <rect x="50" y="784" width="294" height="24" rx="12" fill="#3a5f43" stroke="#4a3b32" stroke-width="1.5"/>
+  <text x="62" y="800" font-family="'Outfit', 'Inter', sans-serif" font-size="11.5" fill="#fcfbf7" font-weight="bold" letter-spacing="1.5">🗺️  CURRENT JOURNEY (ACTIVE QUESTS)</text>
+</g>
+  
+    <text x="40" y="836" font-family="sans-serif" font-size="13" fill="#4a3b32">
+      <tspan fill="#3a5f43" font-weight="bold">✦ </tspan>LeaderWorkerSet topology-aware scheduling
+      <tspan dx="10" fill="#4caf50" font-size="10.5" font-weight="bold">[ Active Journey 🌿 ]</tspan>
+    </text>
+    
+    <text x="40" y="862" font-family="sans-serif" font-size="13" fill="#4a3b32">
+      <tspan fill="#3a5f43" font-weight="bold">✦ </tspan>CompositePodGroup integration (KEP-893)
+      <tspan dx="10" fill="#4caf50" font-size="10.5" font-weight="bold">[ Active Journey 🌿 ]</tspan>
+    </text>
+    
+    <text x="40" y="888" font-family="sans-serif" font-size="13" fill="#4a3b32">
+      <tspan fill="#3a5f43" font-weight="bold">✦ </tspan>GitWorld Engine rendering pipeline core
+      <tspan dx="10" fill="#b2851d" font-size="10.5" font-weight="bold">[ Completed 🏆 ]</tspan>
+    </text>
+    
+    <text x="40" y="914" font-family="sans-serif" font-size="13" fill="#4a3b32">
+      <tspan fill="#3a5f43" font-weight="bold">✦ </tspan>Real-time automatic location weather sync
+      <tspan dx="10" fill="#b2851d" font-size="10.5" font-weight="bold">[ Completed 🏆 ]</tspan>
+    </text>
+    
+    <text x="40" y="940" font-family="sans-serif" font-size="13" fill="#4a3b32">
+      <tspan fill="#3a5f43" font-weight="bold">✦ </tspan>Upstream Node.js core exploration
+      <tspan dx="10" fill="#0288d1" font-size="10.5" font-weight="bold">[ Wandering 🏕️ ]</tspan>
+    </text>
+    
 
-<line x1="80" y1="462" x2="820" y2="462" stroke="#f0c040" stroke-width="0.6" opacity="0.25"/>
-<circle cx="80"     cy="462" r="2.5" fill="#f0c040" opacity="0.35"/>
-<circle cx="820" cy="462" r="2.5" fill="#f0c040" opacity="0.35"/>
+  <!-- ═══ STATS HUD y=974 h=76 ═══ -->
+  
+    <g>
+      <rect x="31" y="976" width="270" height="76" rx="12" fill="rgba(40,30,20,0.1)"/>
+      <rect x="30" y="974" width="270" height="76" rx="12" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="1.5"/>
+      <text x="42" y="994" font-family="sans-serif" font-size="9" fill="#3a5f43" font-weight="bold" letter-spacing="1.5">📝  TRAVEL STREAK</text>
+      <text x="42" y="1022" font-family="sans-serif" font-size="20" fill="#4a3b32" font-weight="bold">9 days</text>
+      <text x="42" y="1039" font-family="sans-serif" font-size="9.5" fill="#4a3b32" opacity="0.6">committed in a row</text>
+    </g>
+    
+    <g>
+      <rect x="326" y="976" width="270" height="76" rx="12" fill="rgba(40,30,20,0.1)"/>
+      <rect x="325" y="974" width="270" height="76" rx="12" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="1.5"/>
+      <text x="337" y="994" font-family="sans-serif" font-size="9" fill="#3a5f43" font-weight="bold" letter-spacing="1.5">🌱  SPROUTS GROWN</text>
+      <text x="337" y="1022" font-family="sans-serif" font-size="20" fill="#4a3b32" font-weight="bold">424</text>
+      <text x="337" y="1039" font-family="sans-serif" font-size="9.5" fill="#4a3b32" opacity="0.6">total commits</text>
+    </g>
+    
+    <g>
+      <rect x="621" y="976" width="270" height="76" rx="12" fill="rgba(40,30,20,0.1)"/>
+      <rect x="620" y="974" width="270" height="76" rx="12" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="1.5"/>
+      <text x="632" y="994" font-family="sans-serif" font-size="9" fill="#3a5f43" font-weight="bold" letter-spacing="1.5">🏡  HOME BIOME</text>
+      <text x="632" y="1022" font-family="sans-serif" font-size="20" fill="#4a3b32" font-weight="bold">JS Kingdom</text>
+      <text x="632" y="1039" font-family="sans-serif" font-size="9.5" fill="#4a3b32" opacity="0.6">Weather: rain</text>
+    </g>
+    
 
-<!-- ══ ABOUT ME panel y=478 h=116 ════════════════════════ -->
+  <!-- Cozy bottom footer -->
+  <text x="450" y="1070" font-family="sans-serif" font-size="10" fill="#4a3b32" opacity="0.45" text-anchor="middle" letter-spacing="1">
+    🌾  Harvested daily by GitWorld Engine  ·  github.com/Dasmat13/git-world-action  🌾
+  </text>
 
-<rect x="18" y="478" width="864" height="116" rx="10" fill="url(#pg)" stroke="url(#bg)" stroke-width="1.5"/>
-<rect x="19" y="479" width="862" height="2" rx="1" fill="#f0c040" opacity="0.2"/>
-<path d="M28,478 L18,478 L18,488" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<path d="M872,478 L882,478 L882,488" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<path d="M18,584 L18,594 L28,594" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<path d="M882,584 L882,594 L872,594" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<rect x="36" y="468" width="88" height="20" rx="4" fill="#e8a020"/>
-<text x="44" y="482" font-family="monospace" font-size="10" fill="#f0c040" font-weight="bold" letter-spacing="2">◈ ABOUT ME</text>
-<text x="34" y="507" font-family="monospace" font-size="13" fill="#ffd700">🚀  <tspan fill="#f0c040">Core:</tspan>  DevOps automation · Cloud-Native architecture · Full-stack Web Development</text>
-<text x="34" y="531" font-family="monospace" font-size="13" fill="#ffd700">🌱  <tspan fill="#f0c040">Contributing:</tspan>  Kubernetes SIGs · Node.js Core · Express.js · Backstage</text>
-<text x="34" y="555" font-family="monospace" font-size="13" fill="#ffd700">📫  mey37056@gmail.com  ·  ⚡  Container orchestration &amp; automated healing systems</text>
-
-<!-- ══ WORLD STATE panel y=608 h=54 ══════════════════════ -->
-
-<rect x="18" y="608" width="864" height="54" rx="10" fill="url(#pg)" stroke="url(#bg)" stroke-width="1.5"/>
-<rect x="19" y="609" width="862" height="2" rx="1" fill="#f0c040" opacity="0.2"/>
-<path d="M28,608 L18,608 L18,618" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<path d="M872,608 L882,608 L882,618" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<path d="M18,652 L18,662 L28,662" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<path d="M882,652 L882,662 L872,662" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<rect x="36" y="598" width="109" height="20" rx="4" fill="#e8a020"/>
-<text x="44" y="612" font-family="monospace" font-size="10" fill="#f0c040" font-weight="bold" letter-spacing="2">◈ WORLD STATE</text>
-<text x="450" y="632" font-family="monospace" font-size="13" fill="#ffd700" text-anchor="middle">🌍 <tspan fill="#f0c040" font-weight="bold">JS Kingdom</tspan><tspan dx="18" fill="#ffd700" opacity="0.4">|</tspan><tspan dx="18">🌙 <tspan fill="#f0c040" font-weight="bold">night</tspan></tspan><tspan dx="18" fill="#ffd700" opacity="0.4">|</tspan><tspan dx="18">🌦️ <tspan fill="#f0c040" font-weight="bold">rain</tspan></tspan><tspan dx="18" fill="#ffd700" opacity="0.4">|</tspan><tspan dx="18">🔥 <tspan fill="#f0c040" font-weight="bold">9d</tspan></tspan><tspan dx="18" fill="#ffd700" opacity="0.4">|</tspan><tspan dx="18">🏗️ <tspan fill="#f0c040" font-weight="bold">424</tspan></tspan></text>
-
-<!-- ══ TECH STACK panel y=676 h=128 ═════════════════════ -->
-
-<rect x="18" y="676" width="864" height="128" rx="10" fill="url(#pg)" stroke="url(#bg)" stroke-width="1.5"/>
-<rect x="19" y="677" width="862" height="2" rx="1" fill="#f0c040" opacity="0.2"/>
-<path d="M28,676 L18,676 L18,686" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<path d="M872,676 L882,676 L882,686" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<path d="M18,794 L18,804 L28,804" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<path d="M882,794 L882,804 L872,804" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<rect x="36" y="666" width="102" height="20" rx="4" fill="#e8a020"/>
-<text x="44" y="680" font-family="monospace" font-size="10" fill="#f0c040" font-weight="bold" letter-spacing="2">◈ TECH STACK</text>
-
-<rect x="28" y="693" width="132" height="30" rx="6" fill="#326CE5" opacity="0.88"/>
-<rect x="28" y="693" width="132" height="3" rx="3" fill="rgba(255,255,255,0.25)"/>
-<text x="94" y="713" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">Kubernetes</text>
-<rect x="170" y="693" width="132" height="30" rx="6" fill="#2496ED" opacity="0.88"/>
-<rect x="170" y="693" width="132" height="3" rx="3" fill="rgba(255,255,255,0.25)"/>
-<text x="236" y="713" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">Docker</text>
-<rect x="312" y="693" width="132" height="30" rx="6" fill="#3178C6" opacity="0.88"/>
-<rect x="312" y="693" width="132" height="3" rx="3" fill="rgba(255,255,255,0.25)"/>
-<text x="378" y="713" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">TypeScript</text>
-<rect x="454" y="693" width="132" height="30" rx="6" fill="#00ADD8" opacity="0.88"/>
-<rect x="454" y="693" width="132" height="3" rx="3" fill="rgba(255,255,255,0.25)"/>
-<text x="520" y="713" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">Go</text>
-<rect x="596" y="693" width="132" height="30" rx="6" fill="#339933" opacity="0.88"/>
-<rect x="596" y="693" width="132" height="3" rx="3" fill="rgba(255,255,255,0.25)"/>
-<text x="662" y="713" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">Node.js</text>
-<rect x="738" y="693" width="132" height="30" rx="6" fill="#7B42BC" opacity="0.88"/>
-<rect x="738" y="693" width="132" height="3" rx="3" fill="rgba(255,255,255,0.25)"/>
-<text x="804" y="713" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">Terraform</text>
-<rect x="28" y="733" width="132" height="30" rx="6" fill="#3776AB" opacity="0.88"/>
-<rect x="28" y="733" width="132" height="3" rx="3" fill="rgba(255,255,255,0.25)"/>
-<text x="94" y="753" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">Python</text>
-<rect x="170" y="733" width="132" height="30" rx="6" fill="#FF9900" opacity="0.88"/>
-<rect x="170" y="733" width="132" height="3" rx="3" fill="rgba(255,255,255,0.25)"/>
-<text x="236" y="753" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">AWS</text>
-<rect x="312" y="733" width="132" height="30" rx="6" fill="#c8a000" opacity="0.88"/>
-<rect x="312" y="733" width="132" height="3" rx="3" fill="rgba(255,255,255,0.25)"/>
-<text x="378" y="753" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">Linux</text>
-<rect x="454" y="733" width="132" height="30" rx="6" fill="#F46800" opacity="0.88"/>
-<rect x="454" y="733" width="132" height="3" rx="3" fill="rgba(255,255,255,0.25)"/>
-<text x="520" y="753" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">Grafana</text>
-<rect x="596" y="733" width="132" height="30" rx="6" fill="#E6522C" opacity="0.88"/>
-<rect x="596" y="733" width="132" height="3" rx="3" fill="rgba(255,255,255,0.25)"/>
-<text x="662" y="753" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">Prometheus</text>
-<rect x="738" y="733" width="132" height="30" rx="6" fill="#36BAA2" opacity="0.88"/>
-<rect x="738" y="733" width="132" height="3" rx="3" fill="rgba(255,255,255,0.25)"/>
-<text x="804" y="753" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">Backstage</text>
-
-<!-- ══ ACTIVE QUESTS panel y=818 h=154 ══════════════════ -->
-
-<rect x="18" y="818" width="864" height="154" rx="10" fill="url(#pg)" stroke="url(#bg)" stroke-width="1.5"/>
-<rect x="19" y="819" width="862" height="2" rx="1" fill="#f0c040" opacity="0.2"/>
-<path d="M28,818 L18,818 L18,828" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<path d="M872,818 L882,818 L882,828" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<path d="M18,962 L18,972 L28,972" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<path d="M882,962 L882,972 L872,972" stroke="#f0c040" stroke-width="2" fill="none" opacity="0.6"/>
-<rect x="36" y="808" width="123" height="20" rx="4" fill="#e8a020"/>
-<text x="44" y="822" font-family="monospace" font-size="10" fill="#f0c040" font-weight="bold" letter-spacing="2">◈ ACTIVE QUESTS</text>
-<text x="34" y="835" font-family="monospace" font-size="12.5" fill="#ffd700">▶  Topology-aware scheduling — kubernetes-sigs/lws  <tspan fill="#3fb950" font-size="10" font-weight="bold">[ IN PROGRESS ]</tspan></text><text x="34" y="858" font-family="monospace" font-size="12.5" fill="#ffd700">▶  CompositePodGroup integration — KEP-893  <tspan fill="#3fb950" font-size="10" font-weight="bold">[ IN PROGRESS ]</tspan></text><text x="34" y="881" font-family="monospace" font-size="12.5" fill="#ffd700">▶  GitWorld Engine — GitHub profile as pixel world  <tspan fill="#ffd700" font-size="10" font-weight="bold">[ SHIPPED ✓ ]</tspan></text><text x="34" y="904" font-family="monospace" font-size="12.5" fill="#ffd700">▶  Real-time weather via Open-Meteo  <tspan fill="#ffd700" font-size="10" font-weight="bold">[ SHIPPED ✓ ]</tspan></text><text x="34" y="927" font-family="monospace" font-size="12.5" fill="#ffd700">▶  Node.js core contributions  <tspan fill="#58a6ff" font-size="10" font-weight="bold">[ EXPLORING ]</tspan></text><text x="34" y="950" font-family="monospace" font-size="12.5" fill="#ffd700">▶  Backstage plugin ecosystem  <tspan fill="#58a6ff" font-size="10" font-weight="bold">[ EXPLORING ]</tspan></text>
-
-<!-- ══ STATS HUD ══════════════════════════════════════════ -->
-
-<rect x="20" y="984" width="205" height="72" rx="8" fill="url(#pg)" stroke="#e8a020" stroke-width="1"/>
-<rect x="20" y="984" width="205" height="2" rx="1" fill="#f0c040" opacity="0.35"/>
-<path d="M28,984 L20,984 L20,992" stroke="#f0c040" stroke-width="1.5" fill="none" opacity="0.5"/>
-<path d="M225,992 L225,984 L217,984" stroke="#f0c040" stroke-width="1.5" fill="none" opacity="0.5"/>
-<text x="30" y="1004" font-family="monospace" font-size="9" fill="#ffd700" opacity="0.5" letter-spacing="2">🔥  STREAK</text>
-<text x="30" y="1032" font-family="monospace" font-size="20" fill="#f0c040" font-weight="bold">9d</text>
-<text x="30" y="1048" font-family="monospace" font-size="9" fill="#ffd700" opacity="0.4">contribution days</text>
-<rect x="240" y="984" width="205" height="72" rx="8" fill="url(#pg)" stroke="#e8a020" stroke-width="1"/>
-<rect x="240" y="984" width="205" height="2" rx="1" fill="#f0c040" opacity="0.35"/>
-<path d="M248,984 L240,984 L240,992" stroke="#f0c040" stroke-width="1.5" fill="none" opacity="0.5"/>
-<path d="M445,992 L445,984 L437,984" stroke="#f0c040" stroke-width="1.5" fill="none" opacity="0.5"/>
-<text x="250" y="1004" font-family="monospace" font-size="9" fill="#ffd700" opacity="0.5" letter-spacing="2">🏗️  COMMITS</text>
-<text x="250" y="1032" font-family="monospace" font-size="20" fill="#f0c040" font-weight="bold">424</text>
-<text x="250" y="1048" font-family="monospace" font-size="9" fill="#ffd700" opacity="0.4">total contributions</text>
-<rect x="460" y="984" width="205" height="72" rx="8" fill="url(#pg)" stroke="#e8a020" stroke-width="1"/>
-<rect x="460" y="984" width="205" height="2" rx="1" fill="#f0c040" opacity="0.35"/>
-<path d="M468,984 L460,984 L460,992" stroke="#f0c040" stroke-width="1.5" fill="none" opacity="0.5"/>
-<path d="M665,992 L665,984 L657,984" stroke="#f0c040" stroke-width="1.5" fill="none" opacity="0.5"/>
-<text x="470" y="1004" font-family="monospace" font-size="9" fill="#ffd700" opacity="0.5" letter-spacing="2">🌍  BIOME</text>
-<text x="470" y="1032" font-family="monospace" font-size="20" fill="#f0c040" font-weight="bold">JS Kingdom</text>
-<text x="470" y="1048" font-family="monospace" font-size="9" fill="#ffd700" opacity="0.4">night</text>
-<rect x="680" y="984" width="205" height="72" rx="8" fill="url(#pg)" stroke="#e8a020" stroke-width="1"/>
-<rect x="680" y="984" width="205" height="2" rx="1" fill="#f0c040" opacity="0.35"/>
-<path d="M688,984 L680,984 L680,992" stroke="#f0c040" stroke-width="1.5" fill="none" opacity="0.5"/>
-<path d="M885,992 L885,984 L877,984" stroke="#f0c040" stroke-width="1.5" fill="none" opacity="0.5"/>
-<text x="690" y="1004" font-family="monospace" font-size="9" fill="#ffd700" opacity="0.5" letter-spacing="2">🌦️  WEATHER</text>
-<text x="690" y="1032" font-family="monospace" font-size="20" fill="#f0c040" font-weight="bold">RAIN</text>
-<text x="690" y="1048" font-family="monospace" font-size="9" fill="#ffd700" opacity="0.4">live via Open-Meteo</text>
-
-<!-- Footer -->
-<rect x="0" y="1058" width="900" height="22" fill="rgba(0,0,0,0.55)"/>
-<text x="450" y="1072" font-family="monospace" font-size="9" fill="#ffd700" text-anchor="middle" opacity="0.3" letter-spacing="1">✦  GitWorld Engine  ·  github.com/Dasmat13/git-world-action  ·  Updates daily  ✦</text>
-
-<style>
-.star{animation:tw 3s ease-in-out infinite alternate}
-@keyframes tw{0%{opacity:.1}100%{opacity:.9}}
-.hn{animation:np 5s ease-in-out infinite alternate}
-@keyframes np{0%{opacity:.88}100%{opacity:1}}
-.cur{animation:bl 1s step-end infinite}
-@keyframes bl{0%,100%{opacity:1}50%{opacity:0}}
-</style>
+  <style>
+    .floater {
+      animation: floatUp 8s ease-in-out infinite alternate;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0px) translateX(0px); opacity: 0.2; }
+      50% { transform: translateY(-15px) translateX(8px); opacity: 0.8; }
+      100% { transform: translateY(-30px) translateX(-5px); opacity: 0.3; }
+    }
+    @keyframes floatCloud {
+      0% { transform: translateX(-220px); }
+      100% { transform: translateX(900px); }
+    }
+  </style>
 </svg>
