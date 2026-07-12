@@ -1,6 +1,8 @@
 import { GitHubData } from './github';
 
-export type TileType = 'empty' | 'grass' | 'house' | 'building' | 'tower' | 'skyscraper' | 'castle';
+export type TileType    = 'empty' | 'grass' | 'house' | 'building' | 'tower' | 'skyscraper' | 'castle';
+export type TimeOfDay   = 'dawn' | 'day' | 'dusk' | 'night';
+export type WeatherType = 'clear' | 'rain' | 'snow';
 
 export interface ColumnData {
   weekIdx:    number;
@@ -16,13 +18,15 @@ export interface ColumnData {
 }
 
 export interface WorldData {
-  columns:          ColumnData[];
-  biomeTheme:       BiomeTheme;
-  tempo:            number;   // derived from stars (affects animation speed)
-  isMinorKey:       boolean;  // night sky if more issues than resolved
-  streak:           number;
+  columns:            ColumnData[];
+  biomeTheme:         BiomeTheme;
+  tempo:              number;      // derived from stars (affects animation speed)
+  isMinorKey:         boolean;     // night sky if more issues than resolved
+  streak:             number;
   totalContributions: number;
-  username:         string;
+  username:           string;
+  timeOfDay:          TimeOfDay;   // 🌙 Day/Night cycle
+  weatherType:        WeatherType; // 🌧️ Weather effects
 }
 
 export interface BiomeTheme {
@@ -73,6 +77,49 @@ const BIOMES: Record<string, BiomeTheme> = {
     buildingBase: '#ce412b', buildingAccent: '#8b2010',
     windowColor: '#ffe0d0', smokeColor: '#b88',
     starColor: '#ffa657', label: 'Rust Wasteland',
+  },
+  // 🏰 New biome themes
+  Java: {
+    skyTop: '#1a0a00', skyBottom: '#2d1a00',
+    groundColor: '#2a1a00', groundLine: '#e76f00',
+    buildingBase: '#e76f00', buildingAccent: '#b35000',
+    windowColor: '#fff3e0', smokeColor: '#c99',
+    starColor: '#ffb74d', label: 'Java Citadel',
+  },
+  'C++': {
+    skyTop: '#000820', skyBottom: '#001040',
+    groundColor: '#001030', groundLine: '#004488',
+    buildingBase: '#0047ab', buildingAccent: '#003380',
+    windowColor: '#dde8ff', smokeColor: '#88a',
+    starColor: '#99bbff', label: 'C++ Fortress',
+  },
+  Ruby: {
+    skyTop: '#1a0010', skyBottom: '#2d0020',
+    groundColor: '#200010', groundLine: '#cc2244',
+    buildingBase: '#cc2244', buildingAccent: '#991133',
+    windowColor: '#ffe0e8', smokeColor: '#c8a',
+    starColor: '#ff7096', label: 'Ruby Ruins',
+  },
+  Shell: {
+    skyTop: '#001a00', skyBottom: '#003300',
+    groundColor: '#002200', groundLine: '#00cc44',
+    buildingBase: '#00cc44', buildingAccent: '#009933',
+    windowColor: '#e0ffe8', smokeColor: '#8c8',
+    starColor: '#00ff88', label: 'Shell Jungle',
+  },
+  Swift: {
+    skyTop: '#1a0500', skyBottom: '#2d0d00',
+    groundColor: '#2a0c00', groundLine: '#ff5630',
+    buildingBase: '#ff5630', buildingAccent: '#cc3010',
+    windowColor: '#fff0ec', smokeColor: '#c8a',
+    starColor: '#ff8c69', label: 'Swift Peaks',
+  },
+  Kotlin: {
+    skyTop: '#0d0020', skyBottom: '#1a0040',
+    groundColor: '#0f0028', groundLine: '#7f52ff',
+    buildingBase: '#7f52ff', buildingAccent: '#5a30cc',
+    windowColor: '#ede8ff', smokeColor: '#aa9',
+    starColor: '#b99aff', label: 'Kotlin Nexus',
   },
 };
 
@@ -126,6 +173,20 @@ export function buildWorld(data: GitHubData): WorldData {
   const tempo = Math.max(8, Math.min(20, Math.log10(data.totalStars + 1) * 6));
   const isMinorKey = data.openIssues > data.closedIssues;
 
+  // 🌙 Day/Night: map streak% to time of day
+  const streakRatio = Math.min(data.streak / 365, 1);
+  const timeOfDay: TimeOfDay =
+    streakRatio < 0.1 ? 'night' :
+    streakRatio < 0.3 ? 'dawn'  :
+    streakRatio < 0.7 ? 'day'   : 'dusk';
+
+  // 🌧️ Weather: snow if major contributor & cold biome, rain if many issues, else clear
+  const issueRatio = data.openIssues / (data.openIssues + data.closedIssues + 1);
+  const coldBiomes = ['Rust', 'C++', 'Go', 'Kotlin'];
+  const weatherType: WeatherType =
+    coldBiomes.includes(data.topLanguage) && data.streak > 30 ? 'snow' :
+    issueRatio > 0.4 ? 'rain' : 'clear';
+
   return {
     columns,
     biomeTheme: theme,
@@ -134,5 +195,7 @@ export function buildWorld(data: GitHubData): WorldData {
     streak: data.streak,
     totalContributions: data.totalContributions,
     username: data.username,
+    timeOfDay,
+    weatherType,
   };
 }

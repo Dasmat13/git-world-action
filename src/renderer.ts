@@ -37,6 +37,7 @@ export function renderSVG(world: WorldData, username: string): string {
   ${renderStars(world)}
   ${renderMoon(world)}
   ${renderClouds(world)}
+  ${renderWeather(world)}
 
   <!-- Ground -->
   <rect x="0" y="${GROUND}" width="${W}" height="${H - GROUND}" fill="url(#gnd)"/>
@@ -44,11 +45,20 @@ export function renderSVG(world: WorldData, username: string): string {
   <!-- Columns / Buildings -->
   ${cols.map(c => renderColumn(c, world)).join('\n  ')}
 
+  <!-- Train -->
+  ${renderTrain(world)}
+
+  <!-- Vehicles -->
+  ${renderVehicles(world)}
+
   <!-- Walking character -->
   ${renderCharacter(world)}
 
   <!-- Monsters (issues) -->
   ${renderMonsters(world)}
+
+  <!-- Birds -->
+  ${renderBirds(world)}
 
   <!-- HUD label -->
   ${renderHUD(world, username)}
@@ -59,7 +69,19 @@ export function renderSVG(world: WorldData, username: string): string {
 
 // ─── Sky & atmosphere ───────────────────────────────────────
 function renderSky(w: WorldData): string {
-  return `<rect width="${W}" height="${H}" fill="url(#sky)"/>`;
+  // 🌙 Day/Night cycle: override sky gradient stops based on timeOfDay
+  const skyColors: Record<string, [string, string]> = {
+    night: ['#020510', '#0a0f1e'],
+    dawn:  ['#1a0a2e', '#ff7043'],
+    day:   [w.biomeTheme.skyTop, w.biomeTheme.skyBottom],
+    dusk:  ['#1a0533', '#c62828'],
+  };
+  const [top, bot] = skyColors[w.timeOfDay];
+  return `<rect width="${W}" height="${H}" fill="url(#sky)"/>
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="${top}"/>
+    <stop offset="100%" stop-color="${bot}"/>
+  </linearGradient></defs>`;
 }
 
 function renderStars(w: WorldData): string {
@@ -240,6 +262,97 @@ function renderMonsters(world: WorldData): string {
   return monsters.join('');
 }
 
+// ─── Weather effects 🌧️ ────────────────────────────────────
+function renderWeather(w: WorldData): string {
+  if (w.weatherType === 'clear') return '';
+  const drops: string[] = [];
+  const seed = w.username.split('').reduce((a, c) => a + c.charCodeAt(0), 42);
+  const count = 40;
+  for (let i = 0; i < count; i++) {
+    const x     = ((seed * (i + 3) * 613)  % W);
+    const y     = ((seed * (i + 7) * 719)  % GROUND);
+    const delay = ((i * 0.15) % 2).toFixed(2);
+    const dur   = (0.6 + (i % 5) * 0.15).toFixed(2);
+    if (w.weatherType === 'rain') {
+      drops.push(`<line class="rain" x1="${x.toFixed(1)}" y1="${y.toFixed(1)}" x2="${(x+2).toFixed(1)}" y2="${(y+10).toFixed(1)}" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:${delay}s;animation-duration:${dur}s"/>`);
+    } else {
+      drops.push(`<circle class="snow" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="1.5" fill="#ddeeff" opacity="0.8" style="animation-delay:${delay}s;animation-duration:${(parseFloat(dur)*2).toFixed(2)}s"/>`);
+    }
+  }
+  return drops.join('\n  ');
+}
+
+// ─── Train 🚂 ────────────────────────────────────────────────
+function renderTrain(w: WorldData): string {
+  const ty  = GROUND - 12;
+  const dur = (30 / (w.tempo / 10)).toFixed(1);
+  const col = w.biomeTheme.buildingAccent;
+  const acc = w.biomeTheme.buildingBase;
+  // engine + 2 cars
+  return `
+  <g class="train" style="animation-duration:${dur}s">
+    <!-- Engine -->
+    <rect x="0" y="${ty}" width="22" height="10" fill="${col}" rx="2"/>
+    <rect x="16" y="${ty-4}" width="6" height="4" fill="${col}" rx="1"/>
+    <circle cx="4" cy="${ty+10}" r="3" fill="#333"/>
+    <circle cx="16" cy="${ty+10}" r="3" fill="#333"/>
+    <!-- Smoke puff -->
+    <circle class="train-smoke" cx="21" cy="${ty-6}" r="3" fill="${w.biomeTheme.smokeColor}" opacity="0.7"/>
+    <!-- Car 1 -->
+    <rect x="-28" y="${ty+1}" width="20" height="9" fill="${acc}" rx="1"/>
+    <circle cx="-22" cy="${ty+10}" r="2.5" fill="#333"/>
+    <circle cx="-12" cy="${ty+10}" r="2.5" fill="#333"/>
+    <!-- Car 2 -->
+    <rect x="-54" y="${ty+1}" width="20" height="9" fill="${acc}" rx="1"/>
+    <circle cx="-48" cy="${ty+10}" r="2.5" fill="#333"/>
+    <circle cx="-38" cy="${ty+10}" r="2.5" fill="#333"/>
+  </g>`;
+}
+
+// ─── Vehicles 🚗 ─────────────────────────────────────────────
+function renderVehicles(w: WorldData): string {
+  const vy   = GROUND - 8;
+  const dur1 = (22 / (w.tempo / 10)).toFixed(1);
+  const dur2 = (35 / (w.tempo / 10)).toFixed(1);
+  const c1   = w.biomeTheme.buildingBase;
+  const c2   = w.biomeTheme.windowColor;
+  return `
+  <!-- Car 1 -->
+  <g class="car1" style="animation-duration:${dur1}s">
+    <rect x="0" y="${vy}" width="18" height="7" fill="${c1}" rx="2"/>
+    <rect x="4" y="${vy-4}" width="10" height="5" fill="${c1}" rx="1"/>
+    <rect x="5" y="${vy-3}" width="4" height="3" fill="${c2}" rx="0.5" opacity="0.8"/>
+    <rect x="10" y="${vy-3}" width="3" height="3" fill="${c2}" rx="0.5" opacity="0.8"/>
+    <circle cx="4"  cy="${vy+7}" r="2.5" fill="#222"/>
+    <circle cx="14" cy="${vy+7}" r="2.5" fill="#222"/>
+  </g>
+  <!-- Car 2 RTL -->
+  <g class="car2" style="animation-duration:${dur2}s">
+    <rect x="0" y="${vy+2}" width="16" height="6" fill="#e53935" rx="2"/>
+    <rect x="3" y="${vy-2}" width="9" height="5" fill="#e53935" rx="1"/>
+    <rect x="4" y="${vy-1}" width="3" height="3" fill="${c2}" rx="0.5" opacity="0.8"/>
+    <rect x="9" y="${vy-1}" width="3" height="3" fill="${c2}" rx="0.5" opacity="0.8"/>
+    <circle cx="3"  cy="${vy+8}" r="2.5" fill="#222"/>
+    <circle cx="13" cy="${vy+8}" r="2.5" fill="#222"/>
+  </g>`;
+}
+
+// ─── Birds 🎮 pixel-art ──────────────────────────────────────
+function renderBirds(w: WorldData): string {
+  const seed = w.username.split('').reduce((a, c) => a + c.charCodeAt(0), 7);
+  const birds: string[] = [];
+  const count = w.timeOfDay === 'night' ? 0 : 3;
+  for (let i = 0; i < count; i++) {
+    const by    = 20 + ((seed * (i + 2) * 331) % 60);
+    const delay = (i * 3.5).toFixed(1);
+    const dur   = (18 + i * 5).toFixed(1);
+    birds.push(`<g class="bird" style="animation-delay:${delay}s;animation-duration:${dur}s">
+      <path d="M0,${by} Q3,${by-3} 6,${by} Q9,${by-3} 12,${by}" stroke="${w.biomeTheme.starColor}" stroke-width="1.2" fill="none"/>
+    </g>`);
+  }
+  return birds.join('\n  ');
+}
+
 // ─── HUD ────────────────────────────────────────────────────
 function renderHUD(world: WorldData, username: string): string {
   const t  = world.biomeTheme;
@@ -300,5 +413,33 @@ function renderCSS(world: WorldData): string {
 
     .monster { animation: hover 2s ease-in-out infinite alternate; }
     @keyframes hover { from{transform:translateY(0)} to{transform:translateY(-4px)} }
+
+    /* 🌧️ Weather */
+    .rain { animation: fall linear infinite; }
+    @keyframes fall { from{transform:translateY(-20px)} to{transform:translateY(${GROUND}px)} }
+    .snow { animation: drift ease-in-out infinite; }
+    @keyframes drift {
+      0%   { transform:translate(0,0); opacity:.8; }
+      50%  { transform:translate(6px,${GROUND/2}px); opacity:.6; }
+      100% { transform:translate(-4px,${GROUND}px); opacity:0; }
+    }
+
+    /* 🚂 Train */
+    .train { animation: train-move linear infinite; transform-origin: 0 0; }
+    @keyframes train-move { from{transform:translateX(-80px)} to{transform:translateX(${W+80}px)} }
+    .train-smoke { animation: rise 2s ease-out infinite; transform-origin: center; }
+
+    /* 🚗 Vehicles */
+    .car1 { animation: car-ltr linear infinite; }
+    @keyframes car-ltr { from{transform:translateX(-30px)} to{transform:translateX(${W+30}px)} }
+    .car2 { animation: car-rtl linear infinite; }
+    @keyframes car-rtl { from{transform:translateX(${W+30}px)} to{transform:translateX(-30px)} }
+
+    /* 🎮 Birds */
+    .bird { animation: fly linear infinite; }
+    @keyframes fly {
+      from { transform:translateX(-20px); }
+      to   { transform:translateX(${W+20}px); }
+    }
   `;
 }
