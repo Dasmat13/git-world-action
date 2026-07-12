@@ -19,7 +19,7 @@ inputs:
     required: false
     default: 'dist/gitworld.svg'
   location:
-    description: 'City name for real-time weather (e.g. "Mumbai", "Berlin", "Tokyo"). Leave empty to use activity-based weather.'
+    description: 'Override city for weather (e.g. "Mumbai"). Auto-detected from your GitHub profile location if not set.'
     required: false
     default: ''
 

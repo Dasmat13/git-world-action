@@ -11,23 +11,29 @@ async function run(): Promise<void> {
     const username  = core.getInput('github_user_name', { required: true });
     const token     = core.getInput('github_token',      { required: true });
     const outPath   = core.getInput('svg_out_path')     || 'dist/gitworld.svg';
-    const location  = core.getInput('location')         || '';
 
     core.info(`🌍 Generating GitWorld for @${username}...`);
 
     core.info('📡 Fetching GitHub data...');
     const data = await fetchGitHubData(username, token);
 
-    // 🌦️ Fetch real-world weather if location is provided
+    // 🌦️ Location priority: manual input > GitHub profile location > activity-based
+    const manualLocation = core.getInput('location') || '';
+    const resolvedLocation = manualLocation.trim() || data.location.trim();
+
     let realWeather;
-    if (location.trim()) {
-      core.info(`🌦️  Fetching real-time weather for "${location}"...`);
-      realWeather = await fetchRealWeather(location);
+    if (resolvedLocation) {
+      const source = manualLocation.trim() ? 'manual input' : 'GitHub profile';
+      core.info(`🌍 Auto-detected location from ${source}: "${resolvedLocation}"`);
+      core.info(`🌦️  Fetching real-time weather...`);
+      realWeather = await fetchRealWeather(resolvedLocation);
       if (realWeather) {
-        core.info(`✅ Weather resolved: ${realWeather}`);
+        core.info(`✅ Weather: ${realWeather} (${resolvedLocation})`);
       } else {
-        core.warning(`⚠️  Could not resolve weather for "${location}", using activity-based fallback.`);
+        core.warning(`⚠️  Could not resolve weather for "${resolvedLocation}", using activity-based fallback.`);
       }
+    } else {
+      core.info('📍 No location set in GitHub profile or inputs — using activity-based weather.');
     }
 
     core.info('🏗️  Building world...');

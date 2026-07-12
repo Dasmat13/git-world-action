@@ -6,21 +6,23 @@ export interface DayData {
 }
 
 export interface GitHubData {
-  username: string;
+  username:           string;
   totalContributions: number;
-  weeks: DayData[][];          // 52 weeks × 7 days
-  topLanguage: string;
-  totalStars: number;
-  openIssues: number;
-  closedIssues: number;
-  followers: number;
-  organizations: number;
-  streak: number;
+  weeks:              DayData[][];   // 52 weeks × 7 days
+  topLanguage:        string;
+  totalStars:         number;
+  openIssues:         number;
+  closedIssues:       number;
+  followers:          number;
+  organizations:      number;
+  streak:             number;
+  location:           string;        // from GitHub profile (auto-detected)
 }
 
 const QUERY = `
 query($login: String!) {
   user(login: $login) {
+    location
     followers { totalCount }
     organizations { totalCount }
     contributionsCollection {
@@ -82,8 +84,9 @@ export async function fetchGitHubData(username: string, token: string): Promise<
     totalStars,
     openIssues,
     closedIssues,
-    followers: user.followers.totalCount,
+    followers:     user.followers.totalCount,
     organizations: user.organizations.totalCount,
     streak,
+    location:      user.location || '',   // may be null if user hasn't set it
   };
 }
