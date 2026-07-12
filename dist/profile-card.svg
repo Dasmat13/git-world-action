@@ -1,15 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1080" width="900" height="1080" style="border-radius:18px;overflow:hidden">
   <defs>
-    <!-- Magic Sky Gradient -->
-    <linearGradient id="magicSky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%"   stop-color="#03001e"/>
-      <stop offset="55%"  stop-color="#7303c0"/>
-      <stop offset="100%" stop-color="#ec38bc"/>
+    <!-- Soft Dreamy Sky -->
+    <linearGradient id="ghSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%"   stop-color="#0f1c3f"/>
+      <stop offset="50%"  stop-color="#1d2d50"/>
+      <stop offset="100%" stop-color="#133b5c"/>
     </linearGradient>
 
-    <!-- Magic Glow filter -->
-    <filter id="glowMagic" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
+    <!-- Soft glow for dandelion/fireflies -->
+    <filter id="glowSoft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
       <feMerge>
         <feMergeNode in="blur"/>
         <feMergeNode in="SourceGraphic"/>
@@ -17,415 +17,371 @@
     </filter>
   </defs>
 
-  <!-- ═══ MAGIC SKY BACKDROP ═══ -->
-  <rect width="900" height="1080" fill="url(#magicSky)"/>
+  <!-- ═══ SKY BACKDROP ═══ -->
+  <rect width="900" height="1080" fill="url(#ghSky)"/>
   
-  <!-- Swirling magic trail and sparkles -->
-  <circle cx="710.0" cy="240.0" r="2.0" fill="#ffffff" filter="url(#glowMagic)" opacity="0.8" /><circle cx="701.1" cy="211.5" r="4.5" fill="#ffffff" filter="url(#glowMagic)" opacity="0.8" /><circle cx="675.2" cy="185.0" r="7.0" fill="#ffffff" filter="url(#glowMagic)" opacity="0.8" /><circle cx="633.8" cy="162.2" r="2.0" fill="#ffffff" filter="url(#glowMagic)" opacity="0.8" /><circle cx="580.0" cy="144.7" r="4.5" fill="#ffffff" filter="url(#glowMagic)" opacity="0.8" /><circle cx="517.3" cy="133.7" r="7.0" fill="#ffffff" filter="url(#glowMagic)" opacity="0.8" /><circle cx="450.0" cy="130.0" r="2.0" fill="#ffffff" filter="url(#glowMagic)" opacity="0.8" /><circle cx="382.7" cy="133.7" r="4.5" fill="#ffffff" filter="url(#glowMagic)" opacity="0.8" /><circle cx="320.0" cy="144.7" r="7.0" fill="#ffffff" filter="url(#glowMagic)" opacity="0.8" /><circle cx="266.2" cy="162.2" r="2.0" fill="#ffffff" filter="url(#glowMagic)" opacity="0.8" /><circle cx="224.8" cy="185.0" r="4.5" fill="#ffffff" filter="url(#glowMagic)" opacity="0.8" /><circle cx="198.9" cy="211.5" r="7.0" fill="#ffffff" filter="url(#glowMagic)" opacity="0.8" />
+  <!-- Dreamy floating clouds -->
   
-    <g transform="translate(882.0,284.0) scale(0.40)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:0.0s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
+    <g opacity="0.25" style="animation: floatCloud 40s linear infinite; transform-origin: left; transform: translate(422px, 60px) scale(0.70);">
+      <path d="M 0,40 Q 20,10 50,20 Q 80,-5 120,15 Q 160,0 180,30 Q 210,40 190,60 Q 190,80 150,80 L 30,80 Q -15,70 0,40 Z" fill="#ffffff" />
     </g>
-    <g transform="translate(576.0,276.0) scale(0.60)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:0.3s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
+    <g opacity="0.40" style="animation: floatCloud 55s linear infinite; transform-origin: left; transform: translate(344px, 105px) scale(0.90);">
+      <path d="M 0,40 Q 20,10 50,20 Q 80,-5 120,15 Q 160,0 180,30 Q 210,40 190,60 Q 190,80 150,80 L 30,80 Q -15,70 0,40 Z" fill="#ffffff" />
     </g>
-    <g transform="translate(270.0,268.0) scale(0.80)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:0.6s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
+    <g opacity="0.55" style="animation: floatCloud 70s linear infinite; transform-origin: left; transform: translate(266px, 150px) scale(1.10);">
+      <path d="M 0,40 Q 20,10 50,20 Q 80,-5 120,15 Q 160,0 180,30 Q 210,40 190,60 Q 190,80 150,80 L 30,80 Q -15,70 0,40 Z" fill="#ffffff" />
     </g>
-    <g transform="translate(864.0,260.0) scale(1.00)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:0.9s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
+    <g opacity="0.70" style="animation: floatCloud 85s linear infinite; transform-origin: left; transform: translate(188px, 195px) scale(0.70);">
+      <path d="M 0,40 Q 20,10 50,20 Q 80,-5 120,15 Q 160,0 180,30 Q 210,40 190,60 Q 190,80 150,80 L 30,80 Q -15,70 0,40 Z" fill="#ffffff" />
     </g>
-    <g transform="translate(558.0,252.0) scale(0.40)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:1.2s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(252.0,244.0) scale(0.60)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:1.5s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(846.0,236.0) scale(0.80)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:1.8s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(540.0,228.0) scale(1.00)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:2.1s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(234.0,220.0) scale(0.40)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:2.4s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(828.0,212.0) scale(0.60)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:2.7s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(522.0,204.0) scale(0.80)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:3.0s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(216.0,196.0) scale(1.00)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:3.3s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(810.0,188.0) scale(0.40)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:3.6s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(504.0,180.0) scale(0.60)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:3.9s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(198.0,172.0) scale(0.80)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:0.2s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(792.0,164.0) scale(1.00)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:0.5s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(486.0,156.0) scale(0.40)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:0.8s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(180.0,148.0) scale(0.60)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:1.1s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(774.0,140.0) scale(0.80)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:1.4s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(468.0,132.0) scale(1.00)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:1.7s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(162.0,124.0) scale(0.40)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:2.0s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(756.0,116.0) scale(0.60)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:2.3s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(450.0,108.0) scale(0.80)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:2.6s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(144.0,100.0) scale(1.00)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:2.9s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(738.0,92.0) scale(0.40)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:3.2s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(432.0,84.0) scale(0.60)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:3.5s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(126.0,76.0) scale(0.80)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:3.8s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(720.0,68.0) scale(1.00)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:0.1s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(414.0,60.0) scale(0.40)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:0.4s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
-    <g transform="translate(108.0,52.0) scale(0.60)" style="animation: sparklePulse 3s ease-in-out infinite; animation-delay:0.7s;">
-      <path d="M 0,-15 L 3,-4 L 14,0 L 3,4 L 0,15 L -3,4 L -14,0 L -3,-4 Z" fill="#ffd700" />
-    </g>
+  
+  <!-- Floating fireflies or dandelion seeds -->
+  <circle class="floater" cx="630.0" cy="174.0" r="3" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:0.0s"/><circle class="floater" cx="216.0" cy="156.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:0.4s"/><circle class="floater" cx="702.0" cy="138.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:0.8s"/><circle class="floater" cx="288.0" cy="120.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:1.2s"/><circle class="floater" cx="774.0" cy="282.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:1.6s"/><circle class="floater" cx="360.0" cy="264.0" r="3" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:2.0s"/><circle class="floater" cx="846.0" cy="246.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:2.4s"/><circle class="floater" cx="432.0" cy="228.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:2.8s"/><circle class="floater" cx="18.0" cy="210.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:3.2s"/><circle class="floater" cx="504.0" cy="192.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:3.6s"/><circle class="floater" cx="90.0" cy="174.0" r="3" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:4.0s"/><circle class="floater" cx="576.0" cy="156.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:4.4s"/><circle class="floater" cx="162.0" cy="138.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:4.8s"/><circle class="floater" cx="648.0" cy="120.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:5.2s"/><circle class="floater" cx="234.0" cy="282.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:5.6s"/><circle class="floater" cx="720.0" cy="264.0" r="3" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:0.0s"/><circle class="floater" cx="306.0" cy="246.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:0.4s"/><circle class="floater" cx="792.0" cy="228.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:0.8s"/><circle class="floater" cx="378.0" cy="210.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:1.2s"/><circle class="floater" cx="864.0" cy="192.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:1.6s"/><circle class="floater" cx="450.0" cy="174.0" r="3" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:2.0s"/><circle class="floater" cx="36.0" cy="156.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:2.4s"/><circle class="floater" cx="522.0" cy="138.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:2.8s"/><circle class="floater" cx="108.0" cy="120.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:3.2s"/><circle class="floater" cx="594.0" cy="282.0" r="1.8" fill="#e9d8a6" filter="url(#glowSoft)" style="animation-delay:3.6s"/>
 
-  <!-- ═══ DISNEY SILHOUETTE CASTLE ═══ -->
+  <!-- ═══ HORIZON GREEN HILLS ═══ -->
   
-    <!-- Distant Castle Spires -->
-    <path d="M 370,260 L 370,170 L 380,170 L 380,260 Z" fill="#2a1b4e" opacity="0.6" />
-    <path d="M 520,260 L 520,170 L 530,170 L 530,260 Z" fill="#2a1b4e" opacity="0.6" />
-    <!-- Midground Towers -->
-    <path d="M 390,260 L 390,140 L 405,115 L 420,140 L 420,260 Z" fill="#3c226a" />
-    <path d="M 480,260 L 480,140 L 495,115 L 510,140 L 510,260 Z" fill="#3c226a" />
-    <!-- Main Center Tower and Spire -->
-    <path d="M 430,260 L 430,110 L 450,70 L 470,110 L 470,260 Z" fill="#4d2c88" />
-    <!-- Tower Flags -->
-    <polygon points="450,70 464,74 450,78" fill="#ffd700" />
-    <!-- Castle Base and Arched Gate -->
-    <rect x="410" y="210" width="80" height="50" rx="6" fill="#3c226a" />
-    <path d="M 435,260 A 15,15 0 0 1 465,260 Z" fill="#0d051c" />
-    <!-- Left/Right Side Blocks -->
-    <rect x="375" y="220" width="40" height="40" rx="4" fill="#311b58" />
-    <rect x="485" y="220" width="40" height="40" rx="4" fill="#311b58" />
+    <!-- Distant Hill -->
+    <path d="M -100,280 Q 250,190 600,250 T 1000,270 L 1000,320 L -100,320 Z" fill="#2d4a34" opacity="0.75" />
+    <!-- Midground Hill with simple tree shapes -->
+    <path d="M -50,290 Q 350,230 750,260 T 1050,295 L 1050,320 L -50,320 Z" fill="#3c6346" />
+    <!-- Foreground Grass Slope -->
+    <path d="M -20,300 Q 200,260 500,295 T 920,290 L 920,320 L -20,320 Z" fill="#4d7c57" />
   
-  <rect x="0" y="260" width="900" height="60" fill="#1c0f38" />
+  <rect x="0" y="306" width="900" height="10" fill="#4d7c57" />
 
   <!-- ═══ HERO HEADER ═══ -->
+  <!-- Hand-drawn style soft board behind title -->
   <g transform="translate(150, 336)">
-    <rect x="2" y="3" width="600" height="114" rx="20" fill="rgba(26, 8, 48, 0.25)"/>
-    <rect x="0" y="0" width="600" height="114" rx="20" fill="rgba(255, 250, 230, 0.94)" stroke="#e5c158" stroke-width="2.5"/>
-    <rect x="5" y="5" width="590" height="104" rx="15" fill="none" stroke="#e5c158" stroke-width="1.2" stroke-dasharray="6 3" opacity="0.5" />
+    <rect x="1" y="2" width="600" height="114" rx="16" fill="rgba(40, 30, 20, 0.15)"/>
+    <rect x="0" y="0" width="600" height="114" rx="16" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="2"/>
+    <rect x="4" y="4" width="592" height="106" rx="12" fill="none" stroke="#c9a054" stroke-width="1" opacity="0.3" />
     
-    <!-- Ornate inner loops -->
-    <circle cx="20" cy="20" r="10" fill="none" stroke="#e5c158" stroke-width="1.5" />
-    <circle cx="580" cy="20" r="10" fill="none" stroke="#e5c158" stroke-width="1.5" />
-    <circle cx="20" cy="94" r="10" fill="none" stroke="#e5c158" stroke-width="1.5" />
-    <circle cx="580" cy="94" r="10" fill="none" stroke="#e5c158" stroke-width="1.5" />
+    <!-- Decorative vine framing the header -->
+    <path d="M 20,15 Q 120,5 300,10 T 580,15" fill="none" stroke="#3a5f43" stroke-width="1.2" />
+    <path d="M 20,95 Q 120,105 300,100 T 580,95" fill="none" stroke="#3a5f43" stroke-width="1.2" />
 
-    <text x="300" y="52" font-family="'Outfit', sans-serif" font-size="34" fill="#4a148c" text-anchor="middle" font-weight="bold" filter="url(#glowMagic)">Dasmat's Magic Kingdom ✨</text>
-    <text x="300" y="80" font-family="sans-serif" font-size="13.5" fill="#4a148c" opacity="0.8" text-anchor="middle" letter-spacing="0.5">
-      DevOps Sorcerer  ·  Full-Stack Software Craftsman  ·  Open Source Explorer
+    <text x="300" y="52" font-family="'Outfit', sans-serif" font-size="34" fill="#4a3b32" text-anchor="middle" font-weight="bold">Hi, I'm Dasmat 🌿</text>
+    <text x="300" y="80" font-family="sans-serif" font-size="13.5" fill="#4a3b32" opacity="0.75" text-anchor="middle" letter-spacing="0.5">
+      DevOps Explorer  ·  Full-Stack Software Developer  ·  Open Source Contributor
     </text>
+    
+    
+    <g transform="translate(14,14) rotate(45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+    
+    <g transform="translate(586,14) rotate(-45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
   </g>
 
   <!-- ═══ ABOUT ME PANEL y=468 h=118 ═══ -->
   
-<g class="magic-panel">
-  <!-- Dropped magic shadow -->
-  <rect x="22" y="472" width="860" height="118" rx="22" fill="rgba(26, 8, 48, 0.25)"/>
+<g class="panel">
+  <!-- Dropshadow -->
+  <rect x="22" y="471" width="860" height="118" rx="14" fill="rgba(40,30,20,0.15)"/>
+  <!-- Main Box -->
+  <rect x="20" y="468" width="860" height="118" rx="14" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="2"/>
+  <rect x="24" y="472" width="852" height="110" rx="10" fill="none" stroke="#c9a054" stroke-width="1" opacity="0.4" />
   
-  <!-- Main Scroll Body -->
-  <rect x="20" y="468" width="860" height="118" rx="22" fill="rgba(255, 250, 230, 0.94)" stroke="#e5c158" stroke-width="2.5"/>
-  <rect x="26" y="474" width="848" height="106" rx="16" fill="none" stroke="#e5c158" stroke-width="1.2" stroke-dasharray="8 4" opacity="0.6" />
-
-  <!-- Corner Flourish Circles (Ornate Disney style) -->
-  <circle cx="30" cy="478" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
-  <circle cx="870" cy="478" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
-  <circle cx="30" cy="576" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
-  <circle cx="870" cy="576" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
+  <!-- Ivy Corner Decorations -->
   
-  <!-- Floating magical stars at corners -->
-  <path d="M 30,478 L 32,475 L 35,478 L 32,481 Z" fill="#ffd700" />
-  <path d="M 870,478 L 868,475 L 865,478 L 868,481 Z" fill="#ffd700" />
+    <g transform="translate(30,478) rotate(-45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,478) rotate(45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(30,576) rotate(-135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,576) rotate(135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
 
-  <!-- Whimsical Ribbon Header -->
-  <g transform="translate(60, 454)">
-    <rect width="227" height="28" rx="14" fill="#4a148c" stroke="#ffd700" stroke-width="1.5" filter="url(#glowMagic)" />
-    <text x="113.5" y="18" font-family="'Outfit', 'Inter', sans-serif" font-weight="bold" font-size="12" fill="#ffd700" text-anchor="middle" letter-spacing="1">✨  ABOUT THE ARCHITECT</text>
-  </g>
+  <!-- Label badge -->
+  <rect x="50" y="456" width="189" height="24" rx="12" fill="#3a5f43" stroke="#4a3b32" stroke-width="1.5"/>
+  <text x="62" y="472" font-family="'Outfit', 'Inter', sans-serif" font-size="11.5" fill="#fcfbf7" font-weight="bold" letter-spacing="1.5">🌿  ABOUT THE TRAVELER</text>
 </g>
-  <text x="40" y="505" font-family="sans-serif" font-size="13.5" fill="#4a148c">
-    👑  <tspan font-weight="bold" fill="#4a148c">Core Focus:</tspan> Infrastructure spellcasting, Cloud-Native architecture, Auto-healing systems
+  <text x="40" y="505" font-family="sans-serif" font-size="13.5" fill="#4a3b32">
+    🌱  <tspan font-weight="bold" fill="#3a5f43">Core Interests:</tspan> Infrastructure automation, Cloud-Native scaling, Self-healing architectures
   </text>
-  <text x="40" y="531" font-family="sans-serif" font-size="13.5" fill="#4a148c">
-    🪄  <tspan font-weight="bold" fill="#4a148c">Guild Contributions:</tspan> Kubernetes SIGs, Node.js Core, Express.js, Backstage Ecosystem
+  <text x="40" y="531" font-family="sans-serif" font-size="13.5" fill="#4a3b32">
+    🍃  <tspan font-weight="bold" fill="#3a5f43">Contributing To:</tspan> Kubernetes SIGs, Node.js Core, Express.js, Backstage Ecosystem
   </text>
-  <text x="40" y="557" font-family="sans-serif" font-size="13.5" fill="#4a148c">
-    📬  <tspan font-weight="bold" fill="#4a148c">Magic Mail:</tspan> mey37056@gmail.com   ·   ⚡  Creating self-restoring cloud kingdoms daily
+  <text x="40" y="557" font-family="sans-serif" font-size="13.5" fill="#4a3b32">
+    📬  <tspan font-weight="bold" fill="#3a5f43">Contact:</tspan> mey37056@gmail.com   ·   ⚡  Experiments daily with automated recovery pipelines
   </text>
 
   <!-- ═══ WORLD STATE BAR y=600 h=50 ═══ -->
   
-<g class="magic-panel">
-  <!-- Dropped magic shadow -->
-  <rect x="22" y="604" width="860" height="50" rx="22" fill="rgba(26, 8, 48, 0.25)"/>
+<g class="panel">
+  <!-- Dropshadow -->
+  <rect x="22" y="603" width="860" height="50" rx="14" fill="rgba(40,30,20,0.15)"/>
+  <!-- Main Box -->
+  <rect x="20" y="600" width="860" height="50" rx="14" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="2"/>
+  <rect x="24" y="604" width="852" height="42" rx="10" fill="none" stroke="#c9a054" stroke-width="1" opacity="0.4" />
   
-  <!-- Main Scroll Body -->
-  <rect x="20" y="600" width="860" height="50" rx="22" fill="rgba(255, 250, 230, 0.94)" stroke="#e5c158" stroke-width="2.5"/>
-  <rect x="26" y="606" width="848" height="38" rx="16" fill="none" stroke="#e5c158" stroke-width="1.2" stroke-dasharray="8 4" opacity="0.6" />
-
-  <!-- Corner Flourish Circles (Ornate Disney style) -->
-  <circle cx="30" cy="610" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
-  <circle cx="870" cy="610" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
-  <circle cx="30" cy="640" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
-  <circle cx="870" cy="640" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
+  <!-- Ivy Corner Decorations -->
   
-  <!-- Floating magical stars at corners -->
-  <path d="M 30,610 L 32,607 L 35,610 L 32,613 Z" fill="#ffd700" />
-  <path d="M 870,610 L 868,607 L 865,610 L 868,613 Z" fill="#ffd700" />
+    <g transform="translate(30,610) rotate(-45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,610) rotate(45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(30,640) rotate(-135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,640) rotate(135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
 
-  <!-- Whimsical Ribbon Header -->
-  <g transform="translate(60, 586)">
-    <rect width="193" height="28" rx="14" fill="#4a148c" stroke="#ffd700" stroke-width="1.5" filter="url(#glowMagic)" />
-    <text x="96.5" y="18" font-family="'Outfit', 'Inter', sans-serif" font-weight="bold" font-size="12" fill="#ffd700" text-anchor="middle" letter-spacing="1">🏰  KINGDOM STATUS</text>
-  </g>
+  <!-- Label badge -->
+  <rect x="50" y="588" width="226.5" height="24" rx="12" fill="#3a5f43" stroke="#4a3b32" stroke-width="1.5"/>
+  <text x="62" y="604" font-family="'Outfit', 'Inter', sans-serif" font-size="11.5" fill="#fcfbf7" font-weight="bold" letter-spacing="1.5">🏡  CURRENT ENVIRONMENT LOG</text>
 </g>
-  <text x="450" y="632" font-family="sans-serif" font-size="13.5" fill="#4a148c" text-anchor="middle" font-weight="bold">
-    🌟 Biome: <tspan fill="#4a148c">JS Kingdom</tspan>
-    <tspan dx="15" fill="#4a148c" opacity="0.3">|</tspan>
-    <tspan dx="15">🕰️ Cycle: <tspan fill="#4a148c">night</tspan></tspan>
-    <tspan dx="15" fill="#4a148c" opacity="0.3">|</tspan>
-    <tspan dx="15">🌦️ Climate: <tspan fill="#4a148c">rain</tspan></tspan>
-    <tspan dx="15" fill="#4a148c" opacity="0.3">|</tspan>
-    <tspan dx="15">🎒 Streak: <tspan fill="#4a148c">9 days</tspan></tspan>
+  <text x="450" y="632" font-family="sans-serif" font-size="13.5" fill="#4a3b32" text-anchor="middle" font-weight="bold">
+    🌳 Biome: <tspan fill="#3a5f43">JS Kingdom</tspan>
+    <tspan dx="15" fill="#4a3b32" opacity="0.3">|</tspan>
+    <tspan dx="15">🕰️ Time: <tspan fill="#3a5f43">night</tspan></tspan>
+    <tspan dx="15" fill="#4a3b32" opacity="0.3">|</tspan>
+    <tspan dx="15">🌦️ Weather: <tspan fill="#3a5f43">rain</tspan></tspan>
+    <tspan dx="15" fill="#4a3b32" opacity="0.3">|</tspan>
+    <tspan dx="15">🎒 Streak: <tspan fill="#3a5f43">9 days</tspan></tspan>
   </text>
 
   <!-- ═══ TECH STACK PANEL y=664 h=118 ═══ -->
   
-<g class="magic-panel">
-  <!-- Dropped magic shadow -->
-  <rect x="22" y="668" width="860" height="118" rx="22" fill="rgba(26, 8, 48, 0.25)"/>
+<g class="panel">
+  <!-- Dropshadow -->
+  <rect x="22" y="667" width="860" height="118" rx="14" fill="rgba(40,30,20,0.15)"/>
+  <!-- Main Box -->
+  <rect x="20" y="664" width="860" height="118" rx="14" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="2"/>
+  <rect x="24" y="668" width="852" height="110" rx="10" fill="none" stroke="#c9a054" stroke-width="1" opacity="0.4" />
   
-  <!-- Main Scroll Body -->
-  <rect x="20" y="664" width="860" height="118" rx="22" fill="rgba(255, 250, 230, 0.94)" stroke="#e5c158" stroke-width="2.5"/>
-  <rect x="26" y="670" width="848" height="106" rx="16" fill="none" stroke="#e5c158" stroke-width="1.2" stroke-dasharray="8 4" opacity="0.6" />
-
-  <!-- Corner Flourish Circles (Ornate Disney style) -->
-  <circle cx="30" cy="674" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
-  <circle cx="870" cy="674" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
-  <circle cx="30" cy="772" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
-  <circle cx="870" cy="772" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
+  <!-- Ivy Corner Decorations -->
   
-  <!-- Floating magical stars at corners -->
-  <path d="M 30,674 L 32,671 L 35,674 L 32,677 Z" fill="#ffd700" />
-  <path d="M 870,674 L 868,671 L 865,674 L 868,677 Z" fill="#ffd700" />
+    <g transform="translate(30,674) rotate(-45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,674) rotate(45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(30,772) rotate(-135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,772) rotate(135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
 
-  <!-- Whimsical Ribbon Header -->
-  <g transform="translate(60, 650)">
-    <rect width="269.5" height="28" rx="14" fill="#4a148c" stroke="#ffd700" stroke-width="1.5" filter="url(#glowMagic)" />
-    <text x="134.75" y="18" font-family="'Outfit', 'Inter', sans-serif" font-weight="bold" font-size="12" fill="#ffd700" text-anchor="middle" letter-spacing="1">🪄  ROYAL GEAR (TECH STACK)</text>
-  </g>
+  <!-- Label badge -->
+  <rect x="50" y="652" width="234" height="24" rx="12" fill="#3a5f43" stroke="#4a3b32" stroke-width="1.5"/>
+  <text x="62" y="668" font-family="'Outfit', 'Inter', sans-serif" font-size="11.5" fill="#fcfbf7" font-weight="bold" letter-spacing="1.5">🎒  PACKED GEAR (TECH STACK)</text>
 </g>
   
-    <g>
-      <!-- Gemstone Badge -->
-      <polygon points="32,708 48,694 150,694 166,708 150,722 48,722" fill="#1a73e8" stroke="#ffd700" stroke-width="1.2" />
-      <text x="99" y="712" font-family="sans-serif" font-size="11.5" fill="#ffffff" font-weight="bold" text-anchor="middle">Kubernetes</text>
-    </g>
+    <rect x="32" y="694" width="134" height="28" rx="14" fill="#e8f0fe" stroke="#4a3b32" stroke-width="1" />
+    <text x="99" y="712" font-family="sans-serif" font-size="11.5" fill="#1a73e8" font-weight="bold" text-anchor="middle">Kubernetes</text>
     
-    <g>
-      <!-- Gemstone Badge -->
-      <polygon points="172,708 188,694 290,694 306,708 290,722 188,722" fill="#0288d1" stroke="#ffd700" stroke-width="1.2" />
-      <text x="239" y="712" font-family="sans-serif" font-size="11.5" fill="#ffffff" font-weight="bold" text-anchor="middle">Docker</text>
-    </g>
+    <rect x="172" y="694" width="134" height="28" rx="14" fill="#e1f5fe" stroke="#4a3b32" stroke-width="1" />
+    <text x="239" y="712" font-family="sans-serif" font-size="11.5" fill="#0288d1" font-weight="bold" text-anchor="middle">Docker</text>
     
-    <g>
-      <!-- Gemstone Badge -->
-      <polygon points="312,708 328,694 430,694 446,708 430,722 328,722" fill="#1976d2" stroke="#ffd700" stroke-width="1.2" />
-      <text x="379" y="712" font-family="sans-serif" font-size="11.5" fill="#ffffff" font-weight="bold" text-anchor="middle">TypeScript</text>
-    </g>
+    <rect x="312" y="694" width="134" height="28" rx="14" fill="#e8f4fd" stroke="#4a3b32" stroke-width="1" />
+    <text x="379" y="712" font-family="sans-serif" font-size="11.5" fill="#1976d2" font-weight="bold" text-anchor="middle">TypeScript</text>
     
-    <g>
-      <!-- Gemstone Badge -->
-      <polygon points="452,708 468,694 570,694 586,708 570,722 468,722" fill="#0097a7" stroke="#ffd700" stroke-width="1.2" />
-      <text x="519" y="712" font-family="sans-serif" font-size="11.5" fill="#ffffff" font-weight="bold" text-anchor="middle">Go</text>
-    </g>
+    <rect x="452" y="694" width="134" height="28" rx="14" fill="#e0f7fa" stroke="#4a3b32" stroke-width="1" />
+    <text x="519" y="712" font-family="sans-serif" font-size="11.5" fill="#0097a7" font-weight="bold" text-anchor="middle">Go</text>
     
-    <g>
-      <!-- Gemstone Badge -->
-      <polygon points="592,708 608,694 710,694 726,708 710,722 608,722" fill="#2e7d32" stroke="#ffd700" stroke-width="1.2" />
-      <text x="659" y="712" font-family="sans-serif" font-size="11.5" fill="#ffffff" font-weight="bold" text-anchor="middle">Node.js</text>
-    </g>
+    <rect x="592" y="694" width="134" height="28" rx="14" fill="#e8f5e9" stroke="#4a3b32" stroke-width="1" />
+    <text x="659" y="712" font-family="sans-serif" font-size="11.5" fill="#2e7d32" font-weight="bold" text-anchor="middle">Node.js</text>
     
-    <g>
-      <!-- Gemstone Badge -->
-      <polygon points="732,708 748,694 850,694 866,708 850,722 748,722" fill="#7b1fa2" stroke="#ffd700" stroke-width="1.2" />
-      <text x="799" y="712" font-family="sans-serif" font-size="11.5" fill="#ffffff" font-weight="bold" text-anchor="middle">Terraform</text>
-    </g>
+    <rect x="732" y="694" width="134" height="28" rx="14" fill="#f3e5f5" stroke="#4a3b32" stroke-width="1" />
+    <text x="799" y="712" font-family="sans-serif" font-size="11.5" fill="#7b1fa2" font-weight="bold" text-anchor="middle">Terraform</text>
     
-    <g>
-      <!-- Gemstone Badge -->
-      <polygon points="32,748 48,734 150,734 166,748 150,762 48,762" fill="#5d4037" stroke="#ffd700" stroke-width="1.2" />
-      <text x="99" y="752" font-family="sans-serif" font-size="11.5" fill="#ffffff" font-weight="bold" text-anchor="middle">Python</text>
-    </g>
+    <rect x="32" y="734" width="134" height="28" rx="14" fill="#efebe9" stroke="#4a3b32" stroke-width="1" />
+    <text x="99" y="752" font-family="sans-serif" font-size="11.5" fill="#5d4037" font-weight="bold" text-anchor="middle">Python</text>
     
-    <g>
-      <!-- Gemstone Badge -->
-      <polygon points="172,748 188,734 290,734 306,748 290,762 188,762" fill="#e65100" stroke="#ffd700" stroke-width="1.2" />
-      <text x="239" y="752" font-family="sans-serif" font-size="11.5" fill="#ffffff" font-weight="bold" text-anchor="middle">AWS</text>
-    </g>
+    <rect x="172" y="734" width="134" height="28" rx="14" fill="#fff3e0" stroke="#4a3b32" stroke-width="1" />
+    <text x="239" y="752" font-family="sans-serif" font-size="11.5" fill="#e65100" font-weight="bold" text-anchor="middle">AWS</text>
     
-    <g>
-      <!-- Gemstone Badge -->
-      <polygon points="312,748 328,734 430,734 446,748 430,762 328,762" fill="#37474f" stroke="#ffd700" stroke-width="1.2" />
-      <text x="379" y="752" font-family="sans-serif" font-size="11.5" fill="#ffffff" font-weight="bold" text-anchor="middle">Linux</text>
-    </g>
+    <rect x="312" y="734" width="134" height="28" rx="14" fill="#eceff1" stroke="#4a3b32" stroke-width="1" />
+    <text x="379" y="752" font-family="sans-serif" font-size="11.5" fill="#37474f" font-weight="bold" text-anchor="middle">Linux</text>
     
-    <g>
-      <!-- Gemstone Badge -->
-      <polygon points="452,748 468,734 570,734 586,748 570,762 468,762" fill="#d84315" stroke="#ffd700" stroke-width="1.2" />
-      <text x="519" y="752" font-family="sans-serif" font-size="11.5" fill="#ffffff" font-weight="bold" text-anchor="middle">Grafana</text>
-    </g>
+    <rect x="452" y="734" width="134" height="28" rx="14" fill="#fbe9e7" stroke="#4a3b32" stroke-width="1" />
+    <text x="519" y="752" font-family="sans-serif" font-size="11.5" fill="#d84315" font-weight="bold" text-anchor="middle">Grafana</text>
     
-    <g>
-      <!-- Gemstone Badge -->
-      <polygon points="592,748 608,734 710,734 726,748 710,762 608,762" fill="#c62828" stroke="#ffd700" stroke-width="1.2" />
-      <text x="659" y="752" font-family="sans-serif" font-size="11.5" fill="#ffffff" font-weight="bold" text-anchor="middle">Prometheus</text>
-    </g>
+    <rect x="592" y="734" width="134" height="28" rx="14" fill="#ffebee" stroke="#4a3b32" stroke-width="1" />
+    <text x="659" y="752" font-family="sans-serif" font-size="11.5" fill="#c62828" font-weight="bold" text-anchor="middle">Prometheus</text>
     
-    <g>
-      <!-- Gemstone Badge -->
-      <polygon points="732,748 748,734 850,734 866,748 850,762 748,762" fill="#00695c" stroke="#ffd700" stroke-width="1.2" />
-      <text x="799" y="752" font-family="sans-serif" font-size="11.5" fill="#ffffff" font-weight="bold" text-anchor="middle">Backstage</text>
-    </g>
+    <rect x="732" y="734" width="134" height="28" rx="14" fill="#e0f2f1" stroke="#4a3b32" stroke-width="1" />
+    <text x="799" y="752" font-family="sans-serif" font-size="11.5" fill="#00695c" font-weight="bold" text-anchor="middle">Backstage</text>
     
 
   <!-- ═══ ACTIVE QUESTS PANEL y=796 h=162 ═══ -->
   
-<g class="magic-panel">
-  <!-- Dropped magic shadow -->
-  <rect x="22" y="800" width="860" height="162" rx="22" fill="rgba(26, 8, 48, 0.25)"/>
+<g class="panel">
+  <!-- Dropshadow -->
+  <rect x="22" y="799" width="860" height="162" rx="14" fill="rgba(40,30,20,0.15)"/>
+  <!-- Main Box -->
+  <rect x="20" y="796" width="860" height="162" rx="14" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="2"/>
+  <rect x="24" y="800" width="852" height="154" rx="10" fill="none" stroke="#c9a054" stroke-width="1" opacity="0.4" />
   
-  <!-- Main Scroll Body -->
-  <rect x="20" y="796" width="860" height="162" rx="22" fill="rgba(255, 250, 230, 0.94)" stroke="#e5c158" stroke-width="2.5"/>
-  <rect x="26" y="802" width="848" height="150" rx="16" fill="none" stroke="#e5c158" stroke-width="1.2" stroke-dasharray="8 4" opacity="0.6" />
-
-  <!-- Corner Flourish Circles (Ornate Disney style) -->
-  <circle cx="30" cy="806" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
-  <circle cx="870" cy="806" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
-  <circle cx="30" cy="948" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
-  <circle cx="870" cy="948" r="8" fill="none" stroke="#e5c158" stroke-width="2" />
+  <!-- Ivy Corner Decorations -->
   
-  <!-- Floating magical stars at corners -->
-  <path d="M 30,806 L 32,803 L 35,806 L 32,809 Z" fill="#ffd700" />
-  <path d="M 870,806 L 868,803 L 865,806 L 868,809 Z" fill="#ffd700" />
+    <g transform="translate(30,806) rotate(-45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,806) rotate(45) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(30,948) rotate(-135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
+  
+    <g transform="translate(870,948) rotate(135) scale(0.8)">
+      <path d="M0,0 Q-10,-15 0,-25 Q10,-15 0,0" fill="#5b8c5a" />
+      <path d="M-4,-8 Q-12,-16 -6,-22" fill="#7ba879" opacity="0.6" />
+      <path d="M0,0 L0,-23" stroke="#2d4a34" stroke-width="0.8" />
+    </g>
+  
 
-  <!-- Whimsical Ribbon Header -->
-  <g transform="translate(60, 782)">
-    <rect width="329" height="28" rx="14" fill="#4a148c" stroke="#ffd700" stroke-width="1.5" filter="url(#glowMagic)" />
-    <text x="164.5" y="18" font-family="'Outfit', 'Inter', sans-serif" font-weight="bold" font-size="12" fill="#ffd700" text-anchor="middle" letter-spacing="1">🗺️  ACTIVE ADVENTURES (QUEST LOG)</text>
-  </g>
+  <!-- Label badge -->
+  <rect x="50" y="784" width="294" height="24" rx="12" fill="#3a5f43" stroke="#4a3b32" stroke-width="1.5"/>
+  <text x="62" y="800" font-family="'Outfit', 'Inter', sans-serif" font-size="11.5" fill="#fcfbf7" font-weight="bold" letter-spacing="1.5">🗺️  CURRENT JOURNEY (ACTIVE QUESTS)</text>
 </g>
   
-    <text x="40" y="836" font-family="sans-serif" font-size="13" fill="#4a148c">
-      <tspan fill="#ff4081" font-weight="bold">✦ </tspan>LeaderWorkerSet topology-aware scheduling
-      <tspan dx="10" fill="#e91e63" font-size="11" font-weight="bold">[ Active Quest ✨ ]</tspan>
+    <text x="40" y="836" font-family="sans-serif" font-size="13" fill="#4a3b32">
+      <tspan fill="#3a5f43" font-weight="bold">✦ </tspan>LeaderWorkerSet topology-aware scheduling
+      <tspan dx="10" fill="#4caf50" font-size="10.5" font-weight="bold">[ Active Journey 🌿 ]</tspan>
     </text>
     
-    <text x="40" y="862" font-family="sans-serif" font-size="13" fill="#4a148c">
-      <tspan fill="#ff4081" font-weight="bold">✦ </tspan>CompositePodGroup integration (KEP-893)
-      <tspan dx="10" fill="#e91e63" font-size="11" font-weight="bold">[ Active Quest ✨ ]</tspan>
+    <text x="40" y="862" font-family="sans-serif" font-size="13" fill="#4a3b32">
+      <tspan fill="#3a5f43" font-weight="bold">✦ </tspan>CompositePodGroup integration (KEP-893)
+      <tspan dx="10" fill="#4caf50" font-size="10.5" font-weight="bold">[ Active Journey 🌿 ]</tspan>
     </text>
     
-    <text x="40" y="888" font-family="sans-serif" font-size="13" fill="#4a148c">
-      <tspan fill="#ff4081" font-weight="bold">✦ </tspan>GitWorld Engine rendering pipeline core
-      <tspan dx="10" fill="#ff9800" font-size="11" font-weight="bold">[ Completed 🌟 ]</tspan>
+    <text x="40" y="888" font-family="sans-serif" font-size="13" fill="#4a3b32">
+      <tspan fill="#3a5f43" font-weight="bold">✦ </tspan>GitWorld Engine rendering pipeline core
+      <tspan dx="10" fill="#b2851d" font-size="10.5" font-weight="bold">[ Completed 🏆 ]</tspan>
     </text>
     
-    <text x="40" y="914" font-family="sans-serif" font-size="13" fill="#4a148c">
-      <tspan fill="#ff4081" font-weight="bold">✦ </tspan>Real-time automatic location weather sync
-      <tspan dx="10" fill="#ff9800" font-size="11" font-weight="bold">[ Completed 🌟 ]</tspan>
+    <text x="40" y="914" font-family="sans-serif" font-size="13" fill="#4a3b32">
+      <tspan fill="#3a5f43" font-weight="bold">✦ </tspan>Real-time automatic location weather sync
+      <tspan dx="10" fill="#b2851d" font-size="10.5" font-weight="bold">[ Completed 🏆 ]</tspan>
     </text>
     
-    <text x="40" y="940" font-family="sans-serif" font-size="13" fill="#4a148c">
-      <tspan fill="#ff4081" font-weight="bold">✦ </tspan>Upstream Node.js core exploration
-      <tspan dx="10" fill="#2196f3" font-size="11" font-weight="bold">[ Exploring 🧭 ]</tspan>
+    <text x="40" y="940" font-family="sans-serif" font-size="13" fill="#4a3b32">
+      <tspan fill="#3a5f43" font-weight="bold">✦ </tspan>Upstream Node.js core exploration
+      <tspan dx="10" fill="#0288d1" font-size="10.5" font-weight="bold">[ Wandering 🏕️ ]</tspan>
     </text>
     
 
   <!-- ═══ STATS HUD y=974 h=76 ═══ -->
   
     <g>
-      <rect x="32" y="977" width="270" height="76" rx="16" fill="rgba(26, 8, 48, 0.2)"/>
-      <rect x="30" y="974" width="270" height="76" rx="16" fill="rgba(255, 250, 230, 0.94)" stroke="#e5c158" stroke-width="2"/>
-      
-      <!-- Crown/Shield design decoration -->
-      <path d="M 40,982 L 290,982" stroke="#e5c158" stroke-width="0.8" />
-      
-      <text x="42" y="996" font-family="sans-serif" font-size="9" fill="#4a148c" font-weight="bold" letter-spacing="1">✨  MAGIC STREAK</text>
-      <text x="42" y="1023" font-family="sans-serif" font-size="19" fill="#4a148c" font-weight="bold">9 days</text>
-      <text x="42" y="1040" font-family="sans-serif" font-size="9" fill="#4a148c" opacity="0.6">consecutive active days</text>
+      <rect x="31" y="976" width="270" height="76" rx="12" fill="rgba(40,30,20,0.1)"/>
+      <rect x="30" y="974" width="270" height="76" rx="12" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="1.5"/>
+      <text x="42" y="994" font-family="sans-serif" font-size="9" fill="#3a5f43" font-weight="bold" letter-spacing="1.5">📝  TRAVEL STREAK</text>
+      <text x="42" y="1022" font-family="sans-serif" font-size="20" fill="#4a3b32" font-weight="bold">9 days</text>
+      <text x="42" y="1039" font-family="sans-serif" font-size="9.5" fill="#4a3b32" opacity="0.6">committed in a row</text>
     </g>
     
     <g>
-      <rect x="327" y="977" width="270" height="76" rx="16" fill="rgba(26, 8, 48, 0.2)"/>
-      <rect x="325" y="974" width="270" height="76" rx="16" fill="rgba(255, 250, 230, 0.94)" stroke="#e5c158" stroke-width="2"/>
-      
-      <!-- Crown/Shield design decoration -->
-      <path d="M 335,982 L 585,982" stroke="#e5c158" stroke-width="0.8" />
-      
-      <text x="337" y="996" font-family="sans-serif" font-size="9" fill="#4a148c" font-weight="bold" letter-spacing="1">👑  ROYAL COMMITS</text>
-      <text x="337" y="1023" font-family="sans-serif" font-size="19" fill="#4a148c" font-weight="bold">424</text>
-      <text x="337" y="1040" font-family="sans-serif" font-size="9" fill="#4a148c" opacity="0.6">total contributions</text>
+      <rect x="326" y="976" width="270" height="76" rx="12" fill="rgba(40,30,20,0.1)"/>
+      <rect x="325" y="974" width="270" height="76" rx="12" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="1.5"/>
+      <text x="337" y="994" font-family="sans-serif" font-size="9" fill="#3a5f43" font-weight="bold" letter-spacing="1.5">🌱  SPROUTS GROWN</text>
+      <text x="337" y="1022" font-family="sans-serif" font-size="20" fill="#4a3b32" font-weight="bold">424</text>
+      <text x="337" y="1039" font-family="sans-serif" font-size="9.5" fill="#4a3b32" opacity="0.6">total commits</text>
     </g>
     
     <g>
-      <rect x="622" y="977" width="270" height="76" rx="16" fill="rgba(26, 8, 48, 0.2)"/>
-      <rect x="620" y="974" width="270" height="76" rx="16" fill="rgba(255, 250, 230, 0.94)" stroke="#e5c158" stroke-width="2"/>
-      
-      <!-- Crown/Shield design decoration -->
-      <path d="M 630,982 L 880,982" stroke="#e5c158" stroke-width="0.8" />
-      
-      <text x="632" y="996" font-family="sans-serif" font-size="9" fill="#4a148c" font-weight="bold" letter-spacing="1">🏰  WORLD BIOME</text>
-      <text x="632" y="1023" font-family="sans-serif" font-size="19" fill="#4a148c" font-weight="bold">JS Kingdom</text>
-      <text x="632" y="1040" font-family="sans-serif" font-size="9" fill="#4a148c" opacity="0.6">Weather: rain</text>
+      <rect x="621" y="976" width="270" height="76" rx="12" fill="rgba(40,30,20,0.1)"/>
+      <rect x="620" y="974" width="270" height="76" rx="12" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="1.5"/>
+      <text x="632" y="994" font-family="sans-serif" font-size="9" fill="#3a5f43" font-weight="bold" letter-spacing="1.5">🏡  HOME BIOME</text>
+      <text x="632" y="1022" font-family="sans-serif" font-size="20" fill="#4a3b32" font-weight="bold">JS Kingdom</text>
+      <text x="632" y="1039" font-family="sans-serif" font-size="9.5" fill="#4a3b32" opacity="0.6">Weather: rain</text>
     </g>
     
 
-  <!-- Magic bottom footer -->
-  <text x="450" y="1070" font-family="sans-serif" font-size="10" fill="#4a148c" opacity="0.5" text-anchor="middle" letter-spacing="1.5">
-    ✨  Created under the Magic Kingdom of GitWorld Engine  ·  github.com/Dasmat13/git-world-action  ✨
+  <!-- Cozy bottom footer -->
+  <text x="450" y="1070" font-family="sans-serif" font-size="10" fill="#4a3b32" opacity="0.45" text-anchor="middle" letter-spacing="1">
+    🌾  Harvested daily by GitWorld Engine  ·  github.com/Dasmat13/git-world-action  🌾
   </text>
 
   <style>
-    @keyframes sparklePulse {
-      0%, 100% { transform: scale(0.6) rotate(0deg); opacity: 0.3; }
-      50% { transform: scale(1.1) rotate(45deg); opacity: 0.95; }
+    .floater {
+      animation: floatUp 8s ease-in-out infinite alternate;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(0px) translateX(0px); opacity: 0.2; }
+      50% { transform: translateY(-15px) translateX(8px); opacity: 0.8; }
+      100% { transform: translateY(-30px) translateX(-5px); opacity: 0.3; }
+    }
+    @keyframes floatCloud {
+      0% { transform: translateX(-220px); }
+      100% { transform: translateX(900px); }
     }
   </style>
 </svg>
