@@ -4,20 +4,34 @@ import * as path from 'path';
 import { fetchGitHubData } from './github';
 import { buildWorld } from './world';
 import { renderSVG } from './renderer';
+import { fetchRealWeather } from './weather';
 
 async function run(): Promise<void> {
   try {
     const username  = core.getInput('github_user_name', { required: true });
     const token     = core.getInput('github_token',      { required: true });
     const outPath   = core.getInput('svg_out_path')     || 'dist/gitworld.svg';
+    const location  = core.getInput('location')         || '';
 
     core.info(`🌍 Generating GitWorld for @${username}...`);
 
     core.info('📡 Fetching GitHub data...');
     const data = await fetchGitHubData(username, token);
 
+    // 🌦️ Fetch real-world weather if location is provided
+    let realWeather;
+    if (location.trim()) {
+      core.info(`🌦️  Fetching real-time weather for "${location}"...`);
+      realWeather = await fetchRealWeather(location);
+      if (realWeather) {
+        core.info(`✅ Weather resolved: ${realWeather}`);
+      } else {
+        core.warning(`⚠️  Could not resolve weather for "${location}", using activity-based fallback.`);
+      }
+    }
+
     core.info('🏗️  Building world...');
-    const world = buildWorld(data);
+    const world = buildWorld(data, realWeather);
 
     core.info('🎨 Rendering SVG...');
     const svg = renderSVG(world, username);

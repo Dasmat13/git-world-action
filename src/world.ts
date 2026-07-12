@@ -146,7 +146,7 @@ function countToTile(count: number): TileType {
   return 'castle';
 }
 
-export function buildWorld(data: GitHubData): WorldData {
+export function buildWorld(data: GitHubData, realWeather?: WeatherType): WorldData {
   const theme = BIOMES[data.topLanguage] || DEFAULT_BIOME;
   const allMax = Math.max(...data.weeks.flatMap(w => w.map(d => d.count)), 1);
 
@@ -180,12 +180,13 @@ export function buildWorld(data: GitHubData): WorldData {
     streakRatio < 0.3 ? 'dawn'  :
     streakRatio < 0.7 ? 'day'   : 'dusk';
 
-  // 🌧️ Weather: snow if major contributor & cold biome, rain if many issues, else clear
+  // 🌧️ Weather: real-location takes priority; fall back to activity-based
   const issueRatio = data.openIssues / (data.openIssues + data.closedIssues + 1);
   const coldBiomes = ['Rust', 'C++', 'Go', 'Kotlin'];
-  const weatherType: WeatherType =
+  const derivedWeather: WeatherType =
     coldBiomes.includes(data.topLanguage) && data.streak > 30 ? 'snow' :
     issueRatio > 0.4 ? 'rain' : 'clear';
+  const weatherType: WeatherType = realWeather ?? derivedWeather;
 
   return {
     columns,
