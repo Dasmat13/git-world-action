@@ -4,6 +4,7 @@
 #
 # Then add this to your profile README.md:
 #   ![GitWorld](https://raw.githubusercontent.com/Dasmat13/Dasmat13/main/dist/gitworld.svg)
+#   ![Profile Card](https://raw.githubusercontent.com/Dasmat13/Dasmat13/main/dist/profile-card.svg)
 # ─────────────────────────────────────────────────────────────────────────────
 
 name: GitWorld — Update Profile
@@ -22,17 +23,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate GitWorld SVG
+      - name: Generate GitWorld SVG + Profile Card
         uses: Dasmat13/git-world-action@main
         with:
           github_user_name: ${{ github.actor }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           svg_out_path: dist/gitworld.svg
+          # location is auto-detected from your GitHub profile location field
 
-      - name: Commit & Push SVG
+      - name: Commit & Push SVGs
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add dist/gitworld.svg
+          git add dist/gitworld.svg dist/profile-card.svg
           git diff --cached --quiet || git commit -m "🌍 Update GitWorld [$(date +'%Y-%m-%d')]"
           git push
+
