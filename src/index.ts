@@ -4,6 +4,7 @@ import * as path from 'path';
 import { fetchGitHubData } from './github';
 import { buildWorld } from './world';
 import { renderSVG } from './renderer';
+import { renderProfileCard } from './profile-renderer';
 import { fetchRealWeather } from './weather';
 
 async function run(): Promise<void> {
@@ -41,13 +42,18 @@ async function run(): Promise<void> {
 
     core.info('🎨 Rendering SVG...');
     const svg = renderSVG(world, username);
-
     const dir = path.dirname(outPath);
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(outPath, svg, 'utf8');
-
     core.info(`✅ GitWorld SVG written to ${outPath}`);
     core.setOutput('svg_path', outPath);
+
+    // 🃏 Also render profile card
+    const cardPath = path.join(path.dirname(outPath), 'profile-card.svg');
+    const cardSvg  = renderProfileCard(world);
+    fs.writeFileSync(cardPath, cardSvg, 'utf8');
+    core.info(`✅ Profile card written to ${cardPath}`);
+    core.setOutput('profile_card_path', cardPath);
   } catch (err: unknown) {
     core.setFailed(err instanceof Error ? err.message : String(err));
   }
