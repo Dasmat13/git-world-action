@@ -22,6 +22,10 @@
   </defs>
 
   <rect width="900" height="260" fill="url(#sky)"/>
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#020510"/>
+    <stop offset="100%" stop-color="#0a0f1e"/>
+  </linearGradient></defs>
   <circle class="star" cx="594.0" cy="123.0" r="1.5" fill="#ffd700" style="animation-delay:0.0s"/>
   <circle class="star" cx="288.0" cy="91.0" r="0.8" fill="#ffd700" style="animation-delay:0.3s"/>
   <circle class="star" cx="882.0" cy="59.0" r="0.8" fill="#ffd700" style="animation-delay:0.6s"/>
@@ -92,6 +96,46 @@
   <ellipse class="cloud1" cx="120" cy="28" rx="35" ry="12" fill="rgba(180,180,200,0.18)"/>
   <ellipse class="cloud2" cx="600" cy="50" rx="65" ry="18" fill="rgba(180,180,200,0.18)"/>
   <ellipse class="cloud2" cx="625" cy="40" rx="40" ry="13" fill="rgba(180,180,200,0.18)"/>
+  <line class="rain" x1="216.0" y1="162.0" x2="218.0" y2="172.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.00s;animation-duration:0.60s"/>
+  <line class="rain" x1="888.0" y1="18.0" x2="890.0" y2="28.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.15s;animation-duration:0.75s"/>
+  <line class="rain" x1="660.0" y1="69.0" x2="662.0" y2="79.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.30s;animation-duration:0.90s"/>
+  <line class="rain" x1="432.0" y1="120.0" x2="434.0" y2="130.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.45s;animation-duration:1.05s"/>
+  <line class="rain" x1="204.0" y1="171.0" x2="206.0" y2="181.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.60s;animation-duration:1.20s"/>
+  <line class="rain" x1="876.0" y1="27.0" x2="878.0" y2="37.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.75s;animation-duration:0.60s"/>
+  <line class="rain" x1="648.0" y1="78.0" x2="650.0" y2="88.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.90s;animation-duration:0.75s"/>
+  <line class="rain" x1="420.0" y1="129.0" x2="422.0" y2="139.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.05s;animation-duration:0.90s"/>
+  <line class="rain" x1="192.0" y1="180.0" x2="194.0" y2="190.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.20s;animation-duration:1.05s"/>
+  <line class="rain" x1="864.0" y1="36.0" x2="866.0" y2="46.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.35s;animation-duration:1.20s"/>
+  <line class="rain" x1="636.0" y1="87.0" x2="638.0" y2="97.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.50s;animation-duration:0.60s"/>
+  <line class="rain" x1="408.0" y1="138.0" x2="410.0" y2="148.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.65s;animation-duration:0.75s"/>
+  <line class="rain" x1="180.0" y1="189.0" x2="182.0" y2="199.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.80s;animation-duration:0.90s"/>
+  <line class="rain" x1="852.0" y1="45.0" x2="854.0" y2="55.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.95s;animation-duration:1.05s"/>
+  <line class="rain" x1="624.0" y1="96.0" x2="626.0" y2="106.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.10s;animation-duration:1.20s"/>
+  <line class="rain" x1="396.0" y1="147.0" x2="398.0" y2="157.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.25s;animation-duration:0.60s"/>
+  <line class="rain" x1="168.0" y1="3.0" x2="170.0" y2="13.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.40s;animation-duration:0.75s"/>
+  <line class="rain" x1="840.0" y1="54.0" x2="842.0" y2="64.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.55s;animation-duration:0.90s"/>
+  <line class="rain" x1="612.0" y1="105.0" x2="614.0" y2="115.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.70s;animation-duration:1.05s"/>
+  <line class="rain" x1="384.0" y1="156.0" x2="386.0" y2="166.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.85s;animation-duration:1.20s"/>
+  <line class="rain" x1="156.0" y1="12.0" x2="158.0" y2="22.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.00s;animation-duration:0.60s"/>
+  <line class="rain" x1="828.0" y1="63.0" x2="830.0" y2="73.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.15s;animation-duration:0.75s"/>
+  <line class="rain" x1="600.0" y1="114.0" x2="602.0" y2="124.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.30s;animation-duration:0.90s"/>
+  <line class="rain" x1="372.0" y1="165.0" x2="374.0" y2="175.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.45s;animation-duration:1.05s"/>
+  <line class="rain" x1="144.0" y1="21.0" x2="146.0" y2="31.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.60s;animation-duration:1.20s"/>
+  <line class="rain" x1="816.0" y1="72.0" x2="818.0" y2="82.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.75s;animation-duration:0.60s"/>
+  <line class="rain" x1="588.0" y1="123.0" x2="590.0" y2="133.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.90s;animation-duration:0.75s"/>
+  <line class="rain" x1="360.0" y1="174.0" x2="362.0" y2="184.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.05s;animation-duration:0.90s"/>
+  <line class="rain" x1="132.0" y1="30.0" x2="134.0" y2="40.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.20s;animation-duration:1.05s"/>
+  <line class="rain" x1="804.0" y1="81.0" x2="806.0" y2="91.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.35s;animation-duration:1.20s"/>
+  <line class="rain" x1="576.0" y1="132.0" x2="578.0" y2="142.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.50s;animation-duration:0.60s"/>
+  <line class="rain" x1="348.0" y1="183.0" x2="350.0" y2="193.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.65s;animation-duration:0.75s"/>
+  <line class="rain" x1="120.0" y1="39.0" x2="122.0" y2="49.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.80s;animation-duration:0.90s"/>
+  <line class="rain" x1="792.0" y1="90.0" x2="794.0" y2="100.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.95s;animation-duration:1.05s"/>
+  <line class="rain" x1="564.0" y1="141.0" x2="566.0" y2="151.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.10s;animation-duration:1.20s"/>
+  <line class="rain" x1="336.0" y1="192.0" x2="338.0" y2="202.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.25s;animation-duration:0.60s"/>
+  <line class="rain" x1="108.0" y1="48.0" x2="110.0" y2="58.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.40s;animation-duration:0.75s"/>
+  <line class="rain" x1="780.0" y1="99.0" x2="782.0" y2="109.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.55s;animation-duration:0.90s"/>
+  <line class="rain" x1="552.0" y1="150.0" x2="554.0" y2="160.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.70s;animation-duration:1.05s"/>
+  <line class="rain" x1="324.0" y1="6.0" x2="326.0" y2="16.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:1.85s;animation-duration:1.20s"/>
 
   <!-- Ground -->
   <rect x="0" y="195" width="900" height="65" fill="url(#gnd)"/>
@@ -1039,20 +1083,78 @@
           style="animation-delay:4.6s"/><circle class="smoke" cx="870.3" cy="50.0" r="4"
       fill="#aaa" opacity="0.6"
       style="animation-delay:2.00s"/></g>
-  <g class="col" data-week="51"><rect x="882.7" y="165" width="16.3" height="30"
-    fill="#f0c040" rx="1"/><polygon points="882.7,165 890.8,157.0 899.0,165"
-      fill="#e8a020"/><rect class="win" x="889.7" y="169.0"
+  <g class="col" data-week="51"><rect x="882.7" y="128" width="16.3" height="67"
+    fill="#f0c040" rx="1"/><rect class="win" x="889.7" y="132.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:0.3s"/>
-    <rect class="win" x="894.7" y="169.0"
+    <rect class="win" x="894.7" y="132.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:0.6s"/>
-    <rect class="win" x="884.7" y="179.0"
+    <rect class="win" x="884.7" y="142.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:0.9s"/>
-    <rect class="win" x="889.7" y="179.0"
+    <rect class="win" x="889.7" y="142.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
-          style="animation-delay:1.2s"/></g>
+          style="animation-delay:1.2s"/>
+    <rect class="win" x="884.7" y="152.0"
+          width="2.5" height="2.5" fill="#fffde7" rx="0.5"
+          style="animation-delay:1.8s"/>
+    <rect class="win" x="894.7" y="152.0"
+          width="2.5" height="2.5" fill="#fffde7" rx="0.5"
+          style="animation-delay:2.4s"/>
+    <rect class="win" x="889.7" y="162.0"
+          width="2.5" height="2.5" fill="#fffde7" rx="0.5"
+          style="animation-delay:3.0s"/>
+    <rect class="win" x="894.7" y="162.0"
+          width="2.5" height="2.5" fill="#fffde7" rx="0.5"
+          style="animation-delay:3.3s"/>
+    <rect class="win" x="884.7" y="172.0"
+          width="2.5" height="2.5" fill="#fffde7" rx="0.5"
+          style="animation-delay:3.6s"/>
+    <rect class="win" x="889.7" y="172.0"
+          width="2.5" height="2.5" fill="#fffde7" rx="0.5"
+          style="animation-delay:3.9s"/></g>
+
+  <!-- Train -->
+  
+  <g class="train" style="animation-duration:37.5s">
+    <!-- Engine -->
+    <rect x="0" y="183" width="22" height="10" fill="#e8a020" rx="2"/>
+    <rect x="16" y="179" width="6" height="4" fill="#e8a020" rx="1"/>
+    <circle cx="4" cy="193" r="3" fill="#333"/>
+    <circle cx="16" cy="193" r="3" fill="#333"/>
+    <!-- Smoke puff -->
+    <circle class="train-smoke" cx="21" cy="177" r="3" fill="#aaa" opacity="0.7"/>
+    <!-- Car 1 -->
+    <rect x="-28" y="184" width="20" height="9" fill="#f0c040" rx="1"/>
+    <circle cx="-22" cy="193" r="2.5" fill="#333"/>
+    <circle cx="-12" cy="193" r="2.5" fill="#333"/>
+    <!-- Car 2 -->
+    <rect x="-54" y="184" width="20" height="9" fill="#f0c040" rx="1"/>
+    <circle cx="-48" cy="193" r="2.5" fill="#333"/>
+    <circle cx="-38" cy="193" r="2.5" fill="#333"/>
+  </g>
+
+  <!-- Vehicles -->
+  
+  <!-- Car 1 -->
+  <g class="car1" style="animation-duration:27.5s">
+    <rect x="0" y="187" width="18" height="7" fill="#f0c040" rx="2"/>
+    <rect x="4" y="183" width="10" height="5" fill="#f0c040" rx="1"/>
+    <rect x="5" y="184" width="4" height="3" fill="#fffde7" rx="0.5" opacity="0.8"/>
+    <rect x="10" y="184" width="3" height="3" fill="#fffde7" rx="0.5" opacity="0.8"/>
+    <circle cx="4"  cy="194" r="2.5" fill="#222"/>
+    <circle cx="14" cy="194" r="2.5" fill="#222"/>
+  </g>
+  <!-- Car 2 RTL -->
+  <g class="car2" style="animation-duration:43.8s">
+    <rect x="0" y="189" width="16" height="6" fill="#e53935" rx="2"/>
+    <rect x="3" y="185" width="9" height="5" fill="#e53935" rx="1"/>
+    <rect x="4" y="186" width="3" height="3" fill="#fffde7" rx="0.5" opacity="0.8"/>
+    <rect x="9" y="186" width="3" height="3" fill="#fffde7" rx="0.5" opacity="0.8"/>
+    <circle cx="3"  cy="195" r="2.5" fill="#222"/>
+    <circle cx="13" cy="195" r="2.5" fill="#222"/>
+  </g>
 
   <!-- Walking character -->
   
@@ -1134,6 +1236,9 @@
     <line x1="791.5" y1="174.0" x2="789.5" y2="176.0" stroke="#8b0000" stroke-width="2"/>
   </g>
 
+  <!-- Birds -->
+  
+
   <!-- HUD label -->
   
   <g>
@@ -1188,5 +1293,33 @@
 
     .monster { animation: hover 2s ease-in-out infinite alternate; }
     @keyframes hover { from{transform:translateY(0)} to{transform:translateY(-4px)} }
+
+    /* 🌧️ Weather */
+    .rain { animation: fall linear infinite; }
+    @keyframes fall { from{transform:translateY(-20px)} to{transform:translateY(195px)} }
+    .snow { animation: drift ease-in-out infinite; }
+    @keyframes drift {
+      0%   { transform:translate(0,0); opacity:.8; }
+      50%  { transform:translate(6px,97.5px); opacity:.6; }
+      100% { transform:translate(-4px,195px); opacity:0; }
+    }
+
+    /* 🚂 Train */
+    .train { animation: train-move linear infinite; transform-origin: 0 0; }
+    @keyframes train-move { from{transform:translateX(-80px)} to{transform:translateX(980px)} }
+    .train-smoke { animation: rise 2s ease-out infinite; transform-origin: center; }
+
+    /* 🚗 Vehicles */
+    .car1 { animation: car-ltr linear infinite; }
+    @keyframes car-ltr { from{transform:translateX(-30px)} to{transform:translateX(930px)} }
+    .car2 { animation: car-rtl linear infinite; }
+    @keyframes car-rtl { from{transform:translateX(930px)} to{transform:translateX(-30px)} }
+
+    /* 🎮 Birds */
+    .bird { animation: fly linear infinite; }
+    @keyframes fly {
+      from { transform:translateX(-20px); }
+      to   { transform:translateX(920px); }
+    }
   </style>
 </svg>
