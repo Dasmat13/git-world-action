@@ -4,272 +4,200 @@ const W = 900, H = 1080;
 
 export function renderProfileCard(world: WorldData): string {
   const t   = world.biomeTheme;
-  const username = world.username;
-  
-  // Theme colors for Synthwave / Cyberpunk aesthetic
-  const neonPink   = '#ff007f';
-  const neonCyan   = '#00f0ff';
-  const neonPurple = '#9d4edd';
-  const darkBg     = '#0b0518';
-  const termBg     = 'rgba(12, 6, 24, 0.88)';
-  const termBorder = 'rgba(255, 0, 127, 0.4)';
-  const textCyan   = '#38bdf8';
-  const textPink   = '#f43f5e';
-  const textWhite  = '#e2e8f0';
-  const textMuted  = '#64748b';
+  const ac  = t.buildingBase;
+  const ac2 = t.buildingAccent;
+  const tx  = t.starColor;
+  const seed = world.username.split('').reduce((a,c) => a + c.charCodeAt(0), 0);
 
-  // Seeded random stars
-  const seed = username.split('').reduce((a,c) => a + c.charCodeAt(0), 0);
-  const stars = Array.from({length: 60}, (_,i) => {
-    const x  = ((seed * (i + 1) * 997) % W).toFixed(1);
-    const y  = ((seed * (i + 1) * 1009) % 250).toFixed(1);
-    const r  = i % 5 === 0 ? 1.5 : 0.8;
-    const op = (0.2 + (i % 6) * 0.12).toFixed(2);
-    const d  = ((i * 0.3) % 4).toFixed(1);
-    return `<circle class="star" cx="${x}" cy="${y}" r="${r}" fill="#fff" opacity="${op}" style="animation-delay:${d}s"/>`;
+  const skyPal: Record<string,[string,string,string]> = {
+    night: ['#010408','#060d1f','#0d1a3a'],
+    dawn:  ['#0d0520','#6b1f4a','#e8571a'],
+    day:   [t.skyTop, t.skyBottom, t.groundColor],
+    dusk:  ['#0d0220','#5b0e6e','#b91c1c'],
+  };
+  const [s0,s1,s2] = skyPal[world.timeOfDay];
+  const isSun = world.timeOfDay === 'day' || world.timeOfDay === 'dawn';
+
+  // Stars
+  const stars = Array.from({length:70}, (_,i) => {
+    const x  = ((seed*(i+1)*997)%W).toFixed(1);
+    const y  = ((seed*(i+1)*1009)%255).toFixed(1);
+    const r  = i%7===0 ? 2 : i%3===0 ? 1.2 : 0.7;
+    const d  = ((i*0.28)%5).toFixed(1);
+    return `<circle class="star" cx="${x}" cy="${y}" r="${r}" fill="${tx}" style="animation-delay:${d}s"/>`;
   }).join('');
 
-  // Synthwave Grid Perspective Lines (Horizon at y=260, Ground from y=260 to y=350)
-  const gridLines = [];
-  // Perspective lines radiating from center horizon
-  for (let i = -10; i <= 10; i++) {
-    const startX = 450 + i * 35;
-    const endX   = 450 + i * 110;
-    gridLines.push(`<line x1="${startX}" y1="260" x2="${endX}" y2="350" stroke="${neonPink}" stroke-width="1.2" opacity="0.35" />`);
-  }
-  // Horizontal lines with exponential spacing
-  for (let i = 0; i <= 6; i++) {
-    const y = 260 + Math.pow(i / 6, 1.8) * 90;
-    gridLines.push(`<line x1="0" y1="${y.toFixed(1)}" x2="${W}" y2="${y.toFixed(1)}" stroke="${neonPink}" stroke-width="1.2" opacity="${(0.1 + (i / 6) * 0.45).toFixed(2)}" />`);
-  }
-  const gridSVG = gridLines.join('\n  ');
-
-  // Synthwave neon wireframe mountains from contribution columns
-  // Mapped to 52 columns.
-  const mountains = world.columns.slice(0, 52).map((col, i) => {
+  // Skyline
+  const skyline = world.columns.slice(0,52).map((col,i) => {
     if (col.tileType === 'grass') return '';
-    const cw = W / 52;
-    const x = i * cw + cw / 2;
-    const bh = col.height * 0.55; // peak height
-    const by = 260 - bh;          // horizon is 260
-    const w = 40 + (col.maxCount * 3); // base width
-    // Draw wireframe neon triangle
-    return `
-    <polygon points="${(x - w).toFixed(1)},260 ${x.toFixed(1)},${by.toFixed(1)} ${(x + w).toFixed(1)},260"
-      fill="url(#mntGrad)" stroke="${neonCyan}" stroke-width="1.5" opacity="0.4" />
-    <line x1="${x.toFixed(1)}" y1="${by.toFixed(1)}" x2="${x.toFixed(1)}" y2="260" stroke="${neonCyan}" stroke-width="1" opacity="0.25" stroke-dasharray="2 3" />`;
+    const cw = W/52, bh = col.height*0.42;
+    const bx = (i*cw).toFixed(1), by = (300-bh).toFixed(1);
+    return `<rect x="${bx}" y="${by}" width="${(cw-1.5).toFixed(1)}" height="${bh.toFixed(1)}" fill="${ac2}" opacity="0.5" rx="1"/>`;
   }).join('');
 
-  // ASCII Stat Bars helper
-  const getASCIIBar = (val: number, max: number, length = 18) => {
-    const percent = Math.min(val / max, 1);
-    const filledCount = Math.round(percent * length);
-    const emptyCount = length - filledCount;
-    return `[${'█'.repeat(filledCount)}${'░'.repeat(emptyCount)}] ${Math.round(percent * 100)}%`;
+  // Panel helper — correct y label position
+  const P = (y:number,h:number,lbl:string) => {
+    const r=10, x=18, w=W-36;
+    return `
+<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="url(#pg)" stroke="url(#bg)" stroke-width="1.5"/>
+<rect x="${x+1}" y="${y+1}" width="${w-2}" height="2" rx="1" fill="${ac}" opacity="0.2"/>
+<path d="M${x+r},${y} L${x},${y} L${x},${y+r}" stroke="${ac}" stroke-width="2" fill="none" opacity="0.6"/>
+<path d="M${x+w-r},${y} L${x+w},${y} L${x+w},${y+r}" stroke="${ac}" stroke-width="2" fill="none" opacity="0.6"/>
+<path d="M${x},${y+h-r} L${x},${y+h} L${x+r},${y+h}" stroke="${ac}" stroke-width="2" fill="none" opacity="0.6"/>
+<path d="M${x+w},${y+h-r} L${x+w},${y+h} L${x+w-r},${y+h}" stroke="${ac}" stroke-width="2" fill="none" opacity="0.6"/>
+<rect x="36" y="${y-10}" width="${lbl.length*7+18}" height="20" rx="4" fill="${ac2}"/>
+<text x="44" y="${y+4}" font-family="monospace" font-size="10" fill="${ac}" font-weight="bold" letter-spacing="2">${lbl}</text>`;
   };
 
-  const streakBar = getASCIIBar(world.streak, 30);
-  const commitBar = getASCIIBar(world.totalContributions, 1000);
-
-  // Tech chips outline array
+  // Badges — 6 per row, explicit coords
   const skills = [
-    'Kubernetes', 'Docker', 'TypeScript', 'Go',
-    'Node.js', 'Terraform', 'Python', 'AWS',
-    'Linux', 'Grafana', 'Prometheus', 'Backstage'
+    {n:'Kubernetes',c:'#326CE5'},{n:'Docker',c:'#2496ED'},
+    {n:'TypeScript',c:'#3178C6'},{n:'Go',c:'#00ADD8'},
+    {n:'Node.js',c:'#339933'},{n:'Terraform',c:'#7B42BC'},
+    {n:'Python',c:'#3776AB'},{n:'AWS',c:'#FF9900'},
+    {n:'Linux',c:'#c8a000'},{n:'Grafana',c:'#F46800'},
+    {n:'Prometheus',c:'#E6522C'},{n:'Backstage',c:'#36BAA2'},
   ];
-  const chips = skills.map((s, i) => {
-    const col = i % 4;
-    const row = Math.floor(i / 4);
-    const cx  = 60 + col * 200;
-    const cy  = 724 + row * 40;
+  // Tech panel: y=668, h=128 → y=796
+  // Badge rows: y=693 and y=733 (after 25px label area, 30px badge, 10px gap, 30px badge)
+  const BW=132, BH=30, BR0=693, BR1=733;
+  const bxs = [28,170,312,454,596,738];
+  const badges = skills.map((s,i) => {
+    const bx = bxs[i%6], by = i<6 ? BR0 : BR1;
     return `
-    <g>
-      <rect x="${cx}" y="${cy}" width="168" height="28" rx="4" fill="none" stroke="${neonCyan}" stroke-width="1" opacity="0.6"/>
-      <text x="${cx + 84}" y="${cy + 18}" font-family="monospace" font-size="11.5" fill="${neonCyan}" font-weight="bold" text-anchor="middle">${s}</text>
-    </g>`;
+<rect x="${bx}" y="${by}" width="${BW}" height="${BH}" rx="6" fill="${s.c}" opacity="0.88"/>
+<rect x="${bx}" y="${by}" width="${BW}" height="3" rx="3" fill="rgba(255,255,255,0.25)"/>
+<text x="${bx+BW/2}" y="${by+20}" font-family="monospace" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">${s.n}</text>`;
   }).join('');
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="border-radius:18px;overflow:hidden">
-  <defs>
-    <!-- Dark Space Synthwave Sky -->
-    <linearGradient id="spaceSky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#05010c"/>
-      <stop offset="50%" stop-color="#140628"/>
-      <stop offset="100%" stop-color="#2a0845"/>
-    </linearGradient>
-    
-    <!-- Neon Synthwave Sun -->
-    <linearGradient id="synthSun" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#f72585"/>
-      <stop offset="40%" stop-color="#b5179e"/>
-      <stop offset="70%" stop-color="#7209b7"/>
-      <stop offset="100%" stop-color="#3f0764"/>
-    </linearGradient>
+  // Quests — panel y=808 h=162 → y=970
+  // Items at y: 835,858,881,904,927,950
+  const quests = [
+    {t:'Topology-aware scheduling — kubernetes-sigs/lws',s:'IN PROGRESS',c:'#3fb950'},
+    {t:'CompositePodGroup integration — KEP-893',       s:'IN PROGRESS',c:'#3fb950'},
+    {t:'GitWorld Engine — GitHub profile as pixel world',s:'SHIPPED ✓',  c:'#ffd700'},
+    {t:'Real-time weather via Open-Meteo',               s:'SHIPPED ✓',  c:'#ffd700'},
+    {t:'Node.js core contributions',                     s:'EXPLORING',  c:'#58a6ff'},
+    {t:'Backstage plugin ecosystem',                     s:'EXPLORING',  c:'#58a6ff'},
+  ];
+  const qItems = quests.map((q,i) => {
+    const qy = 835 + i*23;
+    return `<text x="34" y="${qy}" font-family="monospace" font-size="12.5" fill="${tx}">▶  ${q.t}  <tspan fill="${q.c}" font-size="10" font-weight="bold">[ ${q.s} ]</tspan></text>`;
+  }).join('');
 
-    <!-- Mountain wireframe glow gradient -->
-    <linearGradient id="mntGrad" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="rgba(0, 240, 255, 0.15)"/>
-      <stop offset="100%" stop-color="rgba(12, 6, 24, 0)"/>
-    </linearGradient>
+  // Stats — y=984, h=72, 4 cards
+  const stats = [
+    {icon:'🔥',lbl:'STREAK',      val:`${world.streak}d`,             sub:'contribution days'},
+    {icon:'🏗️',lbl:'COMMITS',     val:`${world.totalContributions}`,  sub:'total contributions'},
+    {icon:'🌍',lbl:'BIOME',        val:t.label,                        sub:world.timeOfDay},
+    {icon:'🌦️',lbl:'WEATHER',      val:world.weatherType.toUpperCase(),sub:'live via Open-Meteo'},
+  ];
+  const cardW=205, cardGap=15, cardY=984, cardH=72;
+  const statCards = stats.map((s,i) => {
+    const cx = 20 + i*(cardW+cardGap);
+    return `
+<rect x="${cx}" y="${cardY}" width="${cardW}" height="${cardH}" rx="8" fill="url(#pg)" stroke="${ac2}" stroke-width="1"/>
+<rect x="${cx}" y="${cardY}" width="${cardW}" height="2" rx="1" fill="${ac}" opacity="0.35"/>
+<path d="M${cx+8},${cardY} L${cx},${cardY} L${cx},${cardY+8}" stroke="${ac}" stroke-width="1.5" fill="none" opacity="0.5"/>
+<path d="M${cx+cardW},${cardY+8} L${cx+cardW},${cardY} L${cx+cardW-8},${cardY}" stroke="${ac}" stroke-width="1.5" fill="none" opacity="0.5"/>
+<text x="${cx+10}" y="${cardY+20}" font-family="monospace" font-size="9" fill="${tx}" opacity="0.5" letter-spacing="2">${s.icon}  ${s.lbl}</text>
+<text x="${cx+10}" y="${cardY+48}" font-family="monospace" font-size="20" fill="${ac}" font-weight="bold">${s.val}</text>
+<text x="${cx+10}" y="${cardY+64}" font-family="monospace" font-size="9" fill="${tx}" opacity="0.4">${s.sub}</text>`;
+  }).join('');
 
-    <!-- Retro Sun Horizontal Lines Mask -->
-    <mask id="sunMask">
-      <rect width="900" height="400" fill="#fff" />
-      <g fill="#000">
-        <rect x="0" y="160" width="900" height="3" />
-        <rect x="0" y="174" width="900" height="4" />
-        <rect x="0" y="190" width="900" height="6" />
-        <rect x="0" y="208" width="900" height="8" />
-        <rect x="0" y="228" width="900" height="11" />
-        <rect x="0" y="250" width="900" height="15" />
-      </g>
-    </mask>
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="border-radius:16px;overflow:hidden">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%"   stop-color="${s0}"/>
+    <stop offset="38%"  stop-color="${s1}"/>
+    <stop offset="100%" stop-color="${s2}"/>
+  </linearGradient>
+  <linearGradient id="pg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%"   stop-color="rgba(8,14,28,0.90)"/>
+    <stop offset="100%" stop-color="rgba(4,8,18,0.75)"/>
+  </linearGradient>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%"   stop-color="${ac}"  stop-opacity="0.7"/>
+    <stop offset="50%"  stop-color="${ac2}" stop-opacity="0.2"/>
+    <stop offset="100%" stop-color="${ac}"  stop-opacity="0.6"/>
+  </linearGradient>
+  <filter id="glow"><feGaussianBlur in="SourceGraphic" stdDeviation="4" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <filter id="tg"><feGaussianBlur in="SourceGraphic" stdDeviation="6" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <pattern id="scan" x="0" y="0" width="1" height="4" patternUnits="userSpaceOnUse">
+    <rect width="1" height="1" fill="rgba(0,0,0,0.07)"/>
+  </pattern>
+</defs>
 
-    <linearGradient id="termBorderGrad" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="${neonPink}" stop-opacity="0.8"/>
-      <stop offset="50%" stop-color="${neonPurple}" stop-opacity="0.3"/>
-      <stop offset="100%" stop-color="${neonCyan}" stop-opacity="0.8"/>
-    </linearGradient>
+<!-- BG -->
+<rect width="${W}" height="${H}" fill="url(#sky)"/>
+<rect width="${W}" height="${H}" fill="url(#scan)" opacity="0.6"/>
 
-    <filter id="neonGlow">
-      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-      <feMerge>
-        <feMergeNode in="coloredBlur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+<!-- Stars -->
+${stars}
 
-    <filter id="sunGlow">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+<!-- Celestial -->
+<g filter="url(#glow)">
+  <circle r="${isSun?20:14}" fill="${isSun?'#f5d060':'#c8d8f0'}">
+    <animateMotion dur="45s" repeatCount="indefinite" path="M -30,280 Q ${W/2},-30 ${W+30},280"/>
+  </circle>
+</g>
 
-    <pattern id="scanlines" width="4" height="4" patternUnits="userSpaceOnUse">
-      <rect width="4" height="2" fill="rgba(0, 0, 0, 0.12)" />
-    </pattern>
-  </defs>
+<!-- Skyline -->
+${skyline}
+<rect x="0" y="300" width="${W}" height="18" fill="${t.groundColor}" opacity="0.7"/>
+<rect x="0" y="300" width="${W}" height="2"  fill="${t.groundLine}"  opacity="0.9"/>
 
-  <!-- ════ BACKGROUND & RETRO SUN ════ -->
-  <rect width="${W}" height="${H}" fill="url(#spaceSky)" />
-  ${stars}
+<!-- ══ HERO ══════════════════════════════════════════════ -->
+<rect x="0" y="322" width="${W}" height="142" fill="rgba(0,0,0,0.30)"/>
+<rect x="0" y="322" width="${W}" height="1.5" fill="${ac}" opacity="0.25"/>
+<rect x="0" y="463" width="${W}" height="1.5" fill="${ac}" opacity="0.15"/>
 
-  <!-- Sun sitting on the horizon -->
-  <circle cx="450" cy="170" r="100" fill="url(#synthSun)" filter="url(#sunGlow)" mask="url(#sunMask)" />
-  <line x1="0" y1="260" x2="${W}" y2="260" stroke="${neonPink}" stroke-width="2" filter="url(#neonGlow)" />
+<text x="${W/2}" y="352" font-family="monospace" font-size="10" fill="${tx}" text-anchor="middle" opacity="0.45" letter-spacing="8">✦  PLAYER ONE  ✦</text>
 
-  <!-- Neon wireframe mountains -->
-  ${mountains}
+<text class="hn" x="${W/2}" y="418" font-family="monospace" font-size="50" fill="${ac}" text-anchor="middle" font-weight="bold" filter="url(#tg)">Hi! I'm Dasmat 👋</text>
 
-  <!-- perspective grid floor -->
-  ${gridSVG}
-  <rect y="260" width="${W}" height="90" fill="url(#mntGrad)" opacity="0.4" />
+<text x="${W/2}" y="450" font-family="monospace" font-size="13" fill="${tx}" text-anchor="middle" opacity="0.8">DevOps &amp; Cloud-Native Explorer  ·  Full-Stack Dev  ·  Open Source Contributor</text>
 
-  <!-- Scanlines retro CRT effect over entire backdrop -->
-  <rect width="${W}" height="350" fill="url(#scanlines)" opacity="0.6" />
+<rect class="cur" x="${W/2+198}" y="426" width="12" height="3" fill="${ac}"/>
 
-  <!-- ════ macOS TERMINAL WINDOW ════ -->
-  <g transform="translate(30, 370)">
-    <!-- Terminal Background Box -->
-    <rect width="840" height="660" rx="12" fill="${termBg}" stroke="url(#termBorderGrad)" stroke-width="2" filter="url(#neonGlow)"/>
-    
-    <!-- Terminal Header / Title Bar -->
-    <path d="M 0,12 A 12,12 0 0 1 12,0 L 828,0 A 12,12 0 0 1 840,12 L 840,36 L 0,36 Z" fill="rgba(20, 12, 38, 0.95)" />
-    
-    <!-- Window Controls (traffic lights) -->
-    <circle cx="20" cy="18" r="6" fill="#ff5f56" />
-    <circle cx="38" cy="18" r="6" fill="#ffbd2e" />
-    <circle cx="56" cy="18" r="6" fill="#27c93f" />
+<line x1="80" y1="462" x2="${W-80}" y2="462" stroke="${ac}" stroke-width="0.6" opacity="0.25"/>
+<circle cx="80"     cy="462" r="2.5" fill="${ac}" opacity="0.35"/>
+<circle cx="${W-80}" cy="462" r="2.5" fill="${ac}" opacity="0.35"/>
 
-    <text x="420" y="22" font-family="monospace" font-size="12" fill="${neonPurple}" font-weight="bold" text-anchor="middle">dasmat@gitworld:~ (zsh)</text>
+<!-- ══ ABOUT ME panel y=478 h=116 ════════════════════════ -->
+${P(478,116,'◈ ABOUT ME')}
+<text x="34" y="507" font-family="monospace" font-size="13" fill="${tx}">🚀  <tspan fill="${ac}">Core:</tspan>  DevOps automation · Cloud-Native architecture · Full-stack Web Development</text>
+<text x="34" y="531" font-family="monospace" font-size="13" fill="${tx}">🌱  <tspan fill="${ac}">Contributing:</tspan>  Kubernetes SIGs · Node.js Core · Express.js · Backstage</text>
+<text x="34" y="555" font-family="monospace" font-size="13" fill="${tx}">📫  mey37056@gmail.com  ·  ⚡  Container orchestration &amp; automated healing systems</text>
 
-    <!-- Shell Session Typing Out -->
-    <text x="25" y="65" font-family="monospace" font-size="14" fill="${textWhite}">
-      <tspan fill="${neonPink}">dasmat@gitworld</tspan> <tspan fill="${textMuted}">~ %</tspan> gitworld --profile
-    </text>
-    <rect class="cursor" x="350" y="52" width="8" height="15" fill="${neonCyan}" />
+<!-- ══ WORLD STATE panel y=608 h=54 ══════════════════════ -->
+${P(608,54,'◈ WORLD STATE')}
+<text x="${W/2}" y="632" font-family="monospace" font-size="13" fill="${tx}" text-anchor="middle">🌍 <tspan fill="${ac}" font-weight="bold">${t.label}</tspan><tspan dx="18" fill="${tx}" opacity="0.4">|</tspan><tspan dx="18">🌙 <tspan fill="${ac}" font-weight="bold">${world.timeOfDay}</tspan></tspan><tspan dx="18" fill="${tx}" opacity="0.4">|</tspan><tspan dx="18">🌦️ <tspan fill="${ac}" font-weight="bold">${world.weatherType}</tspan></tspan><tspan dx="18" fill="${tx}" opacity="0.4">|</tspan><tspan dx="18">🔥 <tspan fill="${ac}" font-weight="bold">${world.streak}d</tspan></tspan><tspan dx="18" fill="${tx}" opacity="0.4">|</tspan><tspan dx="18">🏗️ <tspan fill="${ac}" font-weight="bold">${world.totalContributions}</tspan></tspan></text>
 
-    <!-- ──────────────────────────────────────── -->
-    <!-- LEFT PANEL: Profile/Neofetch Details -->
-    <!-- ──────────────────────────────────────── -->
-    <g transform="translate(25, 100)">
-      <text font-family="monospace" font-size="13" fill="${textWhite}">
-        <tspan x="0" y="0" fill="${textPink}" font-weight="bold">SYSTEM INFO</tspan>
-        <tspan x="0" y="16" fill="${textMuted}">───────────</tspan>
-        <tspan x="0" y="38" fill="${textCyan}">User:</tspan>       dasmat (DevOps Explorer)
-        <tspan x="0" y="60" fill="${textCyan}">Host:</tspan>       github.com/${username}
-        <tspan x="0" y="82" fill="${textCyan}">Kernel:</tspan>     Kubernetes &amp; Cloud-Native
-        <tspan x="0" y="104" fill="${textCyan}">Uptime:</tspan>     ${world.totalContributions} Contributions
-        <tspan x="0" y="126" fill="${textCyan}">Location:</tspan>   ${world.username === 'Dasmat13' ? 'Kolkata, India' : 'Auto-detected'}
-        <tspan x="0" y="148" fill="${textCyan}">Biome:</tspan>      ${t.label}
-        <tspan x="0" y="170" fill="${textCyan}">Weather:</tspan>    ${world.weatherType.toUpperCase()} (live)
-      </text>
-    </g>
+<!-- ══ TECH STACK panel y=676 h=128 ═════════════════════ -->
+${P(676,128,'◈ TECH STACK')}
+${badges}
 
-    <!-- ──────────────────────────────────────── -->
-    <!-- RIGHT PANEL: CLI Stats HUD -->
-    <!-- ──────────────────────────────────────── -->
-    <g transform="translate(430, 100)">
-      <text font-family="monospace" font-size="13" fill="${textWhite}">
-        <tspan x="0" y="0" fill="${textPink}" font-weight="bold">SYSTEM RESOURCE BARS</tspan>
-        <tspan x="0" y="16" fill="${textMuted}">────────────────────</tspan>
-        
-        <tspan x="0" y="42" fill="${textCyan}">STREAK   </tspan> <tspan fill="${neonCyan}">${streakBar}</tspan> <tspan fill="${textMuted}">[${world.streak}/30 days]</tspan>
-        <tspan x="0" y="72" fill="${textCyan}">COMMITS  </tspan> <tspan fill="${neonCyan}">${commitBar}</tspan> <tspan fill="${textMuted}">[${world.totalContributions}/1000]</tspan>
-        
-        <tspan x="0" y="120" fill="${textPink}" font-weight="bold">ENVIRONMENT STATUS</tspan>
-        <tspan x="0" y="136" fill="${textMuted}">──────────────────</tspan>
-        <tspan x="0" y="162" fill="${textCyan}">Atmosphere:</tspan> ${world.timeOfDay.toUpperCase()} / WMO:${world.weatherType.toUpperCase()}
-      </text>
-    </g>
+<!-- ══ ACTIVE QUESTS panel y=818 h=154 ══════════════════ -->
+${P(818,154,'◈ ACTIVE QUESTS')}
+${qItems}
 
-    <!-- ──────────────────────────────────────── -->
-    <!-- MIDDLE SECTION: Tech StackChips Outline -->
-    <!-- ──────────────────────────────────────── -->
-    <g transform="translate(0, 0)">
-      <!-- Label -->
-      <text x="25" y="315" font-family="monospace" font-size="13" fill="${textPink}" font-weight="bold">CONFIGURED STACK MODULES</text>
-      <line x1="25" y1="324" x2="815" y2="324" stroke="${textMuted}" stroke-width="1" />
-      
-      <!-- Tech stack chips -->
-      ${chips}
-    </g>
+<!-- ══ STATS HUD ══════════════════════════════════════════ -->
+${statCards}
 
-    <!-- ──────────────────────────────────────── -->
-    <!-- BOTTOM SECTION: Quest Log Status -->
-    <!-- ──────────────────────────────────────── -->
-    <g transform="translate(25, 452)">
-      <text font-family="monospace" font-size="13" fill="${textPink}" font-weight="bold">ACTIVE PIPELINE JOBS (QUEST LOG)</text>
-      <line x1="0" y1="9" x2="790" y2="9" stroke="${textMuted}" stroke-width="1" />
+<!-- Footer -->
+<rect x="0" y="${H-22}" width="${W}" height="22" fill="rgba(0,0,0,0.55)"/>
+<text x="${W/2}" y="${H-8}" font-family="monospace" font-size="9" fill="${tx}" text-anchor="middle" opacity="0.3" letter-spacing="1">✦  GitWorld Engine  ·  github.com/Dasmat13/git-world-action  ·  Updates daily  ✦</text>
 
-      <text font-family="monospace" font-size="12" fill="${textWhite}">
-        <tspan x="0" y="32" fill="${neonCyan}">●</tspan><tspan fill="${textWhite}">  lws-topology-scheduling ...... [</tspan><tspan fill="${neonCyan}"> RUNNING </tspan><tspan fill="${textWhite}">]</tspan>
-        <tspan x="0" y="52" fill="${neonCyan}">●</tspan><tspan fill="${textWhite}">  KEP-893-composite-pod ........ [</tspan><tspan fill="${neonCyan}"> RUNNING </tspan><tspan fill="${textWhite}">]</tspan>
-        <tspan x="0" y="72" fill="${neonPink}">●</tspan><tspan fill="${textWhite}">  gitworld-engine-core ......... [</tspan><tspan fill="${neonPink}"> SUCCESS </tspan><tspan fill="${textWhite}">]</tspan>
-        <tspan x="0" y="92" fill="${neonPink}">●</tspan><tspan fill="${textWhite}">  realtime-weather-lookup ...... [</tspan><tspan fill="${neonPink}"> SUCCESS </tspan><tspan fill="${textWhite}">]</tspan>
-        <tspan x="0" y="112" fill="${textMuted}">●</tspan><tspan fill="${textMuted}">  node-core-contributions ...... [ PENDING ]</tspan>
-        <tspan x="0" y="132" fill="${textMuted}">●</tspan><tspan fill="${textMuted}">  backstage-plugin-ecosystem ... [ PENDING ]</tspan>
-      </text>
-    </g>
-
-    <!-- tmux Status Bar at window bottom -->
-    <rect x="0" y="626" width="840" height="34" fill="rgba(20, 12, 38, 0.95)" />
-    <line x1="0" y1="626" x2="840" y2="626" stroke="${termBorder}" stroke-width="1" />
-    <text x="15" y="647" font-family="monospace" font-size="11" fill="${neonCyan}">[0] 1:zsh* 2:weather(live) | ${world.username === 'Dasmat13' ? 'Kolkata, IN' : 'Location'}</text>
-    <text x="825" y="647" font-family="monospace" font-size="11" fill="${neonPink}" text-anchor="end">SYS_TEMP: STABLE | 2026-07-13</text>
-  </g>
-
-  <!-- CRT scanlines over terminal -->
-  <rect x="30" y="406" width="840" height="624" fill="url(#scanlines)" opacity="0.3" pointer-events="none" />
-
-  <style>
-    .star { animation: twinkle 3.s ease-in-out infinite alternate; }
-    @keyframes twinkle { 0%{opacity:.1} 100%{opacity:1} }
-    
-    .cursor { animation: blink 1s step-end infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-  </style>
+<style>
+.star{animation:tw 3s ease-in-out infinite alternate}
+@keyframes tw{0%{opacity:.1}100%{opacity:.9}}
+.hn{animation:np 5s ease-in-out infinite alternate}
+@keyframes np{0%{opacity:.88}100%{opacity:1}}
+.cur{animation:bl 1s step-end infinite}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:0}}
+</style>
 </svg>`;
 }
