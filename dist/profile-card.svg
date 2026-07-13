@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 1440" width="960" height="1440" style="border:4px solid #000000;border-radius:18px;overflow:hidden">
   <defs>
-    <!-- Full cyclic sky gradient animation -->
+    <!-- 90s Sky cyclic gradient -->
     <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#090d16">
-        <animate attributeName="stop-color" values="#090d16;#f472b6;#0ea5e9;#be123c;#090d16" dur="20s" repeatCount="indefinite" />
+      <stop offset="0%" stop-color="#060814">
+        <animate attributeName="stop-color" values="#060814;#f472b6;#3b82f6;#881337;#060814" dur="90s" repeatCount="indefinite" />
       </stop>
-      <stop offset="100%" stop-color="#1e293b">
-        <animate attributeName="stop-color" values="#1e293b;#fef08a;#7dd3fc;#fda4af;#1e293b" dur="20s" repeatCount="indefinite" />
+      <stop offset="100%" stop-color="#1c2242">
+        <animate attributeName="stop-color" values="#1c2242;#fef08a;#93c5fd;#fb7185;#1c2242" dur="90s" repeatCount="indefinite" />
       </stop>
     </linearGradient>
     
@@ -19,129 +19,208 @@
   <!-- ═══ FULL-HEIGHT BACKDROP LANDSCAPE ═══ -->
   <rect width="960" height="500" fill="url(#skyGrad)"/>
   
-    <!-- Top valley ground line -->
-    <rect x="0" y="340" width="960" height="1100" fill="#0f172a">
-      <animate attributeName="fill" values="#0f172a;#b45309;#22c55e;#6b21a8;#0f172a" dur="24s" repeatCount="indefinite" />
+    <!-- Dry desert valley background -->
+    <rect x="0" y="340" width="960" height="1100" fill="#27201c">
+      <animate attributeName="fill" values="#27201c;#C7B08A;#C7B08A;#854d0e;#27201c" dur="90s" repeatCount="indefinite" />
     </rect>
     
-    <!-- Winding Valley River -->
+    <!-- Spiti River (Glacial blue path winding diagonally) -->
     <path d="M 480,340 Q 300,550 720,850 T 150,1200 T 600,1440" fill="none" stroke="#1d4ed8" stroke-width="60" stroke-linecap="round" stroke-linejoin="round">
-      <animate attributeName="stroke" values="#1d4ed8;#ec4899;#06b6d4;#db2777;#1d4ed8" dur="24s" repeatCount="indefinite" />
+      <animate attributeName="stroke" values="#1d4ed8;#38bdf8;#4EC7E8;#ec4899;#1d4ed8" dur="90s" repeatCount="indefinite" />
     </path>
     <path d="M 480,340 Q 300,550 720,850 T 150,1200 T 600,1440" fill="none" stroke="#ffffff" stroke-width="8" stroke-dasharray="15,20" stroke-linecap="round" />
     
-    <!-- Mid Valley Hill -->
-    <path d="M -20,680 Q 400,640 980,720 L 980,1450 L -20,1450 Z" fill="#090d16" stroke="#000000" stroke-width="3.5">
-      <animate attributeName="fill" values="#090d16;#92400e;#16a34a;#581c87;#090d16" dur="24s" repeatCount="indefinite" />
+    <!-- Cold Desert Middle foothill -->
+    <path d="M -20,680 Q 400,640 980,720 L 980,1450 L -20,1450 Z" fill="#1b1410" stroke="#000000" stroke-width="3.5">
+      <animate attributeName="fill" values="#1b1410;#b09973;#b29d79;#713f12;#1b1410" dur="90s" repeatCount="indefinite" />
     </path>
     
-    <!-- Foreground Valley Hill -->
-    <path d="M -20,980 Q 550,1030 980,950 L 980,1450 L -20,1450 Z" fill="#020617" stroke="#000000" stroke-width="3.5">
-      <animate attributeName="fill" values="#020617;#78350f;#15803d;#4a044e;#020617" dur="24s" repeatCount="indefinite" />
+    <!-- Cold Desert Foreground foothill -->
+    <path d="M -20,980 Q 550,1030 980,950 L 980,1450 L -20,1450 Z" fill="#0f0a08" stroke="#000000" stroke-width="3.5">
+      <animate attributeName="fill" values="#0f0a08;#947e5c;#8c7650;#422006;#0f0a08" dur="90s" repeatCount="indefinite" />
     </path>
   
   <rect width="960" height="1440" fill="url(#dotGrid)" pointer-events="none" />
 
   <!-- Sun / Moon with dynamic fill color transitions & pulse -->
   <circle cx="480" cy="180" r="75" fill="#f1f5f9" stroke="#000000" stroke-width="4.5" class="sun">
-    <animate attributeName="fill" values="#f1f5f9;#fbbf24;#f97316;#fbbf24;#f1f5f9" dur="20s" repeatCount="indefinite" />
+    <animate attributeName="fill" values="#f1f5f9;#fbbf24;#f97316;#fbbf24;#f1f5f9" dur="90s" repeatCount="indefinite" />
   </circle>
   
-  <!-- Dynamic floating stars -->
-  <g class="floating-item"><path d="M 100,66 Q 100,80 114,80 Q 100,80 100,94 Q 100,80 86,80 Q 100,80 100,66 Z" fill="#ffffff" stroke="#000000" stroke-width="2.5" /></g><g class="floating-item-delay-1"><path d="M 860,94 Q 860,110 876,110 Q 860,110 860,126 Q 860,110 844,110 Q 860,110 860,94 Z" fill="#facc15" stroke="#000000" stroke-width="2.5" /></g><g class="floating-item-delay-2"><path d="M 220,190 Q 220,200 230,200 Q 220,200 220,210 Q 220,200 210,200 Q 220,200 220,190 Z" fill="#f472b6" stroke="#000000" stroke-width="2.5" /></g>
+  <!-- Twinkling Stars -->
+  <circle cx="80" cy="90" r="2" fill="#ffffff" class="twinkle" style="animation-delay: 0s;" /><circle cx="160" cy="120" r="1.5" fill="#ffffff" class="twinkle" style="animation-delay: 1.2s;" /><circle cx="210" cy="70" r="2.2" fill="#ffffff" class="twinkle" style="animation-delay: 0.5s;" /><circle cx="780" cy="110" r="1.8" fill="#ffffff" class="twinkle" style="animation-delay: 2s;" /><circle cx="840" cy="60" r="2.5" fill="#ffffff" class="twinkle" style="animation-delay: 1.5s;" />
 
   <!-- ═══ HIMALAYAN MOUNTAINS ═══ -->
   
-    <!-- Back Peak (Left) -->
-    <polygon points="340,160 100,340 580,340" fill="#12102e" stroke="#000000" stroke-width="3">
-      <animate attributeName="fill" values="#12102e;#581c87;#1d4ed8;#3b0764;#12102e" dur="24s" repeatCount="indefinite" />
+    <!-- Layer 1 (Distant back peak left) -->
+    <polygon points="260,180 50,340 470,340" fill="#1b1429" stroke="#000000" stroke-width="2.5">
+      <animate attributeName="fill" values="#1b1429;#62507C;#5D6670;#4a1d6d;#1b1429" dur="90s" repeatCount="indefinite" />
     </polygon>
-    <!-- Back Peak (Right) -->
-    <polygon points="760,170 520,340 980,340" fill="#12102e" stroke="#000000" stroke-width="3">
-      <animate attributeName="fill" values="#12102e;#581c87;#1d4ed8;#3b0764;#12102e" dur="24s" repeatCount="indefinite" />
+    <!-- Layer 2 (Distant back peak right) -->
+    <polygon points="700,190 480,340 920,340" fill="#1b1429" stroke="#000000" stroke-width="2.5">
+      <animate attributeName="fill" values="#1b1429;#62507C;#5D6670;#4a1d6d;#1b1429" dur="90s" repeatCount="indefinite" />
     </polygon>
-    
-    <!-- Center-Left Peak with Snow Cap -->
+    <!-- Layer 3 (Highest peak center-left with Snow Cap) -->
     <g>
-      <polygon points="240,110 0,340 240,340" fill="#1e1b4b" stroke="#000000" stroke-width="3">
-        <animate attributeName="fill" values="#1e1b4b;#701a75;#3b82f6;#581c87;#1e1b4b" dur="24s" repeatCount="indefinite" />
+      <polygon points="380,120 120,340 380,340" fill="#2c223a" stroke="#000000" stroke-width="3">
+        <animate attributeName="fill" values="#2c223a;#7A624A;#7A624A;#5f2b80;#2c223a" dur="90s" repeatCount="indefinite" />
       </polygon>
-      <polygon points="240,110 240,340 480,340" fill="#12102e" stroke="#000000" stroke-width="3">
-        <animate attributeName="fill" values="#12102e;#581c87;#1d4ed8;#3b0764;#12102e" dur="24s" repeatCount="indefinite" />
+      <polygon points="380,120 380,340 640,340" fill="#1b1429" stroke="#000000" stroke-width="3">
+        <animate attributeName="fill" values="#1b1429;#62507C;#5D6670;#4a1d6d;#1b1429" dur="90s" repeatCount="indefinite" />
       </polygon>
-      <polygon points="240,110 190,170 240,170" fill="#ffffff" stroke="#000000" stroke-width="3" />
-      <polygon points="240,110 240,170 290,170" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
+      <polygon points="380,120 330,180 380,180" fill="#ffffff" stroke="#000000" stroke-width="3" />
+      <polygon points="380,120 380,180 430,180" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
     </g>
-
-    <!-- Center-Right Peak with Snow Cap -->
+    <!-- Layer 4 (Mid Peak Right supporting Key Monastery) -->
     <g>
-      <polygon points="620,120 380,340 620,340" fill="#1e1b4b" stroke="#000000" stroke-width="3">
-        <animate attributeName="fill" values="#1e1b4b;#701a75;#3b82f6;#581c87;#1e1b4b" dur="24s" repeatCount="indefinite" />
+      <polygon points="760,140 500,340 760,340" fill="#2c223a" stroke="#000000" stroke-width="3">
+        <animate attributeName="fill" values="#2c223a;#7A624A;#7A624A;#5f2b80;#2c223a" dur="90s" repeatCount="indefinite" />
       </polygon>
-      <polygon points="620,120 620,340 860,340" fill="#12102e" stroke="#000000" stroke-width="3">
-        <animate attributeName="fill" values="#12102e;#581c87;#1d4ed8;#3b0764;#12102e" dur="24s" repeatCount="indefinite" />
+      <polygon points="760,140 760,340 1020,340" fill="#1b1429" stroke="#000000" stroke-width="3">
+        <animate attributeName="fill" values="#1b1429;#62507C;#5D6670;#4a1d6d;#1b1429" dur="90s" repeatCount="indefinite" />
       </polygon>
-      <polygon points="620,120 570,180 620,180" fill="#ffffff" stroke="#000000" stroke-width="3" />
-      <polygon points="620,120 620,180 670,180" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
+      <polygon points="760,140 720,190 760,190" fill="#ffffff" stroke="#000000" stroke-width="3" />
+      <polygon points="760,140 760,190 800,190" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
     </g>
   
 
-  <!-- ═══ FOREGROUND PINE FOREST ═══ -->
+  <!-- ═══ KEY MONASTERY ═══ -->
+  
+    <g transform="translate(710, 190)">
+      <!-- Main Shadow Base -->
+      <rect x="-5" y="15" width="85" height="50" rx="3" fill="#000000" />
+      <!-- Main block -->
+      <rect x="-8" y="12" width="85" height="50" rx="3" fill="#fafaf9" stroke="#000000" stroke-width="3" />
+      <!-- Stacked Upper Blocks -->
+      <rect x="10" y="-8" width="55" height="24" rx="2" fill="#f5f5f4" stroke="#000000" stroke-width="2.5" />
+      <rect x="25" y="-24" width="30" height="18" rx="2" fill="#e7e5e4" stroke="#000000" stroke-width="2" />
+      
+      <!-- Flat Dark Red bands representing monastery parapets -->
+      <rect x="-8" y="15" width="85" height="5" fill="#991b1b" stroke="#000000" stroke-width="1.5" />
+      <rect x="10" y="-5" width="55" height="4" fill="#991b1b" stroke="#000000" stroke-width="1.5" />
+      <rect x="25" y="-21" width="30" height="3" fill="#991b1b" stroke="#000000" stroke-width="1" />
+      
+      <!-- Gold Roof Spires -->
+      <polygon points="40,-34 36,-24 44,-24" fill="#fbbf24" stroke="#000000" stroke-width="1.5" />
+      <polygon points="18,-15 15,-8 21,-8" fill="#fbbf24" stroke="#000000" stroke-width="1" />
+      <polygon points="62,-15 59,-8 65,-8" fill="#fbbf24" stroke="#000000" stroke-width="1" />
+      
+      <!-- Tiny windows -->
+      <rect x="0" y="26" width="6" height="8" rx="1" fill="#1c1917" />
+      <rect x="14" y="26" width="6" height="8" rx="1" fill="#1c1917" />
+      <rect x="28" y="26" width="6" height="8" rx="1" fill="#1c1917" />
+      <rect x="42" y="26" width="6" height="8" rx="1" fill="#1c1917" />
+      <rect x="56" y="26" width="6" height="8" rx="1" fill="#1c1917" />
+      <rect x="20" y="2" width="5" height="6" rx="1" fill="#1c1917" />
+      <rect x="34" y="2" width="5" height="6" rx="1" fill="#1c1917" />
+      <rect x="48" y="2" width="5" height="6" rx="1" fill="#1c1917" />
+      
+      <!-- Small prayer flags strung to the cliff -->
+      <line x1="-30" y1="35" x2="-8" y2="25" stroke="#000000" stroke-width="1.5" stroke-dasharray="2,2" />
+      <polygon points="-25,32 -20,38 -20,30" fill="#3b82f6" />
+      <polygon points="-18,29 -13,35 -13,27" fill="#ef4444" />
+    </g>
+  
+
+  <!-- ═══ FOREGROUND FOREST & VEGETATION ═══ -->
   
     <g transform="translate(100, 390) scale(0.75)" class="pine">
-      <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
+      <!-- Trunk -->
+      <rect x="-2" y="0" width="4" height="24" fill="#5c4033" stroke="#000000" stroke-width="1.8" />
+      <!-- Slender Poplar Crown -->
+      <path d="M 0,-56 C -11,-36 -9,-10 0,0 C 9,-10 11,-36 0,-56 Z" fill="#88A94D" stroke="#000000" stroke-width="2.2" />
     </g>
   
-    <g transform="translate(150, 400) scale(0.85)" class="pine-delay">
-      <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
+    <g transform="translate(140, 400) scale(0.85)" class="pine-delay">
+      <!-- Trunk -->
+      <rect x="-2" y="0" width="4" height="24" fill="#5c4033" stroke="#000000" stroke-width="1.8" />
+      <!-- Slender Poplar Crown -->
+      <path d="M 0,-56 C -11,-36 -9,-10 0,0 C 9,-10 11,-36 0,-56 Z" fill="#88A94D" stroke="#000000" stroke-width="2.2" />
     </g>
   
-    <g transform="translate(820, 380) scale(0.75)" class="pine">
-      <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
+    <g transform="translate(800, 380) scale(0.75)" class="pine">
+      <!-- Trunk -->
+      <rect x="-2" y="0" width="4" height="24" fill="#5c4033" stroke="#000000" stroke-width="1.8" />
+      <!-- Slender Poplar Crown -->
+      <path d="M 0,-56 C -11,-36 -9,-10 0,0 C 9,-10 11,-36 0,-56 Z" fill="#88A94D" stroke="#000000" stroke-width="2.2" />
     </g>
   
-    <g transform="translate(880, 390) scale(0.9)" class="pine-delay">
-      <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
+    <g transform="translate(860, 390) scale(0.9)" class="pine-delay">
+      <!-- Trunk -->
+      <rect x="-2" y="0" width="4" height="24" fill="#5c4033" stroke="#000000" stroke-width="1.8" />
+      <!-- Slender Poplar Crown -->
+      <path d="M 0,-56 C -11,-36 -9,-10 0,0 C 9,-10 11,-36 0,-56 Z" fill="#88A94D" stroke="#000000" stroke-width="2.2" />
     </g>
   
     <g transform="translate(60, 720) scale(1)" class="pine-delay">
-      <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
+      <!-- Trunk -->
+      <rect x="-2" y="0" width="4" height="24" fill="#5c4033" stroke="#000000" stroke-width="1.8" />
+      <!-- Slender Poplar Crown -->
+      <path d="M 0,-56 C -11,-36 -9,-10 0,0 C 9,-10 11,-36 0,-56 Z" fill="#88A94D" stroke="#000000" stroke-width="2.2" />
     </g>
   
-    <g transform="translate(900, 750) scale(1.1)" class="pine">
-      <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
+    <g transform="translate(910, 750) scale(1.15)" class="pine">
+      <!-- Trunk -->
+      <rect x="-2" y="0" width="4" height="24" fill="#5c4033" stroke="#000000" stroke-width="1.8" />
+      <!-- Slender Poplar Crown -->
+      <path d="M 0,-56 C -11,-36 -9,-10 0,0 C 9,-10 11,-36 0,-56 Z" fill="#88A94D" stroke="#000000" stroke-width="2.2" />
     </g>
   
     <g transform="translate(80, 1020) scale(1.25)" class="pine">
-      <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
+      <!-- Trunk -->
+      <rect x="-2" y="0" width="4" height="24" fill="#5c4033" stroke="#000000" stroke-width="1.8" />
+      <!-- Slender Poplar Crown -->
+      <path d="M 0,-56 C -11,-36 -9,-10 0,0 C 9,-10 11,-36 0,-56 Z" fill="#88A94D" stroke="#000000" stroke-width="2.2" />
     </g>
   
-    <g transform="translate(880, 1000) scale(1.3)" class="pine-delay">
-      <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
+    <g transform="translate(890, 1000) scale(1.3)" class="pine-delay">
+      <!-- Trunk -->
+      <rect x="-2" y="0" width="4" height="24" fill="#5c4033" stroke="#000000" stroke-width="1.8" />
+      <!-- Slender Poplar Crown -->
+      <path d="M 0,-56 C -11,-36 -9,-10 0,0 C 9,-10 11,-36 0,-56 Z" fill="#88A94D" stroke="#000000" stroke-width="2.2" />
+    </g>
+  
+  
+    <g transform="translate(50, 440)">
+      <path d="M0,0 Q-4,-12 -8,-15 Q-2,-12 0,0 Q3,-14 6,-18 Q2,-10 0,0 Q8,-10 12,-12 Q5,-8 0,0" fill="#88A94D" stroke="#000000" stroke-width="1.5" />
+    </g>
+  
+    <g transform="translate(280, 420)">
+      <path d="M0,0 Q-4,-12 -8,-15 Q-2,-12 0,0 Q3,-14 6,-18 Q2,-10 0,0 Q8,-10 12,-12 Q5,-8 0,0" fill="#88A94D" stroke="#000000" stroke-width="1.5" />
+    </g>
+  
+    <g transform="translate(740, 460)">
+      <path d="M0,0 Q-4,-12 -8,-15 Q-2,-12 0,0 Q3,-14 6,-18 Q2,-10 0,0 Q8,-10 12,-12 Q5,-8 0,0" fill="#88A94D" stroke="#000000" stroke-width="1.5" />
+    </g>
+  
+    <g transform="translate(120, 740)">
+      <path d="M0,0 Q-4,-12 -8,-15 Q-2,-12 0,0 Q3,-14 6,-18 Q2,-10 0,0 Q8,-10 12,-12 Q5,-8 0,0" fill="#88A94D" stroke="#000000" stroke-width="1.5" />
+    </g>
+  
+    <g transform="translate(820, 770)">
+      <path d="M0,0 Q-4,-12 -8,-15 Q-2,-12 0,0 Q3,-14 6,-18 Q2,-10 0,0 Q8,-10 12,-12 Q5,-8 0,0" fill="#88A94D" stroke="#000000" stroke-width="1.5" />
+    </g>
+  
+    <g transform="translate(180, 1040)">
+      <path d="M0,0 Q-4,-12 -8,-15 Q-2,-12 0,0 Q3,-14 6,-18 Q2,-10 0,0 Q8,-10 12,-12 Q5,-8 0,0" fill="#88A94D" stroke="#000000" stroke-width="1.5" />
+    </g>
+  
+    <g transform="translate(790, 1020)">
+      <path d="M0,0 Q-4,-12 -8,-15 Q-2,-12 0,0 Q3,-14 6,-18 Q2,-10 0,0 Q8,-10 12,-12 Q5,-8 0,0" fill="#88A94D" stroke="#000000" stroke-width="1.5" />
+    </g>
+  
+
+  <!-- ═══ BUDDHIST PRAYER FLAGS ═══ -->
+  
+    <g class="flags-wave" transform="translate(80, 210)">
+      <path d="M 0,20 Q 100,45 200,30" fill="none" stroke="#000000" stroke-width="2" />
+      <!-- Small flag triangles -->
+      <polygon points="20,24 28,34 32,26" fill="#3b82f6" stroke="#000000" stroke-width="0.5" />
+      <polygon points="50,29 58,39 62,31" fill="#ffffff" stroke="#000000" stroke-width="0.5" />
+      <polygon points="80,33 88,43 92,35" fill="#ef4444" stroke="#000000" stroke-width="0.5" />
+      <polygon points="110,34 118,44 122,36" fill="#10b981" stroke="#000000" stroke-width="0.5" />
+      <polygon points="140,32 148,42 152,34" fill="#fbbf24" stroke="#000000" stroke-width="0.5" />
+      <polygon points="170,29 178,39 182,31" fill="#3b82f6" stroke="#000000" stroke-width="0.5" />
     </g>
   
 
@@ -151,9 +230,9 @@
   <!-- ═══ SHORELINE TEXT MARQUEE ═══ -->
   
     <g class="marquee" transform="translate(0, 440)">
-      <rect x="-10" y="0" width="980" height="32" fill="#facc15" stroke="#000000" stroke-width="3" />
+      <rect x="-10" y="0" width="980" height="32" fill="#C7B08A" stroke="#000000" stroke-width="3" />
       <text font-family="'Space Grotesk', sans-serif" font-size="12.5" font-weight="900" fill="#000000" letter-spacing="1.5">
-        🌊 KASHMIR DAL LAKE · HIMACHAL HIMALAYAS · ORCHESTRATE · COMPILE · MERGE · REFACTOR · SCALE · KASHMIR DAL LAKE · HIMACHAL HIMALAYAS
+        🏔️ SPITI VALLEY · KEY MONASTERY OVERLOOK · COLD DESERT · GLACIAL STREAM · SPITI VALLEY · KEY MONASTERY OVERLOOK · COLD DESERT · GLACIAL STREAM
       </text>
     </g>
     <line x1="0" y1="440" x2="960" y2="440" stroke="#000000" stroke-width="4.5" />
@@ -174,9 +253,9 @@
   <!-- ═══ HERO HEADER (Floating atop landscape) ═══ -->
   <g transform="translate(180, 320)">
     <!-- Shadow -->
-    <rect x="6" y="6" width="600" height="120" rx="8" fill="#000000"/>
+    <rect x="6" y="6" width="600" height="120" rx="28" fill="#000000"/>
     <!-- Main Box -->
-    <rect x="0" y="0" width="600" height="120" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#000000" stroke-width="3.5"/>
+    <rect x="0" y="0" width="600" height="120" rx="28" fill="#ffffff" fill-opacity="0.18" style="backdrop-filter: blur(14px);" stroke="#000000" stroke-width="3.5"/>
     
     <!-- Neon Pink left vertical stripe -->
     <rect x="3" y="3" width="10" height="114" fill="#f472b6" />
@@ -192,14 +271,14 @@
   
 <g class="panel">
   <!-- Card Shadow -->
-  <rect x="46" y="486" width="880" height="170" rx="8" fill="#000000" />
-  <!-- Card Main Box with Frosted Glassmorphism -->
-  <rect x="40" y="480" width="880" height="170" rx="8" fill="#ffffff" fill-opacity="0.91" style="backdrop-filter: blur(8px);" stroke="#000000" stroke-width="3.5" />
+  <rect x="46" y="486" width="880" height="170" rx="28" fill="#000000" />
+  <!-- Card Main Box with Apple-style Frosted Glassmorphism -->
+  <rect x="40" y="480" width="880" height="170" rx="28" fill="#ffffff" fill-opacity="0.18" style="backdrop-filter: blur(14px);" stroke="#000000" stroke-width="3.5" />
   
   <!-- Badge Shadow -->
-  <rect x="74" y="469" width="202.5" height="28" rx="4" fill="#000000" />
+  <rect x="74" y="469" width="202.5" height="28" rx="6" fill="#000000" />
   <!-- Badge Main -->
-  <rect x="71" y="466" width="202.5" height="28" rx="4" fill="#38bdf8" stroke="#000000" stroke-width="3" />
+  <rect x="71" y="466" width="202.5" height="28" rx="6" fill="#38bdf8" stroke="#000000" stroke-width="3" />
   <text x="172.25" y="484" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">⚡  ABOUT THE TRAVELER</text>
 </g>
   <text x="70" y="530" font-family="'Inter', sans-serif" font-size="13" fill="#000000" font-weight="700">
@@ -216,14 +295,14 @@
   
 <g class="panel">
   <!-- Card Shadow -->
-  <rect x="46" y="696" width="880" height="70" rx="8" fill="#000000" />
-  <!-- Card Main Box with Frosted Glassmorphism -->
-  <rect x="40" y="690" width="880" height="70" rx="8" fill="#ffffff" fill-opacity="0.91" style="backdrop-filter: blur(8px);" stroke="#000000" stroke-width="3.5" />
+  <rect x="46" y="696" width="880" height="70" rx="28" fill="#000000" />
+  <!-- Card Main Box with Apple-style Frosted Glassmorphism -->
+  <rect x="40" y="690" width="880" height="70" rx="28" fill="#ffffff" fill-opacity="0.18" style="backdrop-filter: blur(14px);" stroke="#000000" stroke-width="3.5" />
   
   <!-- Badge Shadow -->
-  <rect x="74" y="679" width="253.5" height="28" rx="4" fill="#000000" />
+  <rect x="74" y="679" width="253.5" height="28" rx="6" fill="#000000" />
   <!-- Badge Main -->
-  <rect x="71" y="676" width="253.5" height="28" rx="4" fill="#f472b6" stroke="#000000" stroke-width="3" />
+  <rect x="71" y="676" width="253.5" height="28" rx="6" fill="#f472b6" stroke="#000000" stroke-width="3" />
   <text x="197.75" y="694" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">🏡  CURRENT ENVIRONMENT LOG</text>
 </g>
   <text x="480" y="732" font-family="'Space Grotesk', sans-serif" font-size="13.5" fill="#000000" text-anchor="middle" font-weight="900">
@@ -240,14 +319,14 @@
   
 <g class="panel">
   <!-- Card Shadow -->
-  <rect x="46" y="806" width="880" height="190" rx="8" fill="#000000" />
-  <!-- Card Main Box with Frosted Glassmorphism -->
-  <rect x="40" y="800" width="880" height="190" rx="8" fill="#ffffff" fill-opacity="0.91" style="backdrop-filter: blur(8px);" stroke="#000000" stroke-width="3.5" />
+  <rect x="46" y="806" width="880" height="190" rx="28" fill="#000000" />
+  <!-- Card Main Box with Apple-style Frosted Glassmorphism -->
+  <rect x="40" y="800" width="880" height="190" rx="28" fill="#ffffff" fill-opacity="0.18" style="backdrop-filter: blur(14px);" stroke="#000000" stroke-width="3.5" />
   
   <!-- Badge Shadow -->
-  <rect x="74" y="789" width="262" height="28" rx="4" fill="#000000" />
+  <rect x="74" y="789" width="262" height="28" rx="6" fill="#000000" />
   <!-- Badge Main -->
-  <rect x="71" y="786" width="262" height="28" rx="4" fill="#4ade80" stroke="#000000" stroke-width="3" />
+  <rect x="71" y="786" width="262" height="28" rx="6" fill="#4ade80" stroke="#000000" stroke-width="3" />
   <text x="202" y="804" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">🎒  PACKED GEAR (TECH STACK)</text>
 </g>
   
@@ -352,14 +431,14 @@
   
 <g class="panel">
   <!-- Card Shadow -->
-  <rect x="46" y="1036" width="880" height="240" rx="8" fill="#000000" />
-  <!-- Card Main Box with Frosted Glassmorphism -->
-  <rect x="40" y="1030" width="880" height="240" rx="8" fill="#ffffff" fill-opacity="0.91" style="backdrop-filter: blur(8px);" stroke="#000000" stroke-width="3.5" />
+  <rect x="46" y="1036" width="880" height="240" rx="28" fill="#000000" />
+  <!-- Card Main Box with Apple-style Frosted Glassmorphism -->
+  <rect x="40" y="1030" width="880" height="240" rx="28" fill="#ffffff" fill-opacity="0.18" style="backdrop-filter: blur(14px);" stroke="#000000" stroke-width="3.5" />
   
   <!-- Badge Shadow -->
-  <rect x="74" y="1019" width="330" height="28" rx="4" fill="#000000" />
+  <rect x="74" y="1019" width="330" height="28" rx="6" fill="#000000" />
   <!-- Badge Main -->
-  <rect x="71" y="1016" width="330" height="28" rx="4" fill="#c084fc" stroke="#000000" stroke-width="3" />
+  <rect x="71" y="1016" width="330" height="28" rx="6" fill="#c084fc" stroke="#000000" stroke-width="3" />
   <text x="236" y="1034" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">🗺️  CURRENT JOURNEY (ACTIVE QUESTS)</text>
 </g>
   
@@ -523,10 +602,25 @@
       from { transform: rotate(1.5deg); }
       to   { transform: rotate(-1.5deg); }
     }
+    .flags-wave {
+      animation: flagSway 4s ease-in-out infinite alternate;
+      transform-origin: left top;
+    }
+    @keyframes flagSway {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-3px) rotate(1deg); }
+    }
+    .twinkle {
+      animation: twinkleAnim 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes twinkleAnim {
+      0% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
     .marquee text {
       offset-path: path("M 960 21 H -960");
       offset-distance: 0%;
-      animation: slideText 16s linear infinite;
+      animation: slideText 18s linear infinite;
     }
     @keyframes slideText {
       to { offset-distance: 100%; }
@@ -557,8 +651,8 @@
     .raindrop {
       animation: fallRain 2s linear infinite;
     }
-    .petal {
-      animation: fallPetal 10s linear infinite;
+    .dust {
+      animation: fallDust 4s linear infinite;
     }
     @keyframes fallSnow {
       0%   { transform: translateY(0)  rotate(0deg); opacity:1; }
@@ -568,9 +662,11 @@
       0%   { transform: translateY(0) scaleY(1); opacity:0.8; }
       100% { transform: translateY(1460px) scaleY(1.5); opacity:0; }
     }
-    @keyframes fallPetal {
-      0%   { transform: translateY(0) rotate(0deg); opacity:1; }
-      100% { transform: translateY(1460px) rotate(720deg); opacity:0; }
+    @keyframes fallDust {
+      0%   { transform: translateY(0) translateX(0) scale(0.8); opacity:0; }
+      10%  { opacity: 0.65; }
+      90%  { opacity: 0.65; }
+      100% { transform: translateY(1460px) translateX(-200px) scale(1.2); opacity:0; }
     }
   </style>
 </svg>
