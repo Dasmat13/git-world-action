@@ -23,18 +23,23 @@ export function renderVegetation(world: WorldData): string {
   let treesMarkup = '';
   treeCoords.forEach((t, i) => {
     const delayClass = i % 2 === 0 ? 'pine' : 'pine-delay';
+    const trunkH = 22 + rand.range(0, 8);
     treesMarkup += `
     <g transform="translate(${t.x}, ${t.y}) scale(${t.s})" class="${delayClass}">
-      <!-- Trunk -->
-      <rect x="-1" y="0" width="2" height="28" fill="#4a3728" />
+      <!-- Trunk with visible thickness -->
+      <rect x="-2.5" y="0" width="5" height="${trunkH}" rx="1.5" fill="#5c3a21" />
+      <!-- Trunk bark highlight -->
+      <rect x="-1" y="2" width="2" height="${trunkH - 4}" rx="0.8" fill="#7a5230" opacity="0.5" />
       <!-- Slender Poplar Crown (Flame shape) -->
-      <path d="M 0,-65 C -9,-45 -8,-15 0,0 C 8,-15 9,-45 0,-65 Z" fill="#88A94D" fill-opacity="0.9" stroke="#769341" stroke-width="0.8" />
+      <path d="M 0,-58 C -10,-40 -9,-12 0,2 C 9,-12 10,-40 0,-58 Z" fill="#88A94D" fill-opacity="0.92" />
       <!-- Subtle internal leaf highlights -->
-      <path d="M 0,-50 C -4,-35 -3,-10 0,0 C 3,-10 4,-35 0,-50 Z" fill="#A5B95C" fill-opacity="0.75" />
+      <path d="M 0,-46 C -5,-32 -4,-8 0,2 C 4,-8 5,-32 0,-46 Z" fill="#A5B95C" fill-opacity="0.65" />
+      <!-- Light edge highlight -->
+      <path d="M 0,-54 C -6,-40 -5,-18 0,0 C 2,-18 3,-40 0,-54 Z" fill="#c0d070" fill-opacity="0.25" />
     </g>`;
   });
 
-  // 2. Scattered dry alpine grass (already partly drawn in terrain, but let's add some more here near water edges)
+  // 2. Scattered dry alpine grass tufts near water edges
   let grassMarkup = '';
   const grassColors = ['#88A94D', '#769341', '#A5B95C'];
   for (let i = 0; i < 40; i++) {

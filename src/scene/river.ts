@@ -16,15 +16,15 @@ export interface RiverPoint {
 export function generateRiver(): RiverPoint[] {
   return [
     // Glacial origin — hidden behind snowcap, nearly zero width
-    { x: 488, y: 260, width: 0 },
+    { x: 488, y: 295, width: 0 },
     // Snowmelt emergence — tiny trickle from under glacier
-    { x: 486, y: 285, width: 3 },
+    { x: 486, y: 318, width: 3 },
     // Cascading down the rock face
-    { x: 483, y: 310, width: 5 },
+    { x: 483, y: 345, width: 6 },
     // First visible pool at mountain base
-    { x: 480, y: 340, width: 10 },
+    { x: 478, y: 375, width: 12 },
     // Gaining flow
-    { x: 435, y: 430, width: 16 },
+    { x: 435, y: 445, width: 16 },
     // Through the narrow canyon
     { x: 350, y: 560, width: 24 },
     // Valley widening
@@ -105,7 +105,7 @@ function renderGlacialSource(rand: SeededRand): string {
   // We render: ice shelf → meltwater cascade → collecting pool.
   
   const glacierCx = 486;
-  const glacierY = 258;
+  const glacierY = 290;
   
   let markup = '';
   
@@ -134,8 +134,8 @@ function renderGlacialSource(rand: SeededRand): string {
   </g>`;
   
   // 2. Meltwater cascade — thin animated white streaks falling from glacier snout
-  const cascadeTop = glacierY + 22;
-  const cascadeBottom = 340;
+  const cascadeTop = glacierY + 20;
+  const cascadeBottom = 375;
   const cascadeCx = glacierCx - 2;
   
   markup += `
@@ -169,8 +169,8 @@ function renderGlacialSource(rand: SeededRand): string {
   
   // 3. Collecting pool — the small natural basin where cascading meltwater gathers
   //    before flowing downstream as the river
-  const poolCx = 480;
-  const poolCy = 345;
+  const poolCx = 478;
+  const poolCy = 378;
   
   markup += `
   <g opacity="0.9">

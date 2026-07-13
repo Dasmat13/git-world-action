@@ -47,13 +47,20 @@ function getTerrainPath(elevation: number, roughness: number, rand: SeededRand):
 }
 
 /**
- * Draws rock shelves/plateaus.
+ * Draws organic rock shelves/plateaus with natural irregular edges.
  */
-function renderRockShelf(x: number, y: number, w: number, h: number): string {
+function renderRockShelf(x: number, y: number, w: number, h: number, rand: SeededRand): string {
+  // Create an irregular polygon instead of a perfect rectangle
+  const jag = () => rand.range(-3, 3);
   return `
-  <!-- Rock shelf -->
-  <polygon points="${x},${y} ${x + w},${y - 8} ${x + w + 20},${y + h} ${x - 20},${y + h}" fill="#8b7355" opacity="0.85" />
-  <line x1="${x - 10}" y1="${y}" x2="${x + w + 10}" y2="${y - 8}" stroke="#ffd8a8" stroke-width="2.5" stroke-opacity="0.5" />
+  <path d="M ${x - 8 + jag()} ${y + jag()}
+           Q ${x + w * 0.3} ${y - 6 + jag()} ${x + w * 0.6} ${y - 3 + jag()}
+           L ${x + w + 12 + jag()} ${y + 2 + jag()}
+           L ${x + w + 18 + jag()} ${y + h + jag()}
+           Q ${x + w * 0.7} ${y + h + 5 + jag()} ${x + w * 0.3} ${y + h + 3 + jag()}
+           L ${x - 14 + jag()} ${y + h + jag()} Z"
+        fill="#8b7355" opacity="0.85" />
+  <line x1="${x - 6}" y1="${y + 2}" x2="${x + w + 6}" y2="${y - 2}" stroke="#ffd8a8" stroke-width="2" stroke-opacity="0.4" />
   `;
 }
 
@@ -140,9 +147,8 @@ export function renderTerrain(world: WorldData): string {
   // 4. Large boulders
   const boulders = renderBoulders(rand);
 
-  // 5. Rock Shelves for Monastery & Roads
-  const shelf1 = renderRockShelf(680, 310, 160, 24);
-  const shelf2 = renderRockShelf(120, 720, 240, 30);
+  // 5. Rock Shelf for Monastery foundation (upper only — removed the lower flat platform)
+  const shelf1 = renderRockShelf(680, 310, 160, 24, rand);
 
   return `
   <!-- Back Foothill -->
@@ -151,7 +157,7 @@ export function renderTerrain(world: WorldData): string {
     ${backGrass}
   </g>
   
-  <!-- Rock Shelf Upper -->
+  <!-- Rock Shelf (Monastery Foundation) -->
   ${shelf1}
 
   <!-- Middle Foothill -->
@@ -159,9 +165,6 @@ export function renderTerrain(world: WorldData): string {
     <path d="${midPath}" fill="${layers[1].color}" />
     ${midGrass}
   </g>
-  
-  <!-- Rock Shelf Lower -->
-  ${shelf2}
 
   <!-- Foreground Foothill -->
   <g opacity="1.0">
