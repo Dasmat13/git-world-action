@@ -1,147 +1,207 @@
 import { WorldData } from './world';
 
-const W = 900, H = 1160;
+const W = 960, H = 1440;
 
 export function renderProfileCard(world: WorldData): string {
   const t = world.biomeTheme;
   const username = world.username;
 
-  // Determine Neobrutalist color theme based on time of day (Kashmir/Himachal mood boards)
-  const skyPalettes: Record<string, { sky: string[]; sunColor: string; mountainFill1: string; mountainFill2: string; waterColor: string }> = {
+  // Kashmir/Himachal theme mood boards extending through the entire card height
+  const themePalettes: Record<string, {
+    sky: string[];
+    sunColor: string;
+    mountainFill1: string;
+    mountainFill2: string;
+    hill1: string;
+    hill2: string;
+    hill3: string;
+    waterColor: string;
+  }> = {
     night: {
-      sky: ['#0f172a', '#1e293b', '#334155'], // deep starry slate
-      sunColor: '#f1f5f9', // glowing moon
-      mountainFill1: '#1e1b4b', // deep violet/indigo shadow face
-      mountainFill2: '#312e81', // indigo main face
-      waterColor: '#1e1b4b'
+      sky: ['#090d16', '#0f172a', '#1e293b'],
+      sunColor: '#f1f5f9', // Glowing Moon
+      mountainFill1: '#12102e',
+      mountainFill2: '#1e1b4b',
+      hill1: '#0f172a',
+      hill2: '#090d16',
+      hill3: '#020617',
+      waterColor: '#1d4ed8'
     },
     dawn: {
-      sky: ['#f472b6', '#fb923c', '#fef08a'], // pink-orange dawn
-      sunColor: '#facc15', // gold sun
-      mountainFill1: '#701a75', // purple shadow
-      mountainFill2: '#a21caf', // magenta-purple main
-      waterColor: '#a21caf'
+      sky: ['#f472b6', '#fb923c', '#fef08a'],
+      sunColor: '#fbbf24',
+      mountainFill1: '#581c87',
+      mountainFill2: '#701a75',
+      hill1: '#b45309',
+      hill2: '#92400e',
+      hill3: '#78350f',
+      waterColor: '#ec4899'
     },
     day: {
-      sky: ['#38bdf8', '#7dd3fc', '#bae6fd'], // crystal clear blue sky
-      sunColor: '#f97316', // vibrant orange sun
-      mountainFill1: '#2563eb', // royal blue shadow
-      mountainFill2: '#60a5fa', // sky blue main
-      waterColor: '#22d3ee' // bright cyan water
+      sky: ['#0ea5e9', '#38bdf8', '#7dd3fc'],
+      sunColor: '#f97316',
+      mountainFill1: '#1d4ed8',
+      mountainFill2: '#3b82f6',
+      hill1: '#22c55e', // Emerald hills
+      hill2: '#16a34a',
+      hill3: '#15803d',
+      waterColor: '#06b6d4'
     },
     dusk: {
-      sky: ['#be123c', '#fb7185', '#fda4af'], // nostalgic rose sunset
-      sunColor: '#fbbf24', // deep amber sun
-      mountainFill1: '#4c1d95', // deep purple shadow
-      mountainFill2: '#6d28d9', // violet main
-      waterColor: '#c084fc'
+      sky: ['#be123c', '#e11d48', '#fda4af'],
+      sunColor: '#fbbf24',
+      mountainFill1: '#3b0764',
+      mountainFill2: '#581c87',
+      hill1: '#6b21a8',
+      hill2: '#581c87',
+      hill3: '#4a044e',
+      waterColor: '#db2777'
     }
   };
-  const theme = skyPalettes[world.timeOfDay] || skyPalettes.day;
+  const theme = themePalettes[world.timeOfDay] || themePalettes.day;
 
-  // Horizontal Neobrutalist poster-style sky stripes
+  // Full height backdrop gradient
   const skyBands = theme.sky.map((color, i) => {
-    const bandH = 280 / theme.sky.length;
-    return `<rect x="0" y="${i * bandH}" width="900" height="${bandH}" fill="${color}" />`;
+    const bandH = 500 / theme.sky.length;
+    return `<rect x="0" y="${i * bandH}" width="${W}" height="${bandH}" fill="${color}" />`;
   }).join('');
 
-  // Floating Neobrutalist 4-point stars in the sky
-  const seed = username.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+  // Floating Neobrutalist 4-point stars
   const stars = [
-    { x: 70, y: 60, size: 10, color: '#ffffff', anim: 'floating-item' },
-    { x: 820, y: 90, size: 12, color: '#facc15', anim: 'floating-item-delay-1' },
-    { x: 190, y: 150, size: 8, color: '#f472b6', anim: 'floating-item-delay-2' }
+    { x: 100, y: 80, size: 14, color: '#ffffff', anim: 'floating-item' },
+    { x: 860, y: 110, size: 16, color: '#facc15', anim: 'floating-item-delay-1' },
+    { x: 220, y: 200, size: 10, color: '#f472b6', anim: 'floating-item-delay-2' }
   ].map(s => {
-    return `<g class="${s.anim}"><path d="M ${s.x},${s.y - s.size} Q ${s.x},${s.y} ${s.x + s.size},${s.y} Q ${s.x},${s.y} ${s.x},${s.y + s.size} Q ${s.x},${s.y} ${s.x - s.size},${s.y} Q ${s.x},${s.y} ${s.x},${s.y - s.size} Z" fill="${s.color}" stroke="#000000" stroke-width="2" /></g>`;
+    return `<g class="${s.anim}"><path d="M ${s.x},${s.y - s.size} Q ${s.x},${s.y} ${s.x + s.size},${s.y} Q ${s.x},${s.y} ${s.x},${s.y + s.size} Q ${s.x},${s.y} ${s.x - s.size},${s.y} Q ${s.x},${s.y} ${s.x},${s.y - s.size} Z" fill="${s.color}" stroke="#000000" stroke-width="2.5" /></g>`;
   }).join('');
 
-  // Kashmir/Himachal Mountain range: overlapping geometric peaks with snow-caps
+  // Kashmir/Himachal Himalayan Mountain range
   const mountains = `
     <!-- Back Peak (Left) -->
-    <polygon points="320,130 120,280 520,280" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3" />
-    
+    <polygon points="340,160 100,340 580,340" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3" />
     <!-- Back Peak (Right) -->
-    <polygon points="720,140 520,280 920,280" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3" />
+    <polygon points="760,170 520,340 980,340" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3" />
     
-    <!-- Fore Peak (Left) with Snow Cap -->
+    <!-- Center-Left Peak with Snow Cap -->
     <g>
-      <polygon points="220,90 20,280 220,280" fill="${theme.mountainFill2}" stroke="#000000" stroke-width="3" />
-      <polygon points="220,90 220,280 420,280" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3" />
-      <!-- Snow cap -->
-      <polygon points="220,90 180,140 220,140" fill="#ffffff" stroke="#000000" stroke-width="3" />
-      <polygon points="220,90 220,140 260,140" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
+      <polygon points="240,110 0,340 240,340" fill="${theme.mountainFill2}" stroke="#000000" stroke-width="3" />
+      <polygon points="240,110 240,340 480,340" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3" />
+      <polygon points="240,110 190,170 240,170" fill="#ffffff" stroke="#000000" stroke-width="3" />
+      <polygon points="240,110 240,170 290,170" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
     </g>
 
-    <!-- Fore Peak (Right) with Snow Cap -->
+    <!-- Center-Right Peak with Snow Cap -->
     <g>
-      <polygon points="580,100 380,280 580,280" fill="${theme.mountainFill2}" stroke="#000000" stroke-width="3" />
-      <polygon points="580,100 580,280 780,280" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3" />
-      <!-- Snow cap -->
-      <polygon points="580,100 540,150 580,150" fill="#ffffff" stroke="#000000" stroke-width="3" />
-      <polygon points="580,100 580,150 620,150" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
+      <polygon points="620,120 380,340 620,340" fill="${theme.mountainFill2}" stroke="#000000" stroke-width="3" />
+      <polygon points="620,120 620,340 860,340" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3" />
+      <polygon points="620,120 570,180 620,180" fill="#ffffff" stroke="#000000" stroke-width="3" />
+      <polygon points="620,120 620,180 670,180" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
     </g>
   `;
 
-  // Kashmir Valley Pine Trees (stacked triangles) along the base line
+  // Meadows & valley layers extending through the entire card height
+  const valleyMeadows = `
+    <!-- Top valley ground line -->
+    <rect x="0" y="340" width="${W}" height="1100" fill="${theme.hill1}" />
+    
+    <!-- Winding Valley River / Dal Lake extension flowing down behind panels -->
+    <path d="M 480,340 Q 300,550 720,850 T 150,1200 T 600,1440" fill="none" stroke="${theme.waterColor}" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 480,340 Q 300,550 720,850 T 150,1200 T 600,1440" fill="none" stroke="#ffffff" stroke-width="8" stroke-dasharray="15,20" stroke-linecap="round" />
+    
+    <!-- Mid Valley Hill -->
+    <path d="M -20,680 Q 400,640 980,720 L 980,1450 L -20,1450 Z" fill="${theme.hill2}" stroke="#000000" stroke-width="3.5" />
+    
+    <!-- Foreground Valley Hill -->
+    <path d="M -20,980 Q 550,1030 980,950 L 980,1450 L -20,1450 Z" fill="${theme.hill3}" stroke="#000000" stroke-width="3.5" />
+  `;
+
+  // Swaying Pine Trees placed across the meadow steps
   const pineTrees = [
-    { x: 60, y: 280, s: 0.95 },
-    { x: 110, y: 280, s: 1.15 },
-    { x: 170, y: 280, s: 0.8 },
-    { x: 380, y: 280, s: 1.0 },
-    { x: 420, y: 280, s: 0.7 },
-    { x: 490, y: 280, s: 0.9 },
-    { x: 760, y: 280, s: 1.2 },
-    { x: 820, y: 280, s: 0.85 }
-  ].map(tree => `
-    <g transform="translate(${tree.x}, ${tree.y}) scale(${tree.s})">
+    { x: 100, y: 390, s: 0.75, delay: 'swaying-tree' },
+    { x: 150, y: 400, s: 0.85, delay: 'swaying-tree-delay' },
+    { x: 820, y: 380, s: 0.75, delay: 'swaying-tree' },
+    { x: 880, y: 390, s: 0.9, delay: 'swaying-tree-delay' },
+    
+    // Midground
+    { x: 60,  y: 720, s: 1.0, delay: 'swaying-tree-delay' },
+    { x: 900, y: 750, s: 1.1, delay: 'swaying-tree' },
+    
+    // Foreground
+    { x: 80,  y: 1020, s: 1.25, delay: 'swaying-tree' },
+    { x: 880, y: 1000, s: 1.3, delay: 'swaying-tree-delay' }
+  ].map(t => `
+    <g transform="translate(${t.x}, ${t.y}) scale(${t.s})" class="${t.delay}">
       <!-- Trunk -->
-      <rect x="-4" y="0" width="8" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <!-- Leaf levels -->
-      <polygon points="0,-35 -24,-10 24,-10" fill="#15803d" stroke="#000000" stroke-width="2.5" />
-      <polygon points="0,-50 -18,-25 18,-25" fill="#166534" stroke="#000000" stroke-width="2.5" />
-      <polygon points="0,-65 -13,-40 13,-40" fill="#14532d" stroke="#000000" stroke-width="2.5" />
+      <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
+      <!-- Leaf Levels -->
+      <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
+      <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
+      <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
     </g>
   `).join('');
 
-  // Moving Neobrutalist text marquee separator at Y=280 (acting as river shoreline)
+  // Interactive weather particles falling down the screen
+  let particles = '';
+  if (world.weatherType === 'snow') {
+    particles = Array.from({ length: 15 }).map((_, i) => {
+      const px = 60 + (i * 60) + (Math.sin(i) * 20);
+      const delay = (i * 0.4).toFixed(1);
+      const dur = (4 + (i % 3) * 1.5).toFixed(1);
+      return `<g class="falling-p" style="animation-delay: ${delay}s; animation-duration: ${dur}s;"><circle cx="${px}" cy="-15" r="4.5" fill="#ffffff" stroke="#000000" stroke-width="1.8" /></g>`;
+    }).join('');
+  } else if (world.weatherType === 'rain') {
+    particles = Array.from({ length: 16 }).map((_, i) => {
+      const px = 40 + (i * 58);
+      const delay = (i * 0.3).toFixed(1);
+      const dur = (1.5 + (i % 3) * 0.5).toFixed(1);
+      return `<g class="falling-p" style="animation-delay: ${delay}s; animation-duration: ${dur}s;"><line x1="${px}" y1="-25" x2="${px - 12}" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g>`;
+    }).join('');
+  } else {
+    // Clear weather: floating peach blossoms or golden leaves
+    particles = Array.from({ length: 12 }).map((_, i) => {
+      const px = 80 + (i * 75);
+      const delay = (i * 0.6).toFixed(1);
+      const dur = (6 + (i % 3) * 2).toFixed(1);
+      const fill = i % 2 === 0 ? '#f472b6' : '#facc15';
+      return `<g class="falling-p" style="animation-delay: ${delay}s; animation-duration: ${dur}s;"><path d="M ${px},-10 C ${px+6},-16 ${px+12},-16 ${px+12},-10 C ${px+12},-4 ${px+6},2 ${px},2 C ${px-6},2 ${px-12},-4 ${px-12},-10 Z" fill="${fill}" stroke="#000000" stroke-width="1.8" /></g>`;
+    }).join('');
+  }
+
+  // Winding text marquee shore
   const separators = `
-    <!-- Lake shore shadow border -->
-    <rect x="-10" y="278" width="920" height="34" fill="#38bdf8" stroke="#000000" stroke-width="3" />
-    
-    <!-- Moving Text Marquee (lake waves) -->
-    <g transform="translate(0, 280)">
+    <g transform="translate(0, 440)">
+      <rect x="-10" y="0" width="${W + 20}" height="32" fill="#facc15" stroke="#000000" stroke-width="3" />
       <g class="marquee-group">
-        <text y="21" font-family="'Space Grotesk', sans-serif" font-size="12.5" font-weight="900" fill="#000000" letter-spacing="1">
-          🌊 KASHMIR DAL LAKE · HIMACHAL HIMALAYAS · DEPLOY · OPTIMIZE · AUTOMATE · ORCHESTRATE · MERGE · REFACTOR · KASHMIR DAL LAKE · HIMACHAL HIMALAYAS · DEPLOY · OPTIMIZE · AUTOMATE · ORCHESTRATE · MERGE · REFACTOR
+        <text y="21" font-family="'Space Grotesk', sans-serif" font-size="12.5" font-weight="900" fill="#000000" letter-spacing="1.5">
+          🌊 KASHMIR DAL LAKE · HIMACHAL HIMALAYAS · ORCHESTRATE · COMPILE · MERGE · REFACTOR · SCALE · KASHMIR DAL LAKE · HIMACHAL HIMALAYAS · ORCHESTRATE · COMPILE · MERGE · REFACTOR · SCALE
         </text>
       </g>
     </g>
-    
-    <!-- Shore divider -->
-    <line x1="0" y1="312" x2="900" y2="312" stroke="#000000" stroke-width="4" />
+    <line x1="0" y1="440" x2="${W}" y2="440" stroke="#000000" stroke-width="4.5" />
+    <line x1="0" y1="472" x2="${W}" y2="472" stroke="#000000" stroke-width="4.5" />
   `;
 
-  // Neobrutalist Panel component: thick border, solid offset shadow, square corner badge
-  const P = (y: number, h: number, title: string, badgeBg = '#facc15') => {
-    const rx = 6, x = 20, w = W - 40;
+  // Spacious Neobrutalist Panel component with semi-transparent white backing for landscape blending
+  const P = (y: number, h: number, title: string, badgeBg = '#38bdf8') => {
+    const rx = 8, x = 40, w = W - 80;
     const badgeW = title.length * 8.5 + 24;
     const badgeH = 28;
     return `
 <g class="panel">
   <!-- Card Shadow -->
   <rect x="${x + 6}" y="${y + 6}" width="${w}" height="${h}" rx="${rx}" fill="#000000" />
-  <!-- Card Main Box -->
-  <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="#ffffff" stroke="#000000" stroke-width="3" />
+  <!-- Card Main Box (Semi-transparent white) -->
+  <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="#ffffff" fill-opacity="0.91" stroke="#000000" stroke-width="3.5" />
   
   <!-- Badge Shadow -->
-  <rect x="${x + 28}" y="${y - 11}" width="${badgeW}" height="${badgeH}" rx="4" fill="#000000" />
+  <rect x="${x + 34}" y="${y - 11}" width="${badgeW}" height="${badgeH}" rx="4" fill="#000000" />
   <!-- Badge Main -->
-  <rect x="${x + 25}" y="${y - 14}" width="${badgeW}" height="${badgeH}" rx="4" fill="${badgeBg}" stroke="#000000" stroke-width="3" />
-  <text x="${x + 25 + badgeW / 2}" y="${y + 4}" font-family="'Space Grotesk', 'Outfit', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">${title}</text>
+  <rect x="${x + 31}" y="${y - 14}" width="${badgeW}" height="${badgeH}" rx="4" fill="${badgeBg}" stroke="#000000" stroke-width="3" />
+  <text x="${x + 31 + badgeW / 2}" y="${y + 4}" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">${title}</text>
 </g>`;
   };
 
-  // Blocky tech badges
+  // Spacious Tech Badges (4 per row, larger size, spacious padding)
   const skills = [
     { n: 'Kubernetes', bg: '#4ade80' },
     { n: 'Docker',     bg: '#38bdf8' },
@@ -157,23 +217,23 @@ export function renderProfileCard(world: WorldData): string {
     { n: 'Backstage',  bg: '#2dd4bf' }
   ];
   
-  const bxs = [32, 172, 312, 452, 592, 732];
-  const BR0 = 726, BR1 = 772;
+  const bxs = [70, 280, 490, 700];
+  const BR = [836, 896, 956];
   const badges = skills.map((s, i) => {
-    const bx = bxs[i % 6];
-    const by = i < 6 ? BR0 : BR1;
+    const bx = bxs[i % 4];
+    const by = BR[Math.floor(i / 4)];
     return `
     <g>
       <!-- Shadow -->
-      <rect x="${bx + 3}" y="${by + 3}" width="128" height="26" rx="4" fill="#000000" />
+      <rect x="${bx + 4}" y="${by + 4}" width="180" height="28" rx="4" fill="#000000" />
       <!-- Main -->
-      <rect x="${bx}" y="${by}" width="128" height="26" rx="4" fill="${s.bg}" stroke="#000000" stroke-width="2" />
-      <text x="${bx + 64}" y="${by + 17}" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">${s.n.toUpperCase()}</text>
+      <rect x="${bx}" y="${by}" width="180" height="28" rx="4" fill="${s.bg}" stroke="#000000" stroke-width="2.5" />
+      <text x="${bx + 90}" y="${by + 18}" font-family="'Space Grotesk', sans-serif" font-size="11.5" fill="#000000" font-weight="900" text-anchor="middle">${s.n.toUpperCase()}</text>
     </g>
     `;
   }).join('');
 
-  // Quest lines spaced out with custom Neobrutalist status badges
+  // Quests (38px spaced out lines)
   const quests = [
     { t: 'LeaderWorkerSet topology-aware scheduling', s: 'Active Journey 🌿', bg: '#4ade80' },
     { t: 'CompositePodGroup integration (KEP-893)',  s: 'Active Journey 🌿', bg: '#4ade80' },
@@ -182,19 +242,19 @@ export function renderProfileCard(world: WorldData): string {
     { t: 'Upstream Node.js core exploration',         s: 'Wandering 🏕️',      bg: '#38bdf8' }
   ];
   const qItems = quests.map((q, i) => {
-    const qy = 886 + i * 30; // 30px gaps for breathing room
+    const qy = 1084 + i * 38;
     return `
-    <g transform="translate(40, ${qy})">
-      <!-- Bullet diamond -->
+    <g transform="translate(60, ${qy})">
+      <!-- Bullet Diamond -->
       <rect x="0" y="-4" width="8" height="8" fill="#000000" transform="rotate(45 4 4)" />
-      <text x="24" y="5" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
+      <text x="24" y="5" font-family="'Inter', sans-serif" font-size="13" fill="#000000" font-weight="700">
         ${q.t}
       </text>
       
       <!-- Status pill badge -->
-      <g transform="translate(670, -11)">
-        <rect x="0" y="0" width="120" height="20" rx="4" fill="${q.bg}" stroke="#000000" stroke-width="2" />
-        <text x="60" y="14" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="0.5">
+      <g transform="translate(680, -11)">
+        <rect x="0" y="0" width="130" height="22" rx="4" fill="${q.bg}" stroke="#000000" stroke-width="2" />
+        <text x="65" y="15" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="0.5">
           ${q.s.toUpperCase()}
         </text>
       </g>
@@ -202,65 +262,63 @@ export function renderProfileCard(world: WorldData): string {
     `;
   }).join('');
 
-  // Stats entries
+  // Stats cards Y=1310, H=90
   const stats = [
     { icon: '📝', lbl: 'TRAVEL STREAK', val: `${world.streak} days`,    sub: 'committed in a row', bg: '#4ade80' },
     { icon: '🌱', lbl: 'SPROUTS GROWN', val: `${world.totalContributions}`, sub: 'total commits', bg: '#38bdf8' },
     { icon: '🏡', lbl: 'HOME BIOME',    val: t.label.toUpperCase(),     sub: `Weather: ${world.weatherType.toUpperCase()}`, bg: '#facc15' }
   ];
-  const cardW = 270, cardGap = 25, cardY = 1048, cardH = 76;
+  const cardW = 260, cardGap = 30, cardY = 1315, cardH = 82;
   const statCards = stats.map((s, i) => {
-    const cx = 30 + i * (cardW + cardGap);
+    const cx = 60 + i * (cardW + cardGap);
     return `
     <g>
       <!-- Shadow -->
       <rect x="${cx + 5}" y="${cardY + 5}" width="${cardW}" height="${cardH}" rx="6" fill="#000000" />
       <!-- Main -->
       <rect x="${cx}" y="${cardY}" width="${cardW}" height="${cardH}" rx="6" fill="${s.bg}" stroke="#000000" stroke-width="3" />
-      <text x="${cx + 12}" y="${cardY + 20}" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" letter-spacing="1">${s.icon}  ${s.lbl}</text>
+      <text x="${cx + 12}" y="${cardY + 20}" font-family="'Space Grotesk', sans-serif" font-size="9.5" fill="#000000" font-weight="900" letter-spacing="1">${s.icon}  ${s.lbl}</text>
       <text x="${cx + 12}" y="${cardY + 48}" font-family="'Space Grotesk', sans-serif" font-size="20" fill="#000000" font-weight="900">${s.val}</text>
-      <text x="${cx + 12}" y="${cardY + 65}" font-family="'Inter', sans-serif" font-size="9.5" fill="#000000" font-weight="700" opacity="0.8">${s.sub}</text>
+      <text x="${cx + 12}" y="${cardY + 68}" font-family="'Inter', sans-serif" font-size="10" fill="#000000" font-weight="700" opacity="0.8">${s.sub}</text>
     </g>
     `;
   }).join('');
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="border:4px solid #000000;border-radius:18px;overflow:hidden">
   <defs>
-    <!-- Dot Matrix Grid Pattern -->
+    <!-- Dot Grid pattern for overlay texture -->
     <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1.5" fill="#eadecd" />
+      <circle cx="2" cy="2" r="1.5" fill="#000000" opacity="0.08" />
     </pattern>
   </defs>
 
-  <!-- ═══ BASE BACKDROP (KASHMIR SUNSET STRIPES) ═══ -->
+  <!-- ═══ FULL-HEIGHT BACKDROP LANDSCAPE ═══ -->
   ${skyBands}
-  <rect width="${W}" height="${H}" y="280" fill="#f6f5f0"/>
-  <rect width="${W}" height="${H}" y="280" fill="url(#dotGrid)"/>
+  ${valleyMeadows}
+  <rect width="${W}" height="${H}" fill="url(#dotGrid)" pointer-events="none" />
 
-  <!-- Sun / Moon behind mountains -->
-  <circle cx="480" cy="160" r="72" fill="${theme.sunColor}" stroke="#000000" stroke-width="4" />
+  <!-- Sun / Moon with glowing pulse -->
+  <circle cx="480" cy="180" r="75" fill="${theme.sunColor}" stroke="#000000" stroke-width="4.5" class="sun-pulse" />
   
-  <!-- Dynamic floating vector stars -->
+  <!-- Dynamic floating stars -->
   ${stars}
 
   <!-- ═══ HIMALAYAN MOUNTAINS ═══ -->
   ${mountains}
 
-  <!-- ═══ VALLEY WATER LAKE LINE ═══ -->
-  <rect x="0" y="268" width="900" height="12" fill="${theme.waterColor}" stroke="#000000" stroke-width="3" />
-
   <!-- ═══ FOREGROUND PINE FOREST ═══ -->
   ${pineTrees}
 
-  <!-- ═══ DIVIDERS ═══ -->
+  <!-- ═══ WEATHER PARTICLES ═══ -->
+  ${particles}
+
+  <!-- ═══ SHORELINE TEXT MARQUEE ═══ -->
   ${separators}
 
-  <!-- ═══ ANIMATED BIRDS & CLOUDS ═══ -->
-  <!-- Flat drifting cloud -->
+  <!-- ═══ ANIMATED BIRDS & DRIFTING CLOUDS ═══ -->
   <g class="floating-cloud">
     <rect x="0" y="45" width="130" height="22" rx="11" fill="#ffffff" stroke="#000000" stroke-width="3" />
   </g>
-  <!-- Flying birds -->
   <g class="flying-bird">
     <path d="M 0,0 L 6,-5 L 12,0 L 18,-5 L 24,0" fill="none" stroke="#000000" stroke-width="3.5" stroke-linecap="round" />
   </g>
@@ -268,38 +326,38 @@ export function renderProfileCard(world: WorldData): string {
     <path d="M 0,0 L 5,-4 L 10,0 L 15,-4 L 20,0" fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" />
   </g>
 
-  <!-- ═══ HERO HEADER ═══ -->
-  <g transform="translate(150, 336)">
+  <!-- ═══ HERO HEADER (Floating atop landscape) ═══ -->
+  <g transform="translate(180, 320)">
     <!-- Shadow -->
-    <rect x="6" y="6" width="600" height="114" rx="6" fill="#000000"/>
+    <rect x="6" y="6" width="600" height="120" rx="8" fill="#000000"/>
     <!-- Main Box -->
-    <rect x="0" y="0" width="600" height="114" rx="6" fill="#ffffff" stroke="#000000" stroke-width="3"/>
+    <rect x="0" y="0" width="600" height="120" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#000000" stroke-width="3.5"/>
     
     <!-- Neon Pink left vertical stripe -->
-    <rect x="3" y="3" width="10" height="108" fill="#f472b6" />
-    <line x1="13" y1="3" x2="13" y2="111" stroke="#000000" stroke-width="3" />
+    <rect x="3" y="3" width="10" height="114" fill="#f472b6" />
+    <line x1="13" y1="3" x2="13" y2="117" stroke="#000000" stroke-width="3.5" />
 
-    <text x="310" y="52" font-family="'Space Grotesk', sans-serif" font-size="34" fill="#000000" text-anchor="middle" font-weight="900">HI, I'M DASMAT ⚡</text>
-    <text x="310" y="82" font-family="'Inter', sans-serif" font-size="13" fill="#000000" font-weight="700" text-anchor="middle" letter-spacing="0.5">
+    <text x="310" y="55" font-family="'Space Grotesk', sans-serif" font-size="34" fill="#000000" text-anchor="middle" font-weight="900">HI, I'M DASMAT ⚡</text>
+    <text x="310" y="88" font-family="'Inter', sans-serif" font-size="13" fill="#000000" font-weight="700" text-anchor="middle" letter-spacing="0.5">
       DEVOPS EXPLORER  ·  FULL-STACK DEVELOPER  ·  OSS CONTRIBUTOR
     </text>
   </g>
 
-  <!-- ═══ ABOUT ME PANEL y=475 h=125 (spacious layout) ═══ -->
-  ${P(475, 125, '⚡  ABOUT THE TRAVELER', '#38bdf8')}
-  <text x="40" y="515" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
+  <!-- ═══ ABOUT ME PANEL y=480 h=170 ═══ -->
+  ${P(480, 170, '⚡  ABOUT THE TRAVELER', '#38bdf8')}
+  <text x="70" y="530" font-family="'Inter', sans-serif" font-size="13" fill="#000000" font-weight="700">
     ⚡  <tspan font-weight="900" fill="#facc15" stroke="#000000" stroke-width="0.5">CORE INTERESTS:</tspan> Infrastructure automation, Cloud-Native scaling, Self-healing architectures
   </text>
-  <text x="40" y="545" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
+  <text x="70" y="575" font-family="'Inter', sans-serif" font-size="13" fill="#000000" font-weight="700">
     ⚡  <tspan font-weight="900" fill="#facc15" stroke="#000000" stroke-width="0.5">CONTRIBUTING TO:</tspan> Kubernetes SIGs, Node.js Core, Express.js, Backstage Ecosystem
   </text>
-  <text x="40" y="575" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
+  <text x="70" y="620" font-family="'Inter', sans-serif" font-size="13" fill="#000000" font-weight="700">
     ⚡  <tspan font-weight="900" fill="#facc15" stroke="#000000" stroke-width="0.5">CONTACT:</tspan> dasmath06@gmail.com   ·   ⚡  Experiments daily with automated recovery pipelines
   </text>
 
-  <!-- ═══ WORLD STATE BAR y=620 h=55 ═══ -->
-  ${P(620, 55, '🏡  CURRENT ENVIRONMENT LOG', '#f472b6')}
-  <text x="${W/2}" y="653" font-family="'Space Grotesk', sans-serif" font-size="13.5" fill="#000000" text-anchor="middle" font-weight="900">
+  <!-- ═══ WORLD STATE BAR y=690 h=70 ═══ -->
+  ${P(690, 70, '🏡  CURRENT ENVIRONMENT LOG', '#f472b6')}
+  <text x="${W/2}" y="732" font-family="'Space Grotesk', sans-serif" font-size="13.5" fill="#000000" text-anchor="middle" font-weight="900">
     🌳 BIOME: <tspan fill="#000000" font-weight="900">${t.label.toUpperCase()}</tspan>
     <tspan dx="15" fill="#000000" opacity="0.3">|</tspan>
     <tspan dx="15">🕰️ TIME: <tspan fill="#38bdf8">${world.timeOfDay.toUpperCase()}</tspan></tspan>
@@ -309,15 +367,15 @@ export function renderProfileCard(world: WorldData): string {
     <tspan dx="15">🎒 STREAK: <tspan fill="#fbbf24">${world.streak} DAYS</tspan></tspan>
   </text>
 
-  <!-- ═══ TECH STACK PANEL y=695 h=130 ═══ -->
-  ${P(695, 130, '🎒  PACKED GEAR (TECH STACK)', '#4ade80')}
+  <!-- ═══ TECH STACK PANEL y=800 h=190 ═══ -->
+  ${P(800, 190, '🎒  PACKED GEAR (TECH STACK)', '#4ade80')}
   ${badges}
 
-  <!-- ═══ ACTIVE QUESTS PANEL y=845 h=180 ═══ -->
-  ${P(845, 180, '🗺️  CURRENT JOURNEY (ACTIVE QUESTS)', '#c084fc')}
+  <!-- ═══ ACTIVE QUESTS PANEL y=1030 h=240 ═══ -->
+  ${P(1030, 240, '🗺️  CURRENT JOURNEY (ACTIVE QUESTS)', '#c084fc')}
   ${qItems}
 
-  <!-- ═══ STATS HUD y=1048 h=76 ═══ -->
+  <!-- ═══ STATS HUD y=1310 h=90 ═══ -->
   ${statCards}
 
   <!-- Neobrutalist bottom footer -->
@@ -345,30 +403,60 @@ export function renderProfileCard(world: WorldData): string {
       50% { transform: translateY(-12px) rotate(3deg); }
       100% { transform: translateY(-24px) rotate(-3deg); }
     }
+    .sun-pulse {
+      animation: pulseSun 5s ease-in-out infinite alternate;
+      transform-origin: center;
+    }
+    @keyframes pulseSun {
+      0% { transform: scale(0.96); opacity: 0.9; }
+      100% { transform: scale(1.04); opacity: 1; }
+    }
+    .swaying-tree {
+      animation: swayTree 6s ease-in-out infinite alternate;
+      transform-origin: bottom center;
+    }
+    .swaying-tree-delay {
+      animation: swayTree 8s ease-in-out infinite alternate;
+      animation-delay: 2.2s;
+      transform-origin: bottom center;
+    }
+    @keyframes swayTree {
+      0% { transform: rotate(-2.5deg); }
+      100% { transform: rotate(2.5deg); }
+    }
     .marquee-group {
-      animation: marqueeText 25s linear infinite;
+      animation: marqueeText 26s linear infinite;
     }
     @keyframes marqueeText {
       0% { transform: translateX(0); }
       100% { transform: translateX(-650px); }
     }
     .flying-bird {
-      animation: birdFly 15s linear infinite;
+      animation: birdFly 16s linear infinite;
     }
     .flying-bird-delay {
-      animation: birdFly 20s linear infinite;
-      animation-delay: 4s;
+      animation: birdFly 22s linear infinite;
+      animation-delay: 5s;
     }
     @keyframes birdFly {
       0% { transform: translate(-50px, 90px); }
-      100% { transform: translate(950px, 50px); }
+      100% { transform: translate(1010px, 40px); }
     }
     .floating-cloud {
-      animation: cloudFloat 26s linear infinite;
+      animation: cloudFloat 28s linear infinite;
     }
     @keyframes cloudFloat {
       0% { transform: translateX(-150px); }
-      100% { transform: translateX(950px); }
+      100% { transform: translateX(1010px); }
+    }
+    .falling-p {
+      animation: fallAnim 5s linear infinite;
+    }
+    @keyframes fallAnim {
+      0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+      8% { opacity: 0.85; }
+      90% { opacity: 0.85; }
+      100% { transform: translateY(1480px) translateX(100px) rotate(360deg); opacity: 0; }
     }
   </style>
 </svg>`;
