@@ -1,6 +1,7 @@
 
 <svg width="960" height="1440" viewBox="0 0 960 1440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GitWorld Expedition Profile Card">
   <style>
+    <![CDATA[
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@900&family=Inter:wght@500;600;700&family=JetBrains+Mono:wght@700&display=swap');
     
     
@@ -162,6 +163,7 @@
     100% { transform: translate(960px, 140px); opacity: 0.05; }
   }
   
+    ]]>
   </style>
 
   
@@ -4661,7 +4663,7 @@
     <!-- Commits / Altitude -->
     <g transform="translate(0, 0)">
       <text x="0" y="0" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#94a3b8" letter-spacing="1">ALTITUDE (COMMITS)</text>
-      <text x="0" y="20" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="15" fill="#ffffff">427 m</text>
+      <text x="0" y="20" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="15" fill="#ffffff">428 m</text>
     </g>
     
     <!-- Stars / Expedition -->
