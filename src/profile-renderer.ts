@@ -6,69 +6,69 @@ export function renderProfileCard(world: WorldData): string {
   const t = world.biomeTheme;
   const username = world.username;
 
-  // Kashmir/Himachal theme palettes for dynamic transition loops
+  // Authentic Spiti Valley Color Palette
   const themePalettes: Record<string, {
     sky: string[];
     sunColor: string;
-    mountainFill1: string;
-    mountainFill2: string;
-    hill1: string;
+    mountainFill1: string; // Shadow Purple / Slate
+    mountainFill2: string; // Mountain Brown / Slate
+    hill1: string; // Dust Beige / Meadow Green
     hill2: string;
     hill3: string;
-    waterColor: string;
+    waterColor: string; // Glacial River Blue
   }> = {
     night: {
-      sky: ['#090d16', '#0f172a', '#1e293b'],
-      sunColor: '#f1f5f9', // Glowing Moon
-      mountainFill1: '#12102e',
-      mountainFill2: '#1e1b4b',
-      hill1: '#0f172a',
-      hill2: '#090d16',
-      hill3: '#020617',
+      sky: ['#060814', '#0d1127', '#1c2242'],
+      sunColor: '#f1f5f9', // Moon
+      mountainFill1: '#1b1429',
+      mountainFill2: '#2c223a',
+      hill1: '#27201c',
+      hill2: '#1b1410',
+      hill3: '#0f0a08',
       waterColor: '#1d4ed8'
     },
     dawn: {
       sky: ['#f472b6', '#fb923c', '#fef08a'],
       sunColor: '#fbbf24',
-      mountainFill1: '#581c87',
-      mountainFill2: '#701a75',
-      hill1: '#b45309',
-      hill2: '#92400e',
-      hill3: '#78350f',
-      waterColor: '#ec4899'
+      mountainFill1: '#62507C', // Shadow Purple
+      mountainFill2: '#7A624A', // Mountain Brown
+      hill1: '#C7B08A', // Dust Beige
+      hill2: '#b09973',
+      hill3: '#947e5c',
+      waterColor: '#38bdf8'
     },
     day: {
-      sky: ['#0ea5e9', '#38bdf8', '#7dd3fc'],
+      sky: ['#3b82f6', '#60a5fa', '#93c5fd'],
       sunColor: '#f97316',
-      mountainFill1: '#1d4ed8',
-      mountainFill2: '#3b82f6',
-      hill1: '#22c55e', // Emerald hills
-      hill2: '#16a34a',
-      hill3: '#15803d',
-      waterColor: '#06b6d4'
+      mountainFill1: '#5D6670', // Slate Grey
+      mountainFill2: '#7A624A', // Mountain Brown
+      hill1: '#C7B08A', // Cold Desert Beige
+      hill2: '#b29d79',
+      hill3: '#8c7650',
+      waterColor: '#4EC7E8' // Glacial River Blue
     },
     dusk: {
-      sky: ['#be123c', '#e11d48', '#fda4af'],
+      sky: ['#881337', '#be123c', '#fb7185'],
       sunColor: '#fbbf24',
-      mountainFill1: '#3b0764',
-      mountainFill2: '#581c87',
-      hill1: '#6b21a8',
-      hill2: '#581c87',
-      hill3: '#4a044e',
-      waterColor: '#db2777'
+      mountainFill1: '#4a1d6d',
+      mountainFill2: '#5f2b80',
+      hill1: '#854d0e',
+      hill2: '#713f12',
+      hill3: '#422006',
+      waterColor: '#ec4899'
     }
   };
   
   const theme = themePalettes[world.timeOfDay] || themePalettes.day;
 
-  // Construct cyclic transition lists for `<animate>` tags based on current timeOfDay
+  // Cyclic transitions looping every 90 seconds (Day -> Dusk -> Night -> Dawn -> Day)
   const states = ['day', 'dusk', 'night', 'dawn'];
   const activeIdx = states.indexOf(world.timeOfDay);
   const orderedStates: string[] = [];
   for (let i = 0; i < 4; i++) {
     orderedStates.push(states[(activeIdx + i) % 4]);
   }
-  orderedStates.push(orderedStates[0]); // Complete loop
+  orderedStates.push(orderedStates[0]);
 
   const skyTopVals = orderedStates.map(s => themePalettes[s].sky[0]).join(';');
   const skyBottomVals = orderedStates.map(s => themePalettes[s].sky[themePalettes[s].sky.length - 1]).join(';');
@@ -80,95 +80,156 @@ export function renderProfileCard(world: WorldData): string {
   const h2Vals = orderedStates.map(s => themePalettes[s].hill2).join(';');
   const h3Vals = orderedStates.map(s => themePalettes[s].hill3).join(';');
 
-  // Floating Neobrutalist stars
+  // Stars (twinkling)
   const stars = [
-    { x: 100, y: 80, size: 14, color: '#ffffff', anim: 'floating-item' },
-    { x: 860, y: 110, size: 16, color: '#facc15', anim: 'floating-item-delay-1' },
-    { x: 220, y: 200, size: 10, color: '#f472b6', anim: 'floating-item-delay-2' }
-  ].map(s => {
-    return `<g class="${s.anim}"><path d="M ${s.x},${s.y - s.size} Q ${s.x},${s.y} ${s.x + s.size},${s.y} Q ${s.x},${s.y} ${s.x},${s.y + s.size} Q ${s.x},${s.y} ${s.x - s.size},${s.y} Q ${s.x},${s.y} ${s.x},${s.y - s.size} Z" fill="${s.color}" stroke="#000000" stroke-width="2.5" /></g>`;
-  }).join('');
+    { cx: 80, cy: 90, r: 2, delay: '0s' },
+    { cx: 160, cy: 120, r: 1.5, delay: '1.2s' },
+    { cx: 210, cy: 70, r: 2.2, delay: '0.5s' },
+    { cx: 780, cy: 110, r: 1.8, delay: '2s' },
+    { cx: 840, cy: 60, r: 2.5, delay: '1.5s' }
+  ].map(s => `<circle cx="${s.cx}" cy="${s.cy}" r="${s.r}" fill="#ffffff" class="twinkle" style="animation-delay: ${s.delay};" />`).join('');
 
-  // Kashmir/Himachal mountains with dynamic SVG `<animate>` color transitions
+  // 6 Mountain Depth Layers (Spiti Cold Desert)
   const mountains = `
-    <!-- Back Peak (Left) -->
-    <polygon points="340,160 100,340 580,340" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3">
-      <animate attributeName="fill" values="${m1Vals}" dur="24s" repeatCount="indefinite" />
+    <!-- Layer 1 (Distant back peak left) -->
+    <polygon points="260,180 50,340 470,340" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="2.5">
+      <animate attributeName="fill" values="${m1Vals}" dur="90s" repeatCount="indefinite" />
     </polygon>
-    <!-- Back Peak (Right) -->
-    <polygon points="760,170 520,340 980,340" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3">
-      <animate attributeName="fill" values="${m1Vals}" dur="24s" repeatCount="indefinite" />
+    <!-- Layer 2 (Distant back peak right) -->
+    <polygon points="700,190 480,340 920,340" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="2.5">
+      <animate attributeName="fill" values="${m1Vals}" dur="90s" repeatCount="indefinite" />
     </polygon>
-    
-    <!-- Center-Left Peak with Snow Cap -->
+    <!-- Layer 3 (Highest peak center-left with Snow Cap) -->
     <g>
-      <polygon points="240,110 0,340 240,340" fill="${theme.mountainFill2}" stroke="#000000" stroke-width="3">
-        <animate attributeName="fill" values="${m2Vals}" dur="24s" repeatCount="indefinite" />
+      <polygon points="380,120 120,340 380,340" fill="${theme.mountainFill2}" stroke="#000000" stroke-width="3">
+        <animate attributeName="fill" values="${m2Vals}" dur="90s" repeatCount="indefinite" />
       </polygon>
-      <polygon points="240,110 240,340 480,340" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3">
-        <animate attributeName="fill" values="${m1Vals}" dur="24s" repeatCount="indefinite" />
+      <polygon points="380,120 380,340 640,340" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3">
+        <animate attributeName="fill" values="${m1Vals}" dur="90s" repeatCount="indefinite" />
       </polygon>
-      <polygon points="240,110 190,170 240,170" fill="#ffffff" stroke="#000000" stroke-width="3" />
-      <polygon points="240,110 240,170 290,170" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
+      <polygon points="380,120 330,180 380,180" fill="#ffffff" stroke="#000000" stroke-width="3" />
+      <polygon points="380,120 380,180 430,180" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
     </g>
-
-    <!-- Center-Right Peak with Snow Cap -->
+    <!-- Layer 4 (Mid Peak Right supporting Key Monastery) -->
     <g>
-      <polygon points="620,120 380,340 620,340" fill="${theme.mountainFill2}" stroke="#000000" stroke-width="3">
-        <animate attributeName="fill" values="${m2Vals}" dur="24s" repeatCount="indefinite" />
+      <polygon points="760,140 500,340 760,340" fill="${theme.mountainFill2}" stroke="#000000" stroke-width="3">
+        <animate attributeName="fill" values="${m2Vals}" dur="90s" repeatCount="indefinite" />
       </polygon>
-      <polygon points="620,120 620,340 860,340" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3">
-        <animate attributeName="fill" values="${m1Vals}" dur="24s" repeatCount="indefinite" />
+      <polygon points="760,140 760,340 1020,340" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3">
+        <animate attributeName="fill" values="${m1Vals}" dur="90s" repeatCount="indefinite" />
       </polygon>
-      <polygon points="620,120 570,180 620,180" fill="#ffffff" stroke="#000000" stroke-width="3" />
-      <polygon points="620,120 620,180 670,180" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
+      <polygon points="760,140 720,190 760,190" fill="#ffffff" stroke="#000000" stroke-width="3" />
+      <polygon points="760,140 760,190 800,190" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
     </g>
   `;
 
-  // Meadows & Winding River valleys
+  // Key Monastery Detailed Vector Construction (Overlooking the slope at X=700, Y=210)
+  const keyMonastery = `
+    <g transform="translate(710, 190)">
+      <!-- Main Shadow Base -->
+      <rect x="-5" y="15" width="85" height="50" rx="3" fill="#000000" />
+      <!-- Main block -->
+      <rect x="-8" y="12" width="85" height="50" rx="3" fill="#fafaf9" stroke="#000000" stroke-width="3" />
+      <!-- Stacked Upper Blocks -->
+      <rect x="10" y="-8" width="55" height="24" rx="2" fill="#f5f5f4" stroke="#000000" stroke-width="2.5" />
+      <rect x="25" y="-24" width="30" height="18" rx="2" fill="#e7e5e4" stroke="#000000" stroke-width="2" />
+      
+      <!-- Flat Dark Red bands representing monastery parapets -->
+      <rect x="-8" y="15" width="85" height="5" fill="#991b1b" stroke="#000000" stroke-width="1.5" />
+      <rect x="10" y="-5" width="55" height="4" fill="#991b1b" stroke="#000000" stroke-width="1.5" />
+      <rect x="25" y="-21" width="30" height="3" fill="#991b1b" stroke="#000000" stroke-width="1" />
+      
+      <!-- Gold Roof Spires -->
+      <polygon points="40,-34 36,-24 44,-24" fill="#fbbf24" stroke="#000000" stroke-width="1.5" />
+      <polygon points="18,-15 15,-8 21,-8" fill="#fbbf24" stroke="#000000" stroke-width="1" />
+      <polygon points="62,-15 59,-8 65,-8" fill="#fbbf24" stroke="#000000" stroke-width="1" />
+      
+      <!-- Tiny windows -->
+      <rect x="0" y="26" width="6" height="8" rx="1" fill="#1c1917" />
+      <rect x="14" y="26" width="6" height="8" rx="1" fill="#1c1917" />
+      <rect x="28" y="26" width="6" height="8" rx="1" fill="#1c1917" />
+      <rect x="42" y="26" width="6" height="8" rx="1" fill="#1c1917" />
+      <rect x="56" y="26" width="6" height="8" rx="1" fill="#1c1917" />
+      <rect x="20" y="2" width="5" height="6" rx="1" fill="#1c1917" />
+      <rect x="34" y="2" width="5" height="6" rx="1" fill="#1c1917" />
+      <rect x="48" y="2" width="5" height="6" rx="1" fill="#1c1917" />
+      
+      <!-- Small prayer flags strung to the cliff -->
+      <line x1="-30" y1="35" x2="-8" y2="25" stroke="#000000" stroke-width="1.5" stroke-dasharray="2,2" />
+      <polygon points="-25,32 -20,38 -20,30" fill="#3b82f6" />
+      <polygon points="-18,29 -13,35 -13,27" fill="#ef4444" />
+    </g>
+  `;
+
+  // Spiti River & Valley meadows (cold desert terrain)
   const valleyMeadows = `
-    <!-- Top valley ground line -->
+    <!-- Dry desert valley background -->
     <rect x="0" y="340" width="${W}" height="1100" fill="${theme.hill1}">
-      <animate attributeName="fill" values="${h1Vals}" dur="24s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="${h1Vals}" dur="90s" repeatCount="indefinite" />
     </rect>
     
-    <!-- Winding Valley River -->
+    <!-- Spiti River (Glacial blue path winding diagonally) -->
     <path d="M 480,340 Q 300,550 720,850 T 150,1200 T 600,1440" fill="none" stroke="${theme.waterColor}" stroke-width="60" stroke-linecap="round" stroke-linejoin="round">
-      <animate attributeName="stroke" values="${waterVals}" dur="24s" repeatCount="indefinite" />
+      <animate attributeName="stroke" values="${waterVals}" dur="90s" repeatCount="indefinite" />
     </path>
     <path d="M 480,340 Q 300,550 720,850 T 150,1200 T 600,1440" fill="none" stroke="#ffffff" stroke-width="8" stroke-dasharray="15,20" stroke-linecap="round" />
     
-    <!-- Mid Valley Hill -->
+    <!-- Cold Desert Middle foothill -->
     <path d="M -20,680 Q 400,640 980,720 L 980,1450 L -20,1450 Z" fill="${theme.hill2}" stroke="#000000" stroke-width="3.5">
-      <animate attributeName="fill" values="${h2Vals}" dur="24s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="${h2Vals}" dur="90s" repeatCount="indefinite" />
     </path>
     
-    <!-- Foreground Valley Hill -->
+    <!-- Cold Desert Foreground foothill -->
     <path d="M -20,980 Q 550,1030 980,950 L 980,1450 L -20,1450 Z" fill="${theme.hill3}" stroke="#000000" stroke-width="3.5">
-      <animate attributeName="fill" values="${h3Vals}" dur="24s" repeatCount="indefinite" />
+      <animate attributeName="fill" values="${h3Vals}" dur="90s" repeatCount="indefinite" />
     </path>
   `;
 
-  // Swaying Pine Trees
-  const pineTrees = [
+  // Scattered Tall Poplar Trees (slender crown & swaying animation)
+  const poplars = [
     { x: 100, y: 390, s: 0.75, delay: 'pine' },
-    { x: 150, y: 400, s: 0.85, delay: 'pine-delay' },
-    { x: 820, y: 380, s: 0.75, delay: 'pine' },
-    { x: 880, y: 390, s: 0.9, delay: 'pine-delay' },
+    { x: 140, y: 400, s: 0.85, delay: 'pine-delay' },
+    { x: 800, y: 380, s: 0.75, delay: 'pine' },
+    { x: 860, y: 390, s: 0.9, delay: 'pine-delay' },
     { x: 60,  y: 720, s: 1.0, delay: 'pine-delay' },
-    { x: 900, y: 750, s: 1.1, delay: 'pine' },
+    { x: 910, y: 750, s: 1.15, delay: 'pine' },
     { x: 80,  y: 1020, s: 1.25, delay: 'pine' },
-    { x: 880, y: 1000, s: 1.3, delay: 'pine-delay' }
+    { x: 890, y: 1000, s: 1.3, delay: 'pine-delay' }
   ].map(t => `
     <g transform="translate(${t.x}, ${t.y}) scale(${t.s})" class="${t.delay}">
-      <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
-      <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
+      <!-- Trunk -->
+      <rect x="-2" y="0" width="4" height="24" fill="#5c4033" stroke="#000000" stroke-width="1.8" />
+      <!-- Slender Poplar Crown -->
+      <path d="M 0,-56 C -11,-36 -9,-10 0,0 C 9,-10 11,-36 0,-56 Z" fill="#88A94D" stroke="#000000" stroke-width="2.2" />
     </g>
   `).join('');
 
-  // Weather layers
+  // Waving Buddhist Prayer Flags across cliffs in the background
+  const prayerFlagsStrands = `
+    <g class="flags-wave" transform="translate(80, 210)">
+      <path d="M 0,20 Q 100,45 200,30" fill="none" stroke="#000000" stroke-width="2" />
+      <!-- Small flag triangles -->
+      <polygon points="20,24 28,34 32,26" fill="#3b82f6" stroke="#000000" stroke-width="0.5" />
+      <polygon points="50,29 58,39 62,31" fill="#ffffff" stroke="#000000" stroke-width="0.5" />
+      <polygon points="80,33 88,43 92,35" fill="#ef4444" stroke="#000000" stroke-width="0.5" />
+      <polygon points="110,34 118,44 122,36" fill="#10b981" stroke="#000000" stroke-width="0.5" />
+      <polygon points="140,32 148,42 152,34" fill="#fbbf24" stroke="#000000" stroke-width="0.5" />
+      <polygon points="170,29 178,39 182,31" fill="#3b82f6" stroke="#000000" stroke-width="0.5" />
+    </g>
+  `;
+
+  // Grass Tufts (Desert vegetation C7B08A / 88A94D)
+  const grassTufts = [
+    { x: 50, y: 440 }, { x: 280, y: 420 }, { x: 740, y: 460 },
+    { x: 120, y: 740 }, { x: 820, y: 770 },
+    { x: 180, y: 1040 }, { x: 790, y: 1020 }
+  ].map(g => `
+    <g transform="translate(${g.x}, ${g.y})">
+      <path d="M0,0 Q-4,-12 -8,-15 Q-2,-12 0,0 Q3,-14 6,-18 Q2,-10 0,0 Q8,-10 12,-12 Q5,-8 0,0" fill="#88A94D" stroke="#000000" stroke-width="1.5" />
+    </g>
+  `).join('');
+
+  // Weather layers (Snow, Rain, or Cold Desert Wind Dust particles)
   let particles = '';
   if (world.weatherType === 'snow') {
     particles = Array.from({ length: 16 }).map((_, i) => {
@@ -185,44 +246,43 @@ export function renderProfileCard(world: WorldData): string {
       return `<line class="raindrop" x1="${px}" y1="-25" x2="${px - 12}" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: ${delay}s; animation-duration: ${dur}s;" />`;
     }).join('');
   } else {
-    // clear / blossoms
-    particles = Array.from({ length: 14 }).map((_, i) => {
-      const px = 50 + (i * 65);
-      const delay = (i * 0.5).toFixed(1);
-      const dur = (7 + (i % 3) * 2).toFixed(1);
-      const fill = i % 2 === 0 ? '#f472b6' : '#facc15';
-      return `<path class="petal" d="M ${px},-10 C ${px+6},-16 ${px+12},-16 ${px+12},-10 C ${px+12},-4 ${px+6},2 ${px},2 C ${px-6},2 ${px-12},-4 ${px-12},-10 Z" fill="${fill}" stroke="#000000" stroke-width="1.8" style="animation-delay: ${delay}s; animation-duration: ${dur}s;" />`;
+    // cold desert wind dust / sand particles
+    particles = Array.from({ length: 18 }).map((_, i) => {
+      const px = 30 + (i * 54);
+      const delay = (i * 0.3).toFixed(1);
+      const dur = (2.2 + (i % 3) * 0.8).toFixed(1);
+      return `<g class="dust" style="animation-delay: ${delay}s; animation-duration: ${dur}s;"><circle cx="${px}" cy="-10" r="2.5" fill="#C7B08A" opacity="0.75" stroke="#000000" stroke-width="1" /></g>`;
     }).join('');
   }
 
-  // Shoreline Text Marquee using modern CSS `offset-path`
+  // Marquee shoreline
   const separators = `
     <g class="marquee" transform="translate(0, 440)">
-      <rect x="-10" y="0" width="${W + 20}" height="32" fill="#facc15" stroke="#000000" stroke-width="3" />
+      <rect x="-10" y="0" width="${W + 20}" height="32" fill="#C7B08A" stroke="#000000" stroke-width="3" />
       <text font-family="'Space Grotesk', sans-serif" font-size="12.5" font-weight="900" fill="#000000" letter-spacing="1.5">
-        🌊 KASHMIR DAL LAKE · HIMACHAL HIMALAYAS · ORCHESTRATE · COMPILE · MERGE · REFACTOR · SCALE · KASHMIR DAL LAKE · HIMACHAL HIMALAYAS
+        🏔️ SPITI VALLEY · KEY MONASTERY OVERLOOK · COLD DESERT · GLACIAL STREAM · SPITI VALLEY · KEY MONASTERY OVERLOOK · COLD DESERT · GLACIAL STREAM
       </text>
     </g>
     <line x1="0" y1="440" x2="${W}" y2="440" stroke="#000000" stroke-width="4.5" />
     <line x1="0" y1="472" x2="${W}" y2="472" stroke="#000000" stroke-width="4.5" />
   `;
 
-  // Spacious Neobrutalist glassmorphic panel
-  const P = (y: number, h: number, title: string, badgeBg = '#38bdf8') => {
-    const rx = 8, x = 40, w = W - 80;
+  // Spiti glassmorphic panel (rx=28, fill-opacity=0.18, backdrop blur=14px)
+  const P = (y: number, h: number, title: string, badgeBg = '#4EC7E8') => {
+    const rx = 28, x = 40, w = W - 80;
     const badgeW = title.length * 8.5 + 24;
     const badgeH = 28;
     return `
 <g class="panel">
   <!-- Card Shadow -->
   <rect x="${x + 6}" y="${y + 6}" width="${w}" height="${h}" rx="${rx}" fill="#000000" />
-  <!-- Card Main Box with Frosted Glassmorphism -->
-  <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="#ffffff" fill-opacity="0.91" style="backdrop-filter: blur(8px);" stroke="#000000" stroke-width="3.5" />
+  <!-- Card Main Box with Apple-style Frosted Glassmorphism -->
+  <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="#ffffff" fill-opacity="0.18" style="backdrop-filter: blur(14px);" stroke="#000000" stroke-width="3.5" />
   
   <!-- Badge Shadow -->
-  <rect x="${x + 34}" y="${y - 11}" width="${badgeW}" height="${badgeH}" rx="4" fill="#000000" />
+  <rect x="${x + 34}" y="${y - 11}" width="${badgeW}" height="${badgeH}" rx="6" fill="#000000" />
   <!-- Badge Main -->
-  <rect x="${x + 31}" y="${y - 14}" width="${badgeW}" height="${badgeH}" rx="4" fill="${badgeBg}" stroke="#000000" stroke-width="3" />
+  <rect x="${x + 31}" y="${y - 14}" width="${badgeW}" height="${badgeH}" rx="6" fill="${badgeBg}" stroke="#000000" stroke-width="3" />
   <text x="${x + 31 + badgeW / 2}" y="${y + 4}" font-family="'Space Grotesk', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">${title}</text>
 </g>`;
   };
@@ -312,13 +372,13 @@ export function renderProfileCard(world: WorldData): string {
 
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="border:4px solid #000000;border-radius:18px;overflow:hidden">
   <defs>
-    <!-- Full cyclic sky gradient animation -->
+    <!-- 90s Sky cyclic gradient -->
     <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="${theme.sky[0]}">
-        <animate attributeName="stop-color" values="${skyTopVals}" dur="20s" repeatCount="indefinite" />
+        <animate attributeName="stop-color" values="${skyTopVals}" dur="90s" repeatCount="indefinite" />
       </stop>
       <stop offset="100%" stop-color="${theme.sky[theme.sky.length - 1]}">
-        <animate attributeName="stop-color" values="${skyBottomVals}" dur="20s" repeatCount="indefinite" />
+        <animate attributeName="stop-color" values="${skyBottomVals}" dur="90s" repeatCount="indefinite" />
       </stop>
     </linearGradient>
     
@@ -335,17 +395,24 @@ export function renderProfileCard(world: WorldData): string {
 
   <!-- Sun / Moon with dynamic fill color transitions & pulse -->
   <circle cx="480" cy="180" r="75" fill="${theme.sunColor}" stroke="#000000" stroke-width="4.5" class="sun">
-    <animate attributeName="fill" values="${sunVals}" dur="20s" repeatCount="indefinite" />
+    <animate attributeName="fill" values="${sunVals}" dur="90s" repeatCount="indefinite" />
   </circle>
   
-  <!-- Dynamic floating stars -->
+  <!-- Twinkling Stars -->
   ${stars}
 
   <!-- ═══ HIMALAYAN MOUNTAINS ═══ -->
   ${mountains}
 
-  <!-- ═══ FOREGROUND PINE FOREST ═══ -->
-  ${pineTrees}
+  <!-- ═══ KEY MONASTERY ═══ -->
+  ${keyMonastery}
+
+  <!-- ═══ FOREGROUND FOREST & VEGETATION ═══ -->
+  ${poplars}
+  ${grassTufts}
+
+  <!-- ═══ BUDDHIST PRAYER FLAGS ═══ -->
+  ${prayerFlagsStrands}
 
   <!-- ═══ WEATHER PARTICLES ═══ -->
   ${particles}
@@ -367,9 +434,9 @@ export function renderProfileCard(world: WorldData): string {
   <!-- ═══ HERO HEADER (Floating atop landscape) ═══ -->
   <g transform="translate(180, 320)">
     <!-- Shadow -->
-    <rect x="6" y="6" width="600" height="120" rx="8" fill="#000000"/>
+    <rect x="6" y="6" width="600" height="120" rx="28" fill="#000000"/>
     <!-- Main Box -->
-    <rect x="0" y="0" width="600" height="120" rx="8" fill="#ffffff" fill-opacity="0.94" stroke="#000000" stroke-width="3.5"/>
+    <rect x="0" y="0" width="600" height="120" rx="28" fill="#ffffff" fill-opacity="0.18" style="backdrop-filter: blur(14px);" stroke="#000000" stroke-width="3.5"/>
     
     <!-- Neon Pink left vertical stripe -->
     <rect x="3" y="3" width="10" height="114" fill="#f472b6" />
@@ -462,10 +529,25 @@ export function renderProfileCard(world: WorldData): string {
       from { transform: rotate(1.5deg); }
       to   { transform: rotate(-1.5deg); }
     }
+    .flags-wave {
+      animation: flagSway 4s ease-in-out infinite alternate;
+      transform-origin: left top;
+    }
+    @keyframes flagSway {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(-3px) rotate(1deg); }
+    }
+    .twinkle {
+      animation: twinkleAnim 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes twinkleAnim {
+      0% { opacity: 0.2; }
+      100% { opacity: 1; }
+    }
     .marquee text {
       offset-path: path("M 960 21 H -960");
       offset-distance: 0%;
-      animation: slideText 16s linear infinite;
+      animation: slideText 18s linear infinite;
     }
     @keyframes slideText {
       to { offset-distance: 100%; }
@@ -496,8 +578,8 @@ export function renderProfileCard(world: WorldData): string {
     .raindrop {
       animation: fallRain 2s linear infinite;
     }
-    .petal {
-      animation: fallPetal 10s linear infinite;
+    .dust {
+      animation: fallDust 4s linear infinite;
     }
     @keyframes fallSnow {
       0%   { transform: translateY(0)  rotate(0deg); opacity:1; }
@@ -507,9 +589,11 @@ export function renderProfileCard(world: WorldData): string {
       0%   { transform: translateY(0) scaleY(1); opacity:0.8; }
       100% { transform: translateY(1460px) scaleY(1.5); opacity:0; }
     }
-    @keyframes fallPetal {
-      0%   { transform: translateY(0) rotate(0deg); opacity:1; }
-      100% { transform: translateY(1460px) rotate(720deg); opacity:0; }
+    @keyframes fallDust {
+      0%   { transform: translateY(0) translateX(0) scale(0.8); opacity:0; }
+      10%  { opacity: 0.65; }
+      90%  { opacity: 0.65; }
+      100% { transform: translateY(1460px) translateX(-200px) scale(1.2); opacity:0; }
     }
   </style>
 </svg>`;
