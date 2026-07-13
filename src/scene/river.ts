@@ -10,15 +10,30 @@ export interface RiverPoint {
 
 /**
  * Control coordinates for the Spiti River flow.
+ * The river now begins as a thin glacial trickle high up in the
+ * mountain snowfield and gradually widens as it descends.
  */
 export function generateRiver(): RiverPoint[] {
   return [
-    { x: 480, y: 340, width: 14 },
-    { x: 420, y: 440, width: 18 },
+    // Glacial origin — hidden behind snowcap, nearly zero width
+    { x: 488, y: 260, width: 0 },
+    // Snowmelt emergence — tiny trickle from under glacier
+    { x: 486, y: 285, width: 3 },
+    // Cascading down the rock face
+    { x: 483, y: 310, width: 5 },
+    // First visible pool at mountain base
+    { x: 480, y: 340, width: 10 },
+    // Gaining flow
+    { x: 435, y: 430, width: 16 },
+    // Through the narrow canyon
     { x: 350, y: 560, width: 24 },
+    // Valley widening
     { x: 510, y: 730, width: 32 },
+    // Broad mid-valley
     { x: 630, y: 920, width: 40 },
+    // Wide lower valley
     { x: 410, y: 1140, width: 56 },
+    // Exit at bottom of card
     { x: 520, y: 1440, width: 78 }
   ];
 }
@@ -56,45 +71,173 @@ function getRiverOffsets(points: RiverPoint[], pad = 0): { left: Point[]; right:
 }
 
 /**
- * Compiles parallel offsets into a closed polygon path.
+ * Compiles parallel offsets into a smooth closed bezier polygon path.
  */
 function buildClosedArea(left: Point[], right: Point[]): string {
-  let d = `M ${left[0].x} ${left[0].y}`;
+  // Forward along left bank
+  let d = `M ${left[0].x.toFixed(1)} ${left[0].y.toFixed(1)}`;
   for (let i = 1; i < left.length; i++) {
-    d += ` L ${left[i].x} ${left[i].y}`;
+    const prev = left[i - 1];
+    const cur = left[i];
+    const cpx = (prev.x + cur.x) / 2;
+    const cpy = (prev.y + cur.y) / 2;
+    d += ` Q ${prev.x.toFixed(1)} ${prev.y.toFixed(1)} ${cpx.toFixed(1)} ${cpy.toFixed(1)}`;
   }
-  for (let i = right.length - 1; i >= 0; i--) {
-    d += ` L ${right[i].x} ${right[i].y}`;
+  d += ` L ${left[left.length - 1].x.toFixed(1)} ${left[left.length - 1].y.toFixed(1)}`;
+  
+  // Return along right bank (reversed)
+  for (let i = right.length - 1; i >= 1; i--) {
+    const prev = right[i];
+    const cur = right[i - 1];
+    const cpx = (prev.x + cur.x) / 2;
+    const cpy = (prev.y + cur.y) / 2;
+    d += ` Q ${prev.x.toFixed(1)} ${prev.y.toFixed(1)} ${cpx.toFixed(1)} ${cpy.toFixed(1)}`;
   }
   d += ' Z';
   return d;
 }
 
 /**
- * Renders the Spiti River, banks, pebbles, islands, bridge, and yaks.
+ * Renders the glacial origin — snowfield, ice shelf, meltwater cascade, and source pool.
+ */
+function renderGlacialSource(rand: SeededRand): string {
+  // The glacier sits at the top of the river, behind the snowcap line.
+  // We render: ice shelf → meltwater cascade → collecting pool.
+  
+  const glacierCx = 486;
+  const glacierY = 258;
+  
+  let markup = '';
+  
+  // 1. Glacial ice shelf — a jagged white/blue-white mass tucked into the mountain saddle
+  markup += `
+  <g opacity="0.92">
+    <!-- Ice shelf body -->
+    <path d="M ${glacierCx - 28} ${glacierY + 8}
+             Q ${glacierCx - 20} ${glacierY - 18} ${glacierCx - 5} ${glacierY - 22}
+             Q ${glacierCx + 8} ${glacierY - 25} ${glacierCx + 22} ${glacierY - 15}
+             Q ${glacierCx + 30} ${glacierY - 5} ${glacierCx + 26} ${glacierY + 12}
+             Q ${glacierCx + 15} ${glacierY + 22} ${glacierCx} ${glacierY + 28}
+             Q ${glacierCx - 18} ${glacierY + 20} ${glacierCx - 28} ${glacierY + 8} Z"
+          fill="#d4ecf7" />
+    <!-- Ice shelf highlight -->
+    <path d="M ${glacierCx - 18} ${glacierY}
+             Q ${glacierCx - 8} ${glacierY - 14} ${glacierCx + 5} ${glacierY - 16}
+             Q ${glacierCx + 15} ${glacierY - 10} ${glacierCx + 18} ${glacierY + 2}
+             Q ${glacierCx + 5} ${glacierY + 8} ${glacierCx - 10} ${glacierY + 6}
+             Q ${glacierCx - 18} ${glacierY + 4} ${glacierCx - 18} ${glacierY} Z"
+          fill="#eaf5fb" opacity="0.7" />
+    <!-- Deep crevasse lines in the ice -->
+    <line x1="${glacierCx - 12}" y1="${glacierY - 8}" x2="${glacierCx - 8}" y2="${glacierY + 12}" stroke="#8ec8e0" stroke-width="0.8" opacity="0.5" />
+    <line x1="${glacierCx + 3}" y1="${glacierY - 14}" x2="${glacierCx + 5}" y2="${glacierY + 6}" stroke="#8ec8e0" stroke-width="0.6" opacity="0.4" />
+    <line x1="${glacierCx + 14}" y1="${glacierY - 6}" x2="${glacierCx + 12}" y2="${glacierY + 10}" stroke="#8ec8e0" stroke-width="0.7" opacity="0.45" />
+  </g>`;
+  
+  // 2. Meltwater cascade — thin animated white streaks falling from glacier snout
+  const cascadeTop = glacierY + 22;
+  const cascadeBottom = 340;
+  const cascadeCx = glacierCx - 2;
+  
+  markup += `
+  <g class="melt-cascade" opacity="0.85">
+    <!-- Cascade stream 1 (left trickle) -->
+    <path d="M ${cascadeCx - 3} ${cascadeTop}
+             Q ${cascadeCx - 6} ${cascadeTop + 20} ${cascadeCx - 4} ${cascadeTop + 40}
+             Q ${cascadeCx - 2} ${cascadeTop + 55} ${cascadeCx - 1} ${cascadeBottom - 10}"
+          fill="none" stroke="#7dd3fc" stroke-width="1.8" stroke-linecap="round" opacity="0.7" />
+    <!-- Cascade stream 2 (center) -->
+    <path d="M ${cascadeCx} ${cascadeTop + 2}
+             Q ${cascadeCx + 1} ${cascadeTop + 25} ${cascadeCx - 1} ${cascadeTop + 45}
+             Q ${cascadeCx} ${cascadeTop + 60} ${cascadeCx} ${cascadeBottom - 8}"
+          fill="none" stroke="#bae6fd" stroke-width="2.2" stroke-linecap="round" opacity="0.85" />
+    <!-- Cascade stream 3 (right trickle) -->
+    <path d="M ${cascadeCx + 4} ${cascadeTop + 4}
+             Q ${cascadeCx + 5} ${cascadeTop + 22} ${cascadeCx + 3} ${cascadeTop + 42}
+             Q ${cascadeCx + 2} ${cascadeTop + 56} ${cascadeCx + 1} ${cascadeBottom - 6}"
+          fill="none" stroke="#7dd3fc" stroke-width="1.4" stroke-linecap="round" opacity="0.6" />
+    <!-- Tiny white splash drops at cascade base -->
+    <circle cx="${cascadeCx - 4}" cy="${cascadeBottom - 4}" r="1.5" fill="#ffffff" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="1.8s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="${cascadeCx + 2}" cy="${cascadeBottom - 2}" r="1.2" fill="#ffffff" opacity="0.5">
+      <animate attributeName="opacity" values="0.4;0.1;0.4" dur="2.2s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="${cascadeCx}" cy="${cascadeBottom}" r="2" fill="#ffffff" opacity="0.4">
+      <animate attributeName="opacity" values="0.5;0.15;0.5" dur="1.5s" repeatCount="indefinite" />
+    </circle>
+  </g>`;
+  
+  // 3. Collecting pool — the small natural basin where cascading meltwater gathers
+  //    before flowing downstream as the river
+  const poolCx = 480;
+  const poolCy = 345;
+  
+  markup += `
+  <g opacity="0.9">
+    <!-- Pool shadow/depth -->
+    <ellipse cx="${poolCx}" cy="${poolCy}" rx="18" ry="8" fill="#1e3a5f" opacity="0.4" />
+    <!-- Pool water surface -->
+    <ellipse cx="${poolCx}" cy="${poolCy}" rx="16" ry="7" fill="#38bdf8" opacity="0.6" />
+    <!-- Pool highlight reflection -->
+    <ellipse cx="${poolCx - 4}" cy="${poolCy - 2}" rx="8" ry="3" fill="#ffffff" opacity="0.25" />
+  </g>`;
+  
+  // 4. Boulders and rocks around the glacier snout and pool
+  const sourceRocks = [
+    { x: glacierCx - 30, y: glacierY + 14, r: 5, color: '#78716c' },
+    { x: glacierCx + 28, y: glacierY + 8, r: 4, color: '#6b6560' },
+    { x: glacierCx - 24, y: glacierY + 24, r: 3.5, color: '#8a8278' },
+    { x: glacierCx + 24, y: glacierY + 20, r: 3, color: '#7c7570' },
+    { x: poolCx - 20, y: poolCy + 2, r: 4, color: '#78716c' },
+    { x: poolCx + 18, y: poolCy + 3, r: 3.5, color: '#6b6560' },
+    { x: poolCx - 14, y: poolCy + 6, r: 2.5, color: '#8a8278' },
+    { x: poolCx + 13, y: poolCy + 5, r: 2, color: '#78716c' },
+  ];
+  
+  for (const rock of sourceRocks) {
+    const rx = rock.r * (1 + rand.range(-0.2, 0.3));
+    const ry = rock.r * (0.6 + rand.range(0, 0.3));
+    markup += `<ellipse cx="${rock.x}" cy="${rock.y}" rx="${rx.toFixed(1)}" ry="${ry.toFixed(1)}" fill="${rock.color}" opacity="0.85" />
+    `;
+  }
+  
+  return markup;
+}
+
+/**
+ * Renders the Spiti River, glacial source, banks, pebbles, islands, bridge, and yaks.
  */
 export function renderRiver(world: WorldData): string {
   const rand = getSeededRand(world.username + '_river');
   const riverPts = generateRiver();
   
+  // Skip the first 3 points (glacier/cascade region) for bank rendering —
+  // those are handled by the glacial source renderer.
+  const bankPts = riverPts.slice(2);
+  
   // 1. River Banks (Sand and Gravel backgrounds)
-  const sandArea = getRiverOffsets(riverPts, 35);
+  const sandArea = getRiverOffsets(bankPts, 32);
   const sandPath = buildClosedArea(sandArea.left, sandArea.right);
   
-  const gravelArea = getRiverOffsets(riverPts, 18);
+  const gravelArea = getRiverOffsets(bankPts, 16);
   const gravelPath = buildClosedArea(gravelArea.left, gravelArea.right);
 
-  // Centerline for open highlights and shimmer lines
+  // Full centerline (used for thin highlights and shimmers)
   const centerLinePoints: Point[] = riverPts.map(p => ({ x: p.x, y: p.y }));
   const centerD = bezierOpen(centerLinePoints);
+  
+  // Main river body path (from the collecting pool downward only, skipping glacier/cascade)
+  // Points 3+ are pool→valley→exit. The wide water strokes only use this.
+  const bodyPoints: Point[] = riverPts.slice(3).map(p => ({ x: p.x, y: p.y }));
+  const bodyD = bezierOpen(bodyPoints);
 
   // 2. Pebble Generator (scatters 180 stones along the banks)
   let pebblesMarkup = '';
   const stoneColors = ['#b8aa93', '#c6b8a2', '#8f8270', '#786d5c'];
   for (let i = 0; i < 180; i++) {
-    const segmentIdx = Math.floor(rand.range(0, riverPts.length - 1));
-    const p1 = riverPts[segmentIdx];
-    const p2 = riverPts[segmentIdx + 1];
+    const segmentIdx = Math.floor(rand.range(0, bankPts.length - 1));
+    const p1 = bankPts[segmentIdx];
+    const p2 = bankPts[segmentIdx + 1];
     const t = rand.range(0, 1);
     
     // Interpolate center
@@ -131,7 +274,7 @@ export function renderRiver(world: WorldData): string {
   for (let i = 0; i < 3; i++) {
     const iy = 650 + i * 280;
     // Find closest river point
-    const closest = riverPts.find(p => Math.abs(p.y - iy) < 150) || riverPts[3];
+    const closest = riverPts.find(p => Math.abs(p.y - iy) < 150) || riverPts[5];
     islandsMarkup += `
     <g transform="translate(${closest.x + rand.range(-8, 8)}, ${iy})">
       <ellipse cx="0" cy="0" rx="${rand.range(8, 16)}" ry="${rand.range(4, 8)}" fill="#8f8270" opacity="0.9" />
@@ -139,10 +282,9 @@ export function renderRiver(world: WorldData): string {
     </g>`;
   }
 
-  // 4. Wooden Footbridge crossing the narrow river segment near monastery (Y = 520)
+  // 4. Wooden Footbridge crossing the narrow river segment near monastery (Y = 540)
   const bridgeX = 356;
   const bridgeY = 540;
-  const bridgeWidth = 42;
   const bridge = `
   <!-- Wooden bridge group -->
   <g id="wooden-bridge">
@@ -205,7 +347,13 @@ export function renderRiver(world: WorldData): string {
     <ellipse cx="${rx}" cy="${ry}" rx="${8 + i}" ry="${3 + i / 2}" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="1.2" />`;
   }
 
+  // 8. Glacial Source (rendered first, behind the river)
+  const glacialSource = renderGlacialSource(rand);
+
   return `
+  <!-- ═══════════ Glacial River Origin ═══════════ -->
+  ${glacialSource}
+
   <!-- Sand Bank Base -->
   <path d="${sandPath}" fill="#dfd4bf" />
   
@@ -218,20 +366,20 @@ export function renderRiver(world: WorldData): string {
   <!-- Small gravel islands -->
   ${islandsMarkup}
   
-  <!-- Water Depth Layer 1: Dark Blue silt depth base -->
-  <path d="${centerD}" stroke="#1e3a8a" stroke-width="32" stroke-linecap="round" fill="none" opacity="0.3" />
+  <!-- Water Depth Layer 1: Dark Blue silt depth base (body only) -->
+  <path d="${bodyD}" stroke="#1e3a8a" stroke-width="32" stroke-linecap="round" fill="none" opacity="0.3" />
   
-  <!-- Water Depth Layer 2: Main Glacier blue water channel -->
-  <path d="${centerD}" stroke="url(#riverGradient)" stroke-width="26" stroke-linecap="round" fill="none" />
+  <!-- Water Depth Layer 2: Main Glacier blue water channel (body only) -->
+  <path d="${bodyD}" stroke="url(#riverGradient)" stroke-width="26" stroke-linecap="round" fill="none" />
   
-  <!-- Water Depth Layer 3: Sun/Sky Reflection Overlay -->
-  <path d="${centerD}" stroke="url(#riverReflection)" stroke-width="20" stroke-linecap="round" fill="none" />
+  <!-- Water Depth Layer 3: Sun/Sky Reflection Overlay (body only) -->
+  <path d="${bodyD}" stroke="url(#riverReflection)" stroke-width="20" stroke-linecap="round" fill="none" />
   
-  <!-- Water Depth Layer 4: High-Contrast White Reflection Edge -->
-  <path d="${centerD}" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.28" fill="none" />
+  <!-- Water Depth Layer 4: High-Contrast White Reflection Edge (full path, thin) -->
+  <path d="${centerD}" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-opacity="0.22" fill="none" />
   
-  <!-- Water Depth Layer 5: Animated downstream shimmers -->
-  <path d="${centerD}" stroke="#ffffff" stroke-width="3.5" stroke-linecap="round" stroke-opacity="0.7" fill="none" class="river-shimmer" />
+  <!-- Water Depth Layer 5: Animated downstream shimmers (full path, thin) -->
+  <path d="${centerD}" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.55" fill="none" class="river-shimmer" />
 
   <!-- Concentric ripples -->
   ${ripplesMarkup}
