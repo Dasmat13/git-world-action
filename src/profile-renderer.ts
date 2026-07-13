@@ -6,52 +6,122 @@ export function renderProfileCard(world: WorldData): string {
   const t = world.biomeTheme;
   const username = world.username;
 
-  // Seed for custom variations
-  const seed = username.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
-
-  // Animated Neobrutalist decorative shapes floating in the sky area
-  const shapes = [
-    { x: 60, y: 70, shape: 'star', color: '#facc15', size: 14, anim: 'floating-item' },
-    { x: 130, y: 220, shape: 'star', color: '#f472b6', size: 10, anim: 'floating-item-delay-1' },
-    { x: 800, y: 80, shape: 'plus', color: '#38bdf8', size: 12, anim: 'floating-item-delay-2' },
-    { x: 840, y: 230, shape: 'star', color: '#4ade80', size: 11, anim: 'floating-item' },
-    { x: 730, y: 140, shape: 'circle', color: '#fb923c', size: 8, anim: 'floating-item-delay-1' },
-    { x: 110, y: 150, shape: 'star', color: '#c084fc', size: 12, anim: 'floating-item-delay-2' }
-  ].map(s => {
-    let path = '';
-    if (s.shape === 'star') {
-      path = `<path d="M ${s.x},${s.y - s.size} Q ${s.x},${s.y} ${s.x + s.size},${s.y} Q ${s.x},${s.y} ${s.x},${s.y + s.size} Q ${s.x},${s.y} ${s.x - s.size},${s.y} Q ${s.x},${s.y} ${s.x},${s.y - s.size} Z" fill="${s.color}" stroke="#000000" stroke-width="2.5" />`;
-    } else if (s.shape === 'plus') {
-      path = `<g stroke="#000000" stroke-width="4.5" stroke-linecap="round">
-                <line x1="${s.x - s.size}" y1="${s.y}" x2="${s.x + s.size}" y2="${s.y}" />
-                <line x1="${s.x}" y1="${s.y - s.size}" x2="${s.x}" y2="${s.y + s.size}" />
-              </g>`;
-    } else {
-      path = `<circle cx="${s.x}" cy="${s.y}" r="${s.size}" fill="${s.color}" stroke="#000000" stroke-width="2.5" />`;
+  // Determine Neobrutalist color theme based on time of day (Kashmir/Himachal mood boards)
+  const skyPalettes: Record<string, { sky: string[]; sunColor: string; mountainFill1: string; mountainFill2: string; waterColor: string }> = {
+    night: {
+      sky: ['#0f172a', '#1e293b', '#334155'], // deep starry slate
+      sunColor: '#f1f5f9', // glowing moon
+      mountainFill1: '#1e1b4b', // deep violet/indigo shadow face
+      mountainFill2: '#312e81', // indigo main face
+      waterColor: '#1e1b4b'
+    },
+    dawn: {
+      sky: ['#f472b6', '#fb923c', '#fef08a'], // pink-orange dawn
+      sunColor: '#facc15', // gold sun
+      mountainFill1: '#701a75', // purple shadow
+      mountainFill2: '#a21caf', // magenta-purple main
+      waterColor: '#a21caf'
+    },
+    day: {
+      sky: ['#38bdf8', '#7dd3fc', '#bae6fd'], // crystal clear blue sky
+      sunColor: '#f97316', // vibrant orange sun
+      mountainFill1: '#2563eb', // royal blue shadow
+      mountainFill2: '#60a5fa', // sky blue main
+      waterColor: '#22d3ee' // bright cyan water
+    },
+    dusk: {
+      sky: ['#be123c', '#fb7185', '#fda4af'], // nostalgic rose sunset
+      sunColor: '#fbbf24', // deep amber sun
+      mountainFill1: '#4c1d95', // deep purple shadow
+      mountainFill2: '#6d28d9', // violet main
+      waterColor: '#c084fc'
     }
-    return `<g class="${s.anim}">${path}</g>`;
+  };
+  const theme = skyPalettes[world.timeOfDay] || skyPalettes.day;
+
+  // Horizontal Neobrutalist poster-style sky stripes
+  const skyBands = theme.sky.map((color, i) => {
+    const bandH = 280 / theme.sky.length;
+    return `<rect x="0" y="${i * bandH}" width="900" height="${bandH}" fill="${color}" />`;
   }).join('');
 
-  // Moving Neobrutalist text marquee separator at Y=280
-  const separators = `
-    <!-- Top divider line -->
-    <line x1="0" y1="280" x2="900" y2="280" stroke="#000000" stroke-width="4" />
+  // Floating Neobrutalist 4-point stars in the sky
+  const seed = username.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+  const stars = [
+    { x: 70, y: 60, size: 10, color: '#ffffff', anim: 'floating-item' },
+    { x: 820, y: 90, size: 12, color: '#facc15', anim: 'floating-item-delay-1' },
+    { x: 190, y: 150, size: 8, color: '#f472b6', anim: 'floating-item-delay-2' }
+  ].map(s => {
+    return `<g class="${s.anim}"><path d="M ${s.x},${s.y - s.size} Q ${s.x},${s.y} ${s.x + s.size},${s.y} Q ${s.x},${s.y} ${s.x},${s.y + s.size} Q ${s.x},${s.y} ${s.x - s.size},${s.y} Q ${s.x},${s.y} ${s.x},${s.y - s.size} Z" fill="${s.color}" stroke="#000000" stroke-width="2" /></g>`;
+  }).join('');
+
+  // Kashmir/Himachal Mountain range: overlapping geometric peaks with snow-caps
+  const mountains = `
+    <!-- Back Peak (Left) -->
+    <polygon points="320,130 120,280 520,280" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3" />
     
-    <!-- Moving Text Marquee block -->
+    <!-- Back Peak (Right) -->
+    <polygon points="720,140 520,280 920,280" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3" />
+    
+    <!-- Fore Peak (Left) with Snow Cap -->
+    <g>
+      <polygon points="220,90 20,280 220,280" fill="${theme.mountainFill2}" stroke="#000000" stroke-width="3" />
+      <polygon points="220,90 220,280 420,280" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3" />
+      <!-- Snow cap -->
+      <polygon points="220,90 180,140 220,140" fill="#ffffff" stroke="#000000" stroke-width="3" />
+      <polygon points="220,90 220,140 260,140" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
+    </g>
+
+    <!-- Fore Peak (Right) with Snow Cap -->
+    <g>
+      <polygon points="580,100 380,280 580,280" fill="${theme.mountainFill2}" stroke="#000000" stroke-width="3" />
+      <polygon points="580,100 580,280 780,280" fill="${theme.mountainFill1}" stroke="#000000" stroke-width="3" />
+      <!-- Snow cap -->
+      <polygon points="580,100 540,150 580,150" fill="#ffffff" stroke="#000000" stroke-width="3" />
+      <polygon points="580,100 580,150 620,150" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
+    </g>
+  `;
+
+  // Kashmir Valley Pine Trees (stacked triangles) along the base line
+  const pineTrees = [
+    { x: 60, y: 280, s: 0.95 },
+    { x: 110, y: 280, s: 1.15 },
+    { x: 170, y: 280, s: 0.8 },
+    { x: 380, y: 280, s: 1.0 },
+    { x: 420, y: 280, s: 0.7 },
+    { x: 490, y: 280, s: 0.9 },
+    { x: 760, y: 280, s: 1.2 },
+    { x: 820, y: 280, s: 0.85 }
+  ].map(tree => `
+    <g transform="translate(${tree.x}, ${tree.y}) scale(${tree.s})">
+      <!-- Trunk -->
+      <rect x="-4" y="0" width="8" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
+      <!-- Leaf levels -->
+      <polygon points="0,-35 -24,-10 24,-10" fill="#15803d" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-50 -18,-25 18,-25" fill="#166534" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-65 -13,-40 13,-40" fill="#14532d" stroke="#000000" stroke-width="2.5" />
+    </g>
+  `).join('');
+
+  // Moving Neobrutalist text marquee separator at Y=280 (acting as river shoreline)
+  const separators = `
+    <!-- Lake shore shadow border -->
+    <rect x="-10" y="278" width="920" height="34" fill="#38bdf8" stroke="#000000" stroke-width="3" />
+    
+    <!-- Moving Text Marquee (lake waves) -->
     <g transform="translate(0, 280)">
-      <rect x="-10" y="0" width="920" height="32" fill="#38bdf8" stroke="#000000" stroke-width="3" />
       <g class="marquee-group">
-        <text y="21" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="900" fill="#000000" letter-spacing="1">
-          ⚡ DEPLOY · MONITOR · AUTOMATE · MERGE · REFACTOR · SCALE · SHIELD · COMPILE · OPTIMIZE · ORCHESTRATE · DEPLOY · MONITOR · AUTOMATE · MERGE · REFACTOR · SCALE · SHIELD · COMPILE · OPTIMIZE · ORCHESTRATE
+        <text y="21" font-family="'Space Grotesk', sans-serif" font-size="12.5" font-weight="900" fill="#000000" letter-spacing="1">
+          🌊 KASHMIR DAL LAKE · HIMACHAL HIMALAYAS · DEPLOY · OPTIMIZE · AUTOMATE · ORCHESTRATE · MERGE · REFACTOR · KASHMIR DAL LAKE · HIMACHAL HIMALAYAS · DEPLOY · OPTIMIZE · AUTOMATE · ORCHESTRATE · MERGE · REFACTOR
         </text>
       </g>
     </g>
     
-    <!-- Bottom divider line -->
+    <!-- Shore divider -->
     <line x1="0" y1="312" x2="900" y2="312" stroke="#000000" stroke-width="4" />
   `;
 
-  // Spacious Neobrutalist Panel component: thick border, solid offset shadow, square corner badge
+  // Neobrutalist Panel component: thick border, solid offset shadow, square corner badge
   const P = (y: number, h: number, title: string, badgeBg = '#facc15') => {
     const rx = 6, x = 20, w = W - 40;
     const badgeW = title.length * 8.5 + 24;
@@ -162,15 +232,41 @@ export function renderProfileCard(world: WorldData): string {
     </pattern>
   </defs>
 
-  <!-- ═══ BASE BACKDROP ═══ -->
-  <rect width="${W}" height="${H}" fill="#f6f5f0"/>
-  <rect width="${W}" height="${H}" fill="url(#dotGrid)"/>
+  <!-- ═══ BASE BACKDROP (KASHMIR SUNSET STRIPES) ═══ -->
+  ${skyBands}
+  <rect width="${W}" height="${H}" y="280" fill="#f6f5f0"/>
+  <rect width="${W}" height="${H}" y="280" fill="url(#dotGrid)"/>
+
+  <!-- Sun / Moon behind mountains -->
+  <circle cx="480" cy="160" r="72" fill="${theme.sunColor}" stroke="#000000" stroke-width="4" />
   
-  <!-- Dynamic floating vector shapes -->
-  ${shapes}
+  <!-- Dynamic floating vector stars -->
+  ${stars}
+
+  <!-- ═══ HIMALAYAN MOUNTAINS ═══ -->
+  ${mountains}
+
+  <!-- ═══ VALLEY WATER LAKE LINE ═══ -->
+  <rect x="0" y="268" width="900" height="12" fill="${theme.waterColor}" stroke="#000000" stroke-width="3" />
+
+  <!-- ═══ FOREGROUND PINE FOREST ═══ -->
+  ${pineTrees}
 
   <!-- ═══ DIVIDERS ═══ -->
   ${separators}
+
+  <!-- ═══ ANIMATED BIRDS & CLOUDS ═══ -->
+  <!-- Flat drifting cloud -->
+  <g class="floating-cloud">
+    <rect x="0" y="45" width="130" height="22" rx="11" fill="#ffffff" stroke="#000000" stroke-width="3" />
+  </g>
+  <!-- Flying birds -->
+  <g class="flying-bird">
+    <path d="M 0,0 L 6,-5 L 12,0 L 18,-5 L 24,0" fill="none" stroke="#000000" stroke-width="3.5" stroke-linecap="round" />
+  </g>
+  <g class="flying-bird-delay">
+    <path d="M 0,0 L 5,-4 L 10,0 L 15,-4 L 20,0" fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" />
+  </g>
 
   <!-- ═══ HERO HEADER ═══ -->
   <g transform="translate(150, 336)">
@@ -255,6 +351,24 @@ export function renderProfileCard(world: WorldData): string {
     @keyframes marqueeText {
       0% { transform: translateX(0); }
       100% { transform: translateX(-650px); }
+    }
+    .flying-bird {
+      animation: birdFly 15s linear infinite;
+    }
+    .flying-bird-delay {
+      animation: birdFly 20s linear infinite;
+      animation-delay: 4s;
+    }
+    @keyframes birdFly {
+      0% { transform: translate(-50px, 90px); }
+      100% { transform: translate(950px, 50px); }
+    }
+    .floating-cloud {
+      animation: cloudFloat 26s linear infinite;
+    }
+    @keyframes cloudFloat {
+      0% { transform: translateX(-150px); }
+      100% { transform: translateX(950px); }
     }
   </style>
 </svg>`;
