@@ -1,31 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 1440" width="960" height="1440" style="border:4px solid #000000;border-radius:18px;overflow:hidden">
   <defs>
-    <!-- Dot Grid pattern for overlay texture -->
+    <!-- Full cyclic sky gradient animation -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#090d16">
+        <animate attributeName="stop-color" values="#090d16;#f472b6;#0ea5e9;#be123c;#090d16" dur="20s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="100%" stop-color="#1e293b">
+        <animate attributeName="stop-color" values="#1e293b;#fef08a;#7dd3fc;#fda4af;#1e293b" dur="20s" repeatCount="indefinite" />
+      </stop>
+    </linearGradient>
+    
+    <!-- Dot Grid pattern overlay -->
     <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="1.5" fill="#000000" opacity="0.08" />
     </pattern>
   </defs>
 
   <!-- ═══ FULL-HEIGHT BACKDROP LANDSCAPE ═══ -->
-  <rect x="0" y="0" width="960" height="166.66666666666666" fill="#090d16" /><rect x="0" y="166.66666666666666" width="960" height="166.66666666666666" fill="#0f172a" /><rect x="0" y="333.3333333333333" width="960" height="166.66666666666666" fill="#1e293b" />
+  <rect width="960" height="500" fill="url(#skyGrad)"/>
   
     <!-- Top valley ground line -->
-    <rect x="0" y="340" width="960" height="1100" fill="#0f172a" />
+    <rect x="0" y="340" width="960" height="1100" fill="#0f172a">
+      <animate attributeName="fill" values="#0f172a;#b45309;#22c55e;#6b21a8;#0f172a" dur="24s" repeatCount="indefinite" />
+    </rect>
     
-    <!-- Winding Valley River / Dal Lake extension flowing down behind panels -->
-    <path d="M 480,340 Q 300,550 720,850 T 150,1200 T 600,1440" fill="none" stroke="#1d4ed8" stroke-width="60" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Winding Valley River -->
+    <path d="M 480,340 Q 300,550 720,850 T 150,1200 T 600,1440" fill="none" stroke="#1d4ed8" stroke-width="60" stroke-linecap="round" stroke-linejoin="round">
+      <animate attributeName="stroke" values="#1d4ed8;#ec4899;#06b6d4;#db2777;#1d4ed8" dur="24s" repeatCount="indefinite" />
+    </path>
     <path d="M 480,340 Q 300,550 720,850 T 150,1200 T 600,1440" fill="none" stroke="#ffffff" stroke-width="8" stroke-dasharray="15,20" stroke-linecap="round" />
     
     <!-- Mid Valley Hill -->
-    <path d="M -20,680 Q 400,640 980,720 L 980,1450 L -20,1450 Z" fill="#090d16" stroke="#000000" stroke-width="3.5" />
+    <path d="M -20,680 Q 400,640 980,720 L 980,1450 L -20,1450 Z" fill="#090d16" stroke="#000000" stroke-width="3.5">
+      <animate attributeName="fill" values="#090d16;#92400e;#16a34a;#581c87;#090d16" dur="24s" repeatCount="indefinite" />
+    </path>
     
     <!-- Foreground Valley Hill -->
-    <path d="M -20,980 Q 550,1030 980,950 L 980,1450 L -20,1450 Z" fill="#020617" stroke="#000000" stroke-width="3.5" />
+    <path d="M -20,980 Q 550,1030 980,950 L 980,1450 L -20,1450 Z" fill="#020617" stroke="#000000" stroke-width="3.5">
+      <animate attributeName="fill" values="#020617;#78350f;#15803d;#4a044e;#020617" dur="24s" repeatCount="indefinite" />
+    </path>
   
   <rect width="960" height="1440" fill="url(#dotGrid)" pointer-events="none" />
 
-  <!-- Sun / Moon with glowing pulse -->
-  <circle cx="480" cy="180" r="75" fill="#f1f5f9" stroke="#000000" stroke-width="4.5" class="sun-pulse" />
+  <!-- Sun / Moon with dynamic fill color transitions & pulse -->
+  <circle cx="480" cy="180" r="75" fill="#f1f5f9" stroke="#000000" stroke-width="4.5" class="sun">
+    <animate attributeName="fill" values="#f1f5f9;#fbbf24;#f97316;#fbbf24;#f1f5f9" dur="20s" repeatCount="indefinite" />
+  </circle>
   
   <!-- Dynamic floating stars -->
   <g class="floating-item"><path d="M 100,66 Q 100,80 114,80 Q 100,80 100,94 Q 100,80 86,80 Q 100,80 100,66 Z" fill="#ffffff" stroke="#000000" stroke-width="2.5" /></g><g class="floating-item-delay-1"><path d="M 860,94 Q 860,110 876,110 Q 860,110 860,126 Q 860,110 844,110 Q 860,110 860,94 Z" fill="#facc15" stroke="#000000" stroke-width="2.5" /></g><g class="floating-item-delay-2"><path d="M 220,190 Q 220,200 230,200 Q 220,200 220,210 Q 220,200 210,200 Q 220,200 220,190 Z" fill="#f472b6" stroke="#000000" stroke-width="2.5" /></g>
@@ -33,22 +53,34 @@
   <!-- ═══ HIMALAYAN MOUNTAINS ═══ -->
   
     <!-- Back Peak (Left) -->
-    <polygon points="340,160 100,340 580,340" fill="#12102e" stroke="#000000" stroke-width="3" />
+    <polygon points="340,160 100,340 580,340" fill="#12102e" stroke="#000000" stroke-width="3">
+      <animate attributeName="fill" values="#12102e;#581c87;#1d4ed8;#3b0764;#12102e" dur="24s" repeatCount="indefinite" />
+    </polygon>
     <!-- Back Peak (Right) -->
-    <polygon points="760,170 520,340 980,340" fill="#12102e" stroke="#000000" stroke-width="3" />
+    <polygon points="760,170 520,340 980,340" fill="#12102e" stroke="#000000" stroke-width="3">
+      <animate attributeName="fill" values="#12102e;#581c87;#1d4ed8;#3b0764;#12102e" dur="24s" repeatCount="indefinite" />
+    </polygon>
     
     <!-- Center-Left Peak with Snow Cap -->
     <g>
-      <polygon points="240,110 0,340 240,340" fill="#1e1b4b" stroke="#000000" stroke-width="3" />
-      <polygon points="240,110 240,340 480,340" fill="#12102e" stroke="#000000" stroke-width="3" />
+      <polygon points="240,110 0,340 240,340" fill="#1e1b4b" stroke="#000000" stroke-width="3">
+        <animate attributeName="fill" values="#1e1b4b;#701a75;#3b82f6;#581c87;#1e1b4b" dur="24s" repeatCount="indefinite" />
+      </polygon>
+      <polygon points="240,110 240,340 480,340" fill="#12102e" stroke="#000000" stroke-width="3">
+        <animate attributeName="fill" values="#12102e;#581c87;#1d4ed8;#3b0764;#12102e" dur="24s" repeatCount="indefinite" />
+      </polygon>
       <polygon points="240,110 190,170 240,170" fill="#ffffff" stroke="#000000" stroke-width="3" />
       <polygon points="240,110 240,170 290,170" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
     </g>
 
     <!-- Center-Right Peak with Snow Cap -->
     <g>
-      <polygon points="620,120 380,340 620,340" fill="#1e1b4b" stroke="#000000" stroke-width="3" />
-      <polygon points="620,120 620,340 860,340" fill="#12102e" stroke="#000000" stroke-width="3" />
+      <polygon points="620,120 380,340 620,340" fill="#1e1b4b" stroke="#000000" stroke-width="3">
+        <animate attributeName="fill" values="#1e1b4b;#701a75;#3b82f6;#581c87;#1e1b4b" dur="24s" repeatCount="indefinite" />
+      </polygon>
+      <polygon points="620,120 620,340 860,340" fill="#12102e" stroke="#000000" stroke-width="3">
+        <animate attributeName="fill" values="#12102e;#581c87;#1d4ed8;#3b0764;#12102e" dur="24s" repeatCount="indefinite" />
+      </polygon>
       <polygon points="620,120 570,180 620,180" fill="#ffffff" stroke="#000000" stroke-width="3" />
       <polygon points="620,120 620,180 670,180" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
     </g>
@@ -56,73 +88,57 @@
 
   <!-- ═══ FOREGROUND PINE FOREST ═══ -->
   
-    <g transform="translate(100, 390) scale(0.75)" class="swaying-tree">
-      <!-- Trunk -->
+    <g transform="translate(100, 390) scale(0.75)" class="pine">
       <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <!-- Leaf Levels -->
       <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
       <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
       <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
     </g>
   
-    <g transform="translate(150, 400) scale(0.85)" class="swaying-tree-delay">
-      <!-- Trunk -->
+    <g transform="translate(150, 400) scale(0.85)" class="pine-delay">
       <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <!-- Leaf Levels -->
       <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
       <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
       <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
     </g>
   
-    <g transform="translate(820, 380) scale(0.75)" class="swaying-tree">
-      <!-- Trunk -->
+    <g transform="translate(820, 380) scale(0.75)" class="pine">
       <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <!-- Leaf Levels -->
       <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
       <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
       <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
     </g>
   
-    <g transform="translate(880, 390) scale(0.9)" class="swaying-tree-delay">
-      <!-- Trunk -->
+    <g transform="translate(880, 390) scale(0.9)" class="pine-delay">
       <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <!-- Leaf Levels -->
       <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
       <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
       <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
     </g>
   
-    <g transform="translate(60, 720) scale(1)" class="swaying-tree-delay">
-      <!-- Trunk -->
+    <g transform="translate(60, 720) scale(1)" class="pine-delay">
       <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <!-- Leaf Levels -->
       <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
       <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
       <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
     </g>
   
-    <g transform="translate(900, 750) scale(1.1)" class="swaying-tree">
-      <!-- Trunk -->
+    <g transform="translate(900, 750) scale(1.1)" class="pine">
       <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <!-- Leaf Levels -->
       <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
       <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
       <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
     </g>
   
-    <g transform="translate(80, 1020) scale(1.25)" class="swaying-tree">
-      <!-- Trunk -->
+    <g transform="translate(80, 1020) scale(1.25)" class="pine">
       <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <!-- Leaf Levels -->
       <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
       <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
       <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
     </g>
   
-    <g transform="translate(880, 1000) scale(1.3)" class="swaying-tree-delay">
-      <!-- Trunk -->
+    <g transform="translate(880, 1000) scale(1.3)" class="pine-delay">
       <rect x="-3.5" y="0" width="7" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
-      <!-- Leaf Levels -->
       <polygon points="0,-32 -22,-8 22,-8" fill="#166534" stroke="#000000" stroke-width="2" />
       <polygon points="0,-45 -17,-20 17,-20" fill="#15803d" stroke="#000000" stroke-width="2" />
       <polygon points="0,-58 -12,-32 12,-32" fill="#14532d" stroke="#000000" stroke-width="2" />
@@ -130,17 +146,15 @@
   
 
   <!-- ═══ WEATHER PARTICLES ═══ -->
-  <g class="falling-p" style="animation-delay: 0.0s; animation-duration: 1.5s;"><line x1="40" y1="-25" x2="28" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 0.3s; animation-duration: 2.0s;"><line x1="98" y1="-25" x2="86" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 0.6s; animation-duration: 2.5s;"><line x1="156" y1="-25" x2="144" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 0.9s; animation-duration: 1.5s;"><line x1="214" y1="-25" x2="202" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 1.2s; animation-duration: 2.0s;"><line x1="272" y1="-25" x2="260" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 1.5s; animation-duration: 2.5s;"><line x1="330" y1="-25" x2="318" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 1.8s; animation-duration: 1.5s;"><line x1="388" y1="-25" x2="376" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 2.1s; animation-duration: 2.0s;"><line x1="446" y1="-25" x2="434" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 2.4s; animation-duration: 2.5s;"><line x1="504" y1="-25" x2="492" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 2.7s; animation-duration: 1.5s;"><line x1="562" y1="-25" x2="550" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 3.0s; animation-duration: 2.0s;"><line x1="620" y1="-25" x2="608" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 3.3s; animation-duration: 2.5s;"><line x1="678" y1="-25" x2="666" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 3.6s; animation-duration: 1.5s;"><line x1="736" y1="-25" x2="724" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 3.9s; animation-duration: 2.0s;"><line x1="794" y1="-25" x2="782" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 4.2s; animation-duration: 2.5s;"><line x1="852" y1="-25" x2="840" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g><g class="falling-p" style="animation-delay: 4.5s; animation-duration: 1.5s;"><line x1="910" y1="-25" x2="898" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" /></g>
+  <line class="raindrop" x1="30" y1="-25" x2="18" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 0.0s; animation-duration: 1.2s;" /><line class="raindrop" x1="84" y1="-25" x2="72" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 0.2s; animation-duration: 1.6s;" /><line class="raindrop" x1="138" y1="-25" x2="126" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 0.4s; animation-duration: 2.0s;" /><line class="raindrop" x1="192" y1="-25" x2="180" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 0.6s; animation-duration: 1.2s;" /><line class="raindrop" x1="246" y1="-25" x2="234" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 0.8s; animation-duration: 1.6s;" /><line class="raindrop" x1="300" y1="-25" x2="288" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 1.0s; animation-duration: 2.0s;" /><line class="raindrop" x1="354" y1="-25" x2="342" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 1.2s; animation-duration: 1.2s;" /><line class="raindrop" x1="408" y1="-25" x2="396" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 1.4s; animation-duration: 1.6s;" /><line class="raindrop" x1="462" y1="-25" x2="450" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 1.6s; animation-duration: 2.0s;" /><line class="raindrop" x1="516" y1="-25" x2="504" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 1.8s; animation-duration: 1.2s;" /><line class="raindrop" x1="570" y1="-25" x2="558" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 2.0s; animation-duration: 1.6s;" /><line class="raindrop" x1="624" y1="-25" x2="612" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 2.2s; animation-duration: 2.0s;" /><line class="raindrop" x1="678" y1="-25" x2="666" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 2.4s; animation-duration: 1.2s;" /><line class="raindrop" x1="732" y1="-25" x2="720" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 2.6s; animation-duration: 1.6s;" /><line class="raindrop" x1="786" y1="-25" x2="774" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 2.8s; animation-duration: 2.0s;" /><line class="raindrop" x1="840" y1="-25" x2="828" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 3.0s; animation-duration: 1.2s;" /><line class="raindrop" x1="894" y1="-25" x2="882" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 3.2s; animation-duration: 1.6s;" /><line class="raindrop" x1="948" y1="-25" x2="936" y2="10" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" style="animation-delay: 3.4s; animation-duration: 2.0s;" />
 
   <!-- ═══ SHORELINE TEXT MARQUEE ═══ -->
   
-    <g transform="translate(0, 440)">
+    <g class="marquee" transform="translate(0, 440)">
       <rect x="-10" y="0" width="980" height="32" fill="#facc15" stroke="#000000" stroke-width="3" />
-      <g class="marquee-group">
-        <text y="21" font-family="'Space Grotesk', sans-serif" font-size="12.5" font-weight="900" fill="#000000" letter-spacing="1.5">
-          🌊 KASHMIR DAL LAKE · HIMACHAL HIMALAYAS · ORCHESTRATE · COMPILE · MERGE · REFACTOR · SCALE · KASHMIR DAL LAKE · HIMACHAL HIMALAYAS · ORCHESTRATE · COMPILE · MERGE · REFACTOR · SCALE
-        </text>
-      </g>
+      <text font-family="'Space Grotesk', sans-serif" font-size="12.5" font-weight="900" fill="#000000" letter-spacing="1.5">
+        🌊 KASHMIR DAL LAKE · HIMACHAL HIMALAYAS · ORCHESTRATE · COMPILE · MERGE · REFACTOR · SCALE · KASHMIR DAL LAKE · HIMACHAL HIMALAYAS
+      </text>
     </g>
     <line x1="0" y1="440" x2="960" y2="440" stroke="#000000" stroke-width="4.5" />
     <line x1="0" y1="472" x2="960" y2="472" stroke="#000000" stroke-width="4.5" />
@@ -174,13 +188,13 @@
     </text>
   </g>
 
-  <!-- ═══ ABOUT ME PANEL y=480 h=170 ═══ -->
+  <!-- ═══ ABOUT ME PANEL ═══ -->
   
 <g class="panel">
   <!-- Card Shadow -->
   <rect x="46" y="486" width="880" height="170" rx="8" fill="#000000" />
-  <!-- Card Main Box (Semi-transparent white) -->
-  <rect x="40" y="480" width="880" height="170" rx="8" fill="#ffffff" fill-opacity="0.91" stroke="#000000" stroke-width="3.5" />
+  <!-- Card Main Box with Frosted Glassmorphism -->
+  <rect x="40" y="480" width="880" height="170" rx="8" fill="#ffffff" fill-opacity="0.91" style="backdrop-filter: blur(8px);" stroke="#000000" stroke-width="3.5" />
   
   <!-- Badge Shadow -->
   <rect x="74" y="469" width="202.5" height="28" rx="4" fill="#000000" />
@@ -198,13 +212,13 @@
     ⚡  <tspan font-weight="900" fill="#facc15" stroke="#000000" stroke-width="0.5">CONTACT:</tspan> dasmath06@gmail.com   ·   ⚡  Experiments daily with automated recovery pipelines
   </text>
 
-  <!-- ═══ WORLD STATE BAR y=690 h=70 ═══ -->
+  <!-- ═══ WORLD STATE BAR ═══ -->
   
 <g class="panel">
   <!-- Card Shadow -->
   <rect x="46" y="696" width="880" height="70" rx="8" fill="#000000" />
-  <!-- Card Main Box (Semi-transparent white) -->
-  <rect x="40" y="690" width="880" height="70" rx="8" fill="#ffffff" fill-opacity="0.91" stroke="#000000" stroke-width="3.5" />
+  <!-- Card Main Box with Frosted Glassmorphism -->
+  <rect x="40" y="690" width="880" height="70" rx="8" fill="#ffffff" fill-opacity="0.91" style="backdrop-filter: blur(8px);" stroke="#000000" stroke-width="3.5" />
   
   <!-- Badge Shadow -->
   <rect x="74" y="679" width="253.5" height="28" rx="4" fill="#000000" />
@@ -222,13 +236,13 @@
     <tspan dx="15">🎒 STREAK: <tspan fill="#fbbf24">10 DAYS</tspan></tspan>
   </text>
 
-  <!-- ═══ TECH STACK PANEL y=800 h=190 ═══ -->
+  <!-- ═══ TECH STACK PANEL ═══ -->
   
 <g class="panel">
   <!-- Card Shadow -->
   <rect x="46" y="806" width="880" height="190" rx="8" fill="#000000" />
-  <!-- Card Main Box (Semi-transparent white) -->
-  <rect x="40" y="800" width="880" height="190" rx="8" fill="#ffffff" fill-opacity="0.91" stroke="#000000" stroke-width="3.5" />
+  <!-- Card Main Box with Frosted Glassmorphism -->
+  <rect x="40" y="800" width="880" height="190" rx="8" fill="#ffffff" fill-opacity="0.91" style="backdrop-filter: blur(8px);" stroke="#000000" stroke-width="3.5" />
   
   <!-- Badge Shadow -->
   <rect x="74" y="789" width="262" height="28" rx="4" fill="#000000" />
@@ -334,13 +348,13 @@
     </g>
     
 
-  <!-- ═══ ACTIVE QUESTS PANEL y=1030 h=240 ═══ -->
+  <!-- ═══ ACTIVE QUESTS PANEL ═══ -->
   
 <g class="panel">
   <!-- Card Shadow -->
   <rect x="46" y="1036" width="880" height="240" rx="8" fill="#000000" />
-  <!-- Card Main Box (Semi-transparent white) -->
-  <rect x="40" y="1030" width="880" height="240" rx="8" fill="#ffffff" fill-opacity="0.91" stroke="#000000" stroke-width="3.5" />
+  <!-- Card Main Box with Frosted Glassmorphism -->
+  <rect x="40" y="1030" width="880" height="240" rx="8" fill="#ffffff" fill-opacity="0.91" style="backdrop-filter: blur(8px);" stroke="#000000" stroke-width="3.5" />
   
   <!-- Badge Shadow -->
   <rect x="74" y="1019" width="330" height="28" rx="4" fill="#000000" />
@@ -430,7 +444,7 @@
     </g>
     
 
-  <!-- ═══ STATS HUD y=1310 h=90 ═══ -->
+  <!-- ═══ STATS HUD ═══ -->
   
     <g>
       <!-- Shadow -->
@@ -448,7 +462,7 @@
       <!-- Main -->
       <rect x="350" y="1315" width="260" height="82" rx="6" fill="#38bdf8" stroke="#000000" stroke-width="3" />
       <text x="362" y="1335" font-family="'Space Grotesk', sans-serif" font-size="9.5" fill="#000000" font-weight="900" letter-spacing="1">🌱  SPROUTS GROWN</text>
-      <text x="362" y="1363" font-family="'Space Grotesk', sans-serif" font-size="20" fill="#000000" font-weight="900">418</text>
+      <text x="362" y="1363" font-family="'Space Grotesk', sans-serif" font-size="20" fill="#000000" font-weight="900">414</text>
       <text x="362" y="1383" font-family="'Inter', sans-serif" font-size="10" fill="#000000" font-weight="700" opacity="0.8">total commits</text>
     </g>
     
@@ -488,33 +502,34 @@
       50% { transform: translateY(-12px) rotate(3deg); }
       100% { transform: translateY(-24px) rotate(-3deg); }
     }
-    .sun-pulse {
-      animation: pulseSun 5s ease-in-out infinite alternate;
-      transform-origin: center;
+    .sun {
+      animation: pulse 4s ease-in-out infinite alternate;
+      transform-origin: 480px 180px;
     }
-    @keyframes pulseSun {
-      0% { transform: scale(0.96); opacity: 0.9; }
-      100% { transform: scale(1.04); opacity: 1; }
+    @keyframes pulse {
+      from { transform: scale(0.96); }
+      to   { transform: scale(1.04); }
     }
-    .swaying-tree {
-      animation: swayTree 6s ease-in-out infinite alternate;
+    .pine {
+      animation: sway 3s ease-in-out infinite alternate;
       transform-origin: bottom center;
     }
-    .swaying-tree-delay {
-      animation: swayTree 8s ease-in-out infinite alternate;
-      animation-delay: 2.2s;
+    .pine-delay {
+      animation: sway 4s ease-in-out infinite alternate;
+      animation-delay: 1.5s;
       transform-origin: bottom center;
     }
-    @keyframes swayTree {
-      0% { transform: rotate(-2.5deg); }
-      100% { transform: rotate(2.5deg); }
+    @keyframes sway {
+      from { transform: rotate(1.5deg); }
+      to   { transform: rotate(-1.5deg); }
     }
-    .marquee-group {
-      animation: marqueeText 26s linear infinite;
+    .marquee text {
+      offset-path: path("M 960 21 H -960");
+      offset-distance: 0%;
+      animation: slideText 16s linear infinite;
     }
-    @keyframes marqueeText {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-650px); }
+    @keyframes slideText {
+      to { offset-distance: 100%; }
     }
     .flying-bird {
       animation: birdFly 16s linear infinite;
@@ -534,14 +549,28 @@
       0% { transform: translateX(-150px); }
       100% { transform: translateX(1010px); }
     }
-    .falling-p {
-      animation: fallAnim 5s linear infinite;
+    
+    /* Weather particle styles */
+    .snow {
+      animation: fallSnow 8s linear infinite;
     }
-    @keyframes fallAnim {
-      0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
-      8% { opacity: 0.85; }
-      90% { opacity: 0.85; }
-      100% { transform: translateY(1480px) translateX(100px) rotate(360deg); opacity: 0; }
+    .raindrop {
+      animation: fallRain 2s linear infinite;
+    }
+    .petal {
+      animation: fallPetal 10s linear infinite;
+    }
+    @keyframes fallSnow {
+      0%   { transform: translateY(0)  rotate(0deg); opacity:1; }
+      100% { transform: translateY(1460px) rotate(360deg); opacity:0; }
+    }
+    @keyframes fallRain {
+      0%   { transform: translateY(0) scaleY(1); opacity:0.8; }
+      100% { transform: translateY(1460px) scaleY(1.5); opacity:0; }
+    }
+    @keyframes fallPetal {
+      0%   { transform: translateY(0) rotate(0deg); opacity:1; }
+      100% { transform: translateY(1460px) rotate(720deg); opacity:0; }
     }
   </style>
 </svg>
