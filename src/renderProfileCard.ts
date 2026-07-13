@@ -66,9 +66,11 @@ export function renderProfileCard(world: WorldData): string {
   return `
 <svg width="960" height="1440" viewBox="0 0 960 1440" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GitWorld Expedition Profile Card">
   <style>
+    <![CDATA[
     @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@900&family=Inter:wght@500;600;700&family=JetBrains+Mono:wght@700&display=swap');
     
     ${cssStyles}
+    ]]>
   </style>
 
   ${defs}
