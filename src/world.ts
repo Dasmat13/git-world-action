@@ -27,6 +27,13 @@ export interface WorldData {
   username:           string;
   timeOfDay:          TimeOfDay;   // 🌙 Day/Night cycle
   weatherType:        WeatherType; // 🌧️ Weather effects
+  bio?:               string;
+  location?:          string;
+  stats?: {
+    commits: number;
+    stars: number;
+    prs: number;
+  };
 }
 
 export interface BiomeTheme {
@@ -198,5 +205,12 @@ export function buildWorld(data: GitHubData, realWeather?: WeatherType): WorldDa
     username: data.username,
     timeOfDay,
     weatherType,
+    bio: `Scaling infrastructure across ${theme.label || 'Spiti'} networks`,
+    location: data.location || 'Kibber, Spiti (4205m)',
+    stats: {
+      commits: data.totalContributions,
+      stars: data.totalStars,
+      prs: data.openIssues + data.closedIssues
+    }
   };
 }

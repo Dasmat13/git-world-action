@@ -1,4 +1,4 @@
-import { renderProfileCard } from './profile-renderer';
+import { renderProfileCard } from './renderProfileCard';
 import { WorldData } from './world';
 import * as fs from 'fs';
 
@@ -40,10 +40,11 @@ try {
   fs.writeFileSync('test-profile-card-night-snow.svg', nightSnowSvg, 'utf8');
   console.log('Successfully wrote test-profile-card-night-snow.svg');
 
-  console.log('Rendering test card with custom config...');
-  const customSvg = renderProfileCard(mockWorld, {
-    name: 'CUSTOM USER',
-    tagline: 'Refactored & Modularized Spiti Card'
+  console.log('Rendering test card with custom settings...');
+  const customSvg = renderProfileCard({
+    ...mockWorld,
+    username: 'DASMAT_EXPLORER',
+    bio: 'Procedural scenery compiler engineer'
   });
   fs.writeFileSync('test-profile-card-custom.svg', customSvg, 'utf8');
   console.log('Successfully wrote test-profile-card-custom.svg');

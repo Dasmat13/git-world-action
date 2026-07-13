@@ -4,7 +4,7 @@ import * as path from 'path';
 import { fetchGitHubData } from './github';
 import { buildWorld } from './world';
 import { renderSVG } from './renderer';
-import { renderProfileCard } from './profile-renderer';
+import { renderProfileCard } from './renderProfileCard';
 import { fetchRealWeather } from './weather';
 
 async function run(): Promise<void> {
