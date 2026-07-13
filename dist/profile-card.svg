@@ -184,7 +184,7 @@
     <tspan dx="15" fill="#4a3b32" opacity="0.3">|</tspan>
     <tspan dx="15">🌦️ Weather: <tspan fill="#3a5f43">rain</tspan></tspan>
     <tspan dx="15" fill="#4a3b32" opacity="0.3">|</tspan>
-    <tspan dx="15">🎒 Streak: <tspan fill="#3a5f43">9 days</tspan></tspan>
+    <tspan dx="15">🎒 Streak: <tspan fill="#3a5f43">10 days</tspan></tspan>
   </text>
 
   <!-- ═══ TECH STACK PANEL y=664 h=118 ═══ -->
@@ -344,7 +344,7 @@
       <rect x="31" y="976" width="270" height="76" rx="12" fill="rgba(40,30,20,0.1)"/>
       <rect x="30" y="974" width="270" height="76" rx="12" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="1.5"/>
       <text x="42" y="994" font-family="sans-serif" font-size="9" fill="#3a5f43" font-weight="bold" letter-spacing="1.5">📝  TRAVEL STREAK</text>
-      <text x="42" y="1022" font-family="sans-serif" font-size="20" fill="#4a3b32" font-weight="bold">9 days</text>
+      <text x="42" y="1022" font-family="sans-serif" font-size="20" fill="#4a3b32" font-weight="bold">10 days</text>
       <text x="42" y="1039" font-family="sans-serif" font-size="9.5" fill="#4a3b32" opacity="0.6">committed in a row</text>
     </g>
     
@@ -352,7 +352,7 @@
       <rect x="326" y="976" width="270" height="76" rx="12" fill="rgba(40,30,20,0.1)"/>
       <rect x="325" y="974" width="270" height="76" rx="12" fill="rgba(255, 252, 242, 0.92)" stroke="#4a3b32" stroke-width="1.5"/>
       <text x="337" y="994" font-family="sans-serif" font-size="9" fill="#3a5f43" font-weight="bold" letter-spacing="1.5">🌱  SPROUTS GROWN</text>
-      <text x="337" y="1022" font-family="sans-serif" font-size="20" fill="#4a3b32" font-weight="bold">424</text>
+      <text x="337" y="1022" font-family="sans-serif" font-size="20" fill="#4a3b32" font-weight="bold">414</text>
       <text x="337" y="1039" font-family="sans-serif" font-size="9.5" fill="#4a3b32" opacity="0.6">total commits</text>
     </g>
     
