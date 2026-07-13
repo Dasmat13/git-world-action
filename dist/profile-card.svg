@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1080" width="900" height="1080" style="border:4px solid #000000;border-radius:18px;overflow:hidden">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1160" width="900" height="1160" style="border:4px solid #000000;border-radius:18px;overflow:hidden">
   <defs>
     <!-- Dot Matrix Grid Pattern -->
     <pattern id="dotGrid" width="24" height="24" patternUnits="userSpaceOnUse">
@@ -7,20 +7,32 @@
   </defs>
 
   <!-- ═══ BASE BACKDROP ═══ -->
-  <rect width="900" height="1080" fill="#f6f5f0"/>
-  <rect width="900" height="1080" fill="url(#dotGrid)"/>
+  <rect width="900" height="1160" fill="#f6f5f0"/>
+  <rect width="900" height="1160" fill="url(#dotGrid)"/>
   
-  <!-- Retro floating vector stars -->
-  <path d="M 630,130 Q 630,144 644,144 Q 630,144 630,158 Q 630,144 616,144 Q 630,144 630,130 Z" fill="#000000" opacity="0.8" /><path d="M 216,37 Q 216,46 225,46 Q 216,46 216,55 Q 216,46 207,46 Q 216,46 216,37 Z" fill="#000000" opacity="0.8" /><path d="M 702,139 Q 702,148 711,148 Q 702,148 702,157 Q 702,148 693,148 Q 702,148 702,139 Z" fill="#000000" opacity="0.8" /><path d="M 288,36 Q 288,50 302,50 Q 288,50 288,64 Q 288,50 274,50 Q 288,50 288,36 Z" fill="#000000" opacity="0.8" /><path d="M 774,143 Q 774,152 783,152 Q 774,152 774,161 Q 774,152 765,152 Q 774,152 774,143 Z" fill="#000000" opacity="0.8" /><path d="M 360,45 Q 360,54 369,54 Q 360,54 360,63 Q 360,54 351,54 Q 360,54 360,45 Z" fill="#000000" opacity="0.8" /><path d="M 846,142 Q 846,156 860,156 Q 846,156 846,170 Q 846,156 832,156 Q 846,156 846,142 Z" fill="#000000" opacity="0.8" /><path d="M 432,49 Q 432,58 441,58 Q 432,58 432,67 Q 432,58 423,58 Q 432,58 432,49 Z" fill="#000000" opacity="0.8" /><path d="M 18,151 Q 18,160 27,160 Q 18,160 18,169 Q 18,160 9,160 Q 18,160 18,151 Z" fill="#000000" opacity="0.8" /><path d="M 504,48 Q 504,62 518,62 Q 504,62 504,76 Q 504,62 490,62 Q 504,62 504,48 Z" fill="#000000" opacity="0.8" /><path d="M 90,155 Q 90,164 99,164 Q 90,164 90,173 Q 90,164 81,164 Q 90,164 90,155 Z" fill="#000000" opacity="0.8" /><path d="M 576,57 Q 576,66 585,66 Q 576,66 576,75 Q 576,66 567,66 Q 576,66 576,57 Z" fill="#000000" opacity="0.8" /><path d="M 162,154 Q 162,168 176,168 Q 162,168 162,182 Q 162,168 148,168 Q 162,168 162,154 Z" fill="#000000" opacity="0.8" /><path d="M 648,61 Q 648,70 657,70 Q 648,70 648,79 Q 648,70 639,70 Q 648,70 648,61 Z" fill="#000000" opacity="0.8" /><path d="M 234,163 Q 234,172 243,172 Q 234,172 234,181 Q 234,172 225,172 Q 234,172 234,163 Z" fill="#000000" opacity="0.8" />
+  <!-- Dynamic floating vector shapes -->
+  <g class="floating-item"><path d="M 60,56 Q 60,70 74,70 Q 60,70 60,84 Q 60,70 46,70 Q 60,70 60,56 Z" fill="#facc15" stroke="#000000" stroke-width="2.5" /></g><g class="floating-item-delay-1"><path d="M 130,210 Q 130,220 140,220 Q 130,220 130,230 Q 130,220 120,220 Q 130,220 130,210 Z" fill="#f472b6" stroke="#000000" stroke-width="2.5" /></g><g class="floating-item-delay-2"><g stroke="#000000" stroke-width="4.5" stroke-linecap="round">
+                <line x1="788" y1="80" x2="812" y2="80" />
+                <line x1="800" y1="68" x2="800" y2="92" />
+              </g></g><g class="floating-item"><path d="M 840,219 Q 840,230 851,230 Q 840,230 840,241 Q 840,230 829,230 Q 840,230 840,219 Z" fill="#4ade80" stroke="#000000" stroke-width="2.5" /></g><g class="floating-item-delay-1"><circle cx="730" cy="140" r="8" fill="#fb923c" stroke="#000000" stroke-width="2.5" /></g><g class="floating-item-delay-2"><path d="M 110,138 Q 110,150 122,150 Q 110,150 110,162 Q 110,150 98,150 Q 110,150 110,138 Z" fill="#c084fc" stroke="#000000" stroke-width="2.5" /></g>
 
   <!-- ═══ DIVIDERS ═══ -->
   
     <!-- Top divider line -->
     <line x1="0" y1="280" x2="900" y2="280" stroke="#000000" stroke-width="4" />
-    <!-- Cyan separator band -->
-    <rect x="0" y="280" width="900" height="20" fill="#38bdf8" stroke="#000000" stroke-width="3" />
-    <!-- Yellow separator band -->
-    <rect x="0" y="300" width="900" height="20" fill="#facc15" stroke="#000000" stroke-width="3" />
+    
+    <!-- Moving Text Marquee block -->
+    <g transform="translate(0, 280)">
+      <rect x="-10" y="0" width="920" height="32" fill="#38bdf8" stroke="#000000" stroke-width="3" />
+      <g class="marquee-group">
+        <text y="21" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="900" fill="#000000" letter-spacing="1">
+          ⚡ DEPLOY · MONITOR · AUTOMATE · MERGE · REFACTOR · SCALE · SHIELD · COMPILE · OPTIMIZE · ORCHESTRATE · DEPLOY · MONITOR · AUTOMATE · MERGE · REFACTOR · SCALE · SHIELD · COMPILE · OPTIMIZE · ORCHESTRATE
+        </text>
+      </g>
+    </g>
+    
+    <!-- Bottom divider line -->
+    <line x1="0" y1="312" x2="900" y2="312" stroke="#000000" stroke-width="4" />
   
 
   <!-- ═══ HERO HEADER ═══ -->
@@ -40,45 +52,45 @@
     </text>
   </g>
 
-  <!-- ═══ ABOUT ME PANEL y=468 h=118 ═══ -->
+  <!-- ═══ ABOUT ME PANEL y=475 h=125 (spacious layout) ═══ -->
   
 <g class="panel">
   <!-- Card Shadow -->
-  <rect x="26" y="474" width="860" height="118" rx="6" fill="#000000" />
+  <rect x="26" y="481" width="860" height="125" rx="6" fill="#000000" />
   <!-- Card Main Box -->
-  <rect x="20" y="468" width="860" height="118" rx="6" fill="#ffffff" stroke="#000000" stroke-width="3" />
+  <rect x="20" y="475" width="860" height="125" rx="6" fill="#ffffff" stroke="#000000" stroke-width="3" />
   
   <!-- Badge Shadow -->
-  <rect x="48" y="457" width="202.5" height="28" rx="4" fill="#000000" />
+  <rect x="48" y="464" width="202.5" height="28" rx="4" fill="#000000" />
   <!-- Badge Main -->
-  <rect x="45" y="454" width="202.5" height="28" rx="4" fill="#38bdf8" stroke="#000000" stroke-width="3" />
-  <text x="146.25" y="472" font-family="'Space Grotesk', 'Outfit', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">⚡  ABOUT THE TRAVELER</text>
+  <rect x="45" y="461" width="202.5" height="28" rx="4" fill="#38bdf8" stroke="#000000" stroke-width="3" />
+  <text x="146.25" y="479" font-family="'Space Grotesk', 'Outfit', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">⚡  ABOUT THE TRAVELER</text>
 </g>
-  <text x="40" y="505" font-family="'Inter', sans-serif" font-size="13.5" fill="#000000" font-weight="700">
+  <text x="40" y="515" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
     ⚡  <tspan font-weight="900" fill="#facc15" stroke="#000000" stroke-width="0.5">CORE INTERESTS:</tspan> Infrastructure automation, Cloud-Native scaling, Self-healing architectures
   </text>
-  <text x="40" y="531" font-family="'Inter', sans-serif" font-size="13.5" fill="#000000" font-weight="700">
+  <text x="40" y="545" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
     ⚡  <tspan font-weight="900" fill="#facc15" stroke="#000000" stroke-width="0.5">CONTRIBUTING TO:</tspan> Kubernetes SIGs, Node.js Core, Express.js, Backstage Ecosystem
   </text>
-  <text x="40" y="557" font-family="'Inter', sans-serif" font-size="13.5" fill="#000000" font-weight="700">
+  <text x="40" y="575" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
     ⚡  <tspan font-weight="900" fill="#facc15" stroke="#000000" stroke-width="0.5">CONTACT:</tspan> dasmath06@gmail.com   ·   ⚡  Experiments daily with automated recovery pipelines
   </text>
 
-  <!-- ═══ WORLD STATE BAR y=600 h=50 ═══ -->
+  <!-- ═══ WORLD STATE BAR y=620 h=55 ═══ -->
   
 <g class="panel">
   <!-- Card Shadow -->
-  <rect x="26" y="606" width="860" height="50" rx="6" fill="#000000" />
+  <rect x="26" y="626" width="860" height="55" rx="6" fill="#000000" />
   <!-- Card Main Box -->
-  <rect x="20" y="600" width="860" height="50" rx="6" fill="#ffffff" stroke="#000000" stroke-width="3" />
+  <rect x="20" y="620" width="860" height="55" rx="6" fill="#ffffff" stroke="#000000" stroke-width="3" />
   
   <!-- Badge Shadow -->
-  <rect x="48" y="589" width="253.5" height="28" rx="4" fill="#000000" />
+  <rect x="48" y="609" width="253.5" height="28" rx="4" fill="#000000" />
   <!-- Badge Main -->
-  <rect x="45" y="586" width="253.5" height="28" rx="4" fill="#f472b6" stroke="#000000" stroke-width="3" />
-  <text x="171.75" y="604" font-family="'Space Grotesk', 'Outfit', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">🏡  CURRENT ENVIRONMENT LOG</text>
+  <rect x="45" y="606" width="253.5" height="28" rx="4" fill="#f472b6" stroke="#000000" stroke-width="3" />
+  <text x="171.75" y="624" font-family="'Space Grotesk', 'Outfit', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">🏡  CURRENT ENVIRONMENT LOG</text>
 </g>
-  <text x="450" y="632" font-family="'Space Grotesk', sans-serif" font-size="13.5" fill="#000000" text-anchor="middle" font-weight="900">
+  <text x="450" y="653" font-family="'Space Grotesk', sans-serif" font-size="13.5" fill="#000000" text-anchor="middle" font-weight="900">
     🌳 BIOME: <tspan fill="#000000" font-weight="900">JS KINGDOM</tspan>
     <tspan dx="15" fill="#000000" opacity="0.3">|</tspan>
     <tspan dx="15">🕰️ TIME: <tspan fill="#38bdf8">NIGHT</tspan></tspan>
@@ -88,249 +100,278 @@
     <tspan dx="15">🎒 STREAK: <tspan fill="#fbbf24">10 DAYS</tspan></tspan>
   </text>
 
-  <!-- ═══ TECH STACK PANEL y=664 h=118 ═══ -->
+  <!-- ═══ TECH STACK PANEL y=695 h=130 ═══ -->
   
 <g class="panel">
   <!-- Card Shadow -->
-  <rect x="26" y="670" width="860" height="118" rx="6" fill="#000000" />
+  <rect x="26" y="701" width="860" height="130" rx="6" fill="#000000" />
   <!-- Card Main Box -->
-  <rect x="20" y="664" width="860" height="118" rx="6" fill="#ffffff" stroke="#000000" stroke-width="3" />
+  <rect x="20" y="695" width="860" height="130" rx="6" fill="#ffffff" stroke="#000000" stroke-width="3" />
   
   <!-- Badge Shadow -->
-  <rect x="48" y="653" width="262" height="28" rx="4" fill="#000000" />
+  <rect x="48" y="684" width="262" height="28" rx="4" fill="#000000" />
   <!-- Badge Main -->
-  <rect x="45" y="650" width="262" height="28" rx="4" fill="#4ade80" stroke="#000000" stroke-width="3" />
-  <text x="176" y="668" font-family="'Space Grotesk', 'Outfit', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">🎒  PACKED GEAR (TECH STACK)</text>
+  <rect x="45" y="681" width="262" height="28" rx="4" fill="#4ade80" stroke="#000000" stroke-width="3" />
+  <text x="176" y="699" font-family="'Space Grotesk', 'Outfit', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">🎒  PACKED GEAR (TECH STACK)</text>
 </g>
   
     <g>
       <!-- Shadow -->
-      <rect x="35" y="697" width="128" height="26" rx="4" fill="#000000" />
+      <rect x="35" y="729" width="128" height="26" rx="4" fill="#000000" />
       <!-- Main -->
-      <rect x="32" y="694" width="128" height="26" rx="4" fill="#4ade80" stroke="#000000" stroke-width="2" />
-      <text x="96" y="711" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">KUBERNETES</text>
+      <rect x="32" y="726" width="128" height="26" rx="4" fill="#4ade80" stroke="#000000" stroke-width="2" />
+      <text x="96" y="743" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">KUBERNETES</text>
     </g>
     
     <g>
       <!-- Shadow -->
-      <rect x="175" y="697" width="128" height="26" rx="4" fill="#000000" />
+      <rect x="175" y="729" width="128" height="26" rx="4" fill="#000000" />
       <!-- Main -->
-      <rect x="172" y="694" width="128" height="26" rx="4" fill="#38bdf8" stroke="#000000" stroke-width="2" />
-      <text x="236" y="711" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">DOCKER</text>
+      <rect x="172" y="726" width="128" height="26" rx="4" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+      <text x="236" y="743" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">DOCKER</text>
     </g>
     
     <g>
       <!-- Shadow -->
-      <rect x="315" y="697" width="128" height="26" rx="4" fill="#000000" />
+      <rect x="315" y="729" width="128" height="26" rx="4" fill="#000000" />
       <!-- Main -->
-      <rect x="312" y="694" width="128" height="26" rx="4" fill="#f472b6" stroke="#000000" stroke-width="2" />
-      <text x="376" y="711" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">TYPESCRIPT</text>
+      <rect x="312" y="726" width="128" height="26" rx="4" fill="#f472b6" stroke="#000000" stroke-width="2" />
+      <text x="376" y="743" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">TYPESCRIPT</text>
     </g>
     
     <g>
       <!-- Shadow -->
-      <rect x="455" y="697" width="128" height="26" rx="4" fill="#000000" />
+      <rect x="455" y="729" width="128" height="26" rx="4" fill="#000000" />
       <!-- Main -->
-      <rect x="452" y="694" width="128" height="26" rx="4" fill="#22d3ee" stroke="#000000" stroke-width="2" />
-      <text x="516" y="711" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">GO</text>
+      <rect x="452" y="726" width="128" height="26" rx="4" fill="#22d3ee" stroke="#000000" stroke-width="2" />
+      <text x="516" y="743" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">GO</text>
     </g>
     
     <g>
       <!-- Shadow -->
-      <rect x="595" y="697" width="128" height="26" rx="4" fill="#000000" />
+      <rect x="595" y="729" width="128" height="26" rx="4" fill="#000000" />
       <!-- Main -->
-      <rect x="592" y="694" width="128" height="26" rx="4" fill="#a855f7" stroke="#000000" stroke-width="2" />
-      <text x="656" y="711" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">NODE.JS</text>
+      <rect x="592" y="726" width="128" height="26" rx="4" fill="#a855f7" stroke="#000000" stroke-width="2" />
+      <text x="656" y="743" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">NODE.JS</text>
     </g>
     
     <g>
       <!-- Shadow -->
-      <rect x="735" y="697" width="128" height="26" rx="4" fill="#000000" />
+      <rect x="735" y="729" width="128" height="26" rx="4" fill="#000000" />
       <!-- Main -->
-      <rect x="732" y="694" width="128" height="26" rx="4" fill="#fbbf24" stroke="#000000" stroke-width="2" />
-      <text x="796" y="711" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">TERRAFORM</text>
+      <rect x="732" y="726" width="128" height="26" rx="4" fill="#fbbf24" stroke="#000000" stroke-width="2" />
+      <text x="796" y="743" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">TERRAFORM</text>
     </g>
     
     <g>
       <!-- Shadow -->
-      <rect x="35" y="737" width="128" height="26" rx="4" fill="#000000" />
+      <rect x="35" y="775" width="128" height="26" rx="4" fill="#000000" />
       <!-- Main -->
-      <rect x="32" y="734" width="128" height="26" rx="4" fill="#ff7096" stroke="#000000" stroke-width="2" />
-      <text x="96" y="751" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">PYTHON</text>
+      <rect x="32" y="772" width="128" height="26" rx="4" fill="#ff7096" stroke="#000000" stroke-width="2" />
+      <text x="96" y="789" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">PYTHON</text>
     </g>
     
     <g>
       <!-- Shadow -->
-      <rect x="175" y="737" width="128" height="26" rx="4" fill="#000000" />
+      <rect x="175" y="775" width="128" height="26" rx="4" fill="#000000" />
       <!-- Main -->
-      <rect x="172" y="734" width="128" height="26" rx="4" fill="#fb923c" stroke="#000000" stroke-width="2" />
-      <text x="236" y="751" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">AWS</text>
+      <rect x="172" y="772" width="128" height="26" rx="4" fill="#fb923c" stroke="#000000" stroke-width="2" />
+      <text x="236" y="789" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">AWS</text>
     </g>
     
     <g>
       <!-- Shadow -->
-      <rect x="315" y="737" width="128" height="26" rx="4" fill="#000000" />
+      <rect x="315" y="775" width="128" height="26" rx="4" fill="#000000" />
       <!-- Main -->
-      <rect x="312" y="734" width="128" height="26" rx="4" fill="#94a3b8" stroke="#000000" stroke-width="2" />
-      <text x="376" y="751" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">LINUX</text>
+      <rect x="312" y="772" width="128" height="26" rx="4" fill="#94a3b8" stroke="#000000" stroke-width="2" />
+      <text x="376" y="789" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">LINUX</text>
     </g>
     
     <g>
       <!-- Shadow -->
-      <rect x="455" y="737" width="128" height="26" rx="4" fill="#000000" />
+      <rect x="455" y="775" width="128" height="26" rx="4" fill="#000000" />
       <!-- Main -->
-      <rect x="452" y="734" width="128" height="26" rx="4" fill="#f87171" stroke="#000000" stroke-width="2" />
-      <text x="516" y="751" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">GRAFANA</text>
+      <rect x="452" y="772" width="128" height="26" rx="4" fill="#f87171" stroke="#000000" stroke-width="2" />
+      <text x="516" y="789" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">GRAFANA</text>
     </g>
     
     <g>
       <!-- Shadow -->
-      <rect x="595" y="737" width="128" height="26" rx="4" fill="#000000" />
+      <rect x="595" y="775" width="128" height="26" rx="4" fill="#000000" />
       <!-- Main -->
-      <rect x="592" y="734" width="128" height="26" rx="4" fill="#fb7185" stroke="#000000" stroke-width="2" />
-      <text x="656" y="751" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">PROMETHEUS</text>
+      <rect x="592" y="772" width="128" height="26" rx="4" fill="#fb7185" stroke="#000000" stroke-width="2" />
+      <text x="656" y="789" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">PROMETHEUS</text>
     </g>
     
     <g>
       <!-- Shadow -->
-      <rect x="735" y="737" width="128" height="26" rx="4" fill="#000000" />
+      <rect x="735" y="775" width="128" height="26" rx="4" fill="#000000" />
       <!-- Main -->
-      <rect x="732" y="734" width="128" height="26" rx="4" fill="#2dd4bf" stroke="#000000" stroke-width="2" />
-      <text x="796" y="751" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">BACKSTAGE</text>
+      <rect x="732" y="772" width="128" height="26" rx="4" fill="#2dd4bf" stroke="#000000" stroke-width="2" />
+      <text x="796" y="789" font-family="'Space Grotesk', sans-serif" font-size="11" fill="#000000" font-weight="900" text-anchor="middle">BACKSTAGE</text>
     </g>
     
 
-  <!-- ═══ ACTIVE QUESTS PANEL y=796 h=162 ═══ -->
+  <!-- ═══ ACTIVE QUESTS PANEL y=845 h=180 ═══ -->
   
 <g class="panel">
   <!-- Card Shadow -->
-  <rect x="26" y="802" width="860" height="162" rx="6" fill="#000000" />
+  <rect x="26" y="851" width="860" height="180" rx="6" fill="#000000" />
   <!-- Card Main Box -->
-  <rect x="20" y="796" width="860" height="162" rx="6" fill="#ffffff" stroke="#000000" stroke-width="3" />
+  <rect x="20" y="845" width="860" height="180" rx="6" fill="#ffffff" stroke="#000000" stroke-width="3" />
   
   <!-- Badge Shadow -->
-  <rect x="48" y="785" width="330" height="28" rx="4" fill="#000000" />
+  <rect x="48" y="834" width="330" height="28" rx="4" fill="#000000" />
   <!-- Badge Main -->
-  <rect x="45" y="782" width="330" height="28" rx="4" fill="#c084fc" stroke="#000000" stroke-width="3" />
-  <text x="210" y="800" font-family="'Space Grotesk', 'Outfit', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">🗺️  CURRENT JOURNEY (ACTIVE QUESTS)</text>
+  <rect x="45" y="831" width="330" height="28" rx="4" fill="#c084fc" stroke="#000000" stroke-width="3" />
+  <text x="210" y="849" font-family="'Space Grotesk', 'Outfit', sans-serif" font-size="12" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="1.2">🗺️  CURRENT JOURNEY (ACTIVE QUESTS)</text>
 </g>
   
-    <g transform="translate(40, 824)">
+    <g transform="translate(40, 886)">
       <!-- Bullet diamond -->
-      <rect x="0" y="0" width="8" height="8" fill="#000000" transform="rotate(45 4 4)" />
-      <text x="20" y="9" font-family="'Inter', sans-serif" font-size="13" fill="#000000" font-weight="700">
+      <rect x="0" y="-4" width="8" height="8" fill="#000000" transform="rotate(45 4 4)" />
+      <text x="24" y="5" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
         LeaderWorkerSet topology-aware scheduling
       </text>
       
       <!-- Status pill badge -->
-      <g transform="translate(680, -4)">
-        <rect x="0" y="0" width="120" height="18" rx="4" fill="#4ade80" stroke="#000000" stroke-width="1.5" />
-        <text x="60" y="12" font-family="'Space Grotesk', sans-serif" font-size="9.5" fill="#000000" font-weight="900" text-anchor="middle">
+      <g transform="translate(670, -11)">
+        <rect x="0" y="0" width="120" height="20" rx="4" fill="#4ade80" stroke="#000000" stroke-width="2" />
+        <text x="60" y="14" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="0.5">
           ACTIVE JOURNEY 🌿
         </text>
       </g>
     </g>
     
-    <g transform="translate(40, 850)">
+    <g transform="translate(40, 916)">
       <!-- Bullet diamond -->
-      <rect x="0" y="0" width="8" height="8" fill="#000000" transform="rotate(45 4 4)" />
-      <text x="20" y="9" font-family="'Inter', sans-serif" font-size="13" fill="#000000" font-weight="700">
+      <rect x="0" y="-4" width="8" height="8" fill="#000000" transform="rotate(45 4 4)" />
+      <text x="24" y="5" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
         CompositePodGroup integration (KEP-893)
       </text>
       
       <!-- Status pill badge -->
-      <g transform="translate(680, -4)">
-        <rect x="0" y="0" width="120" height="18" rx="4" fill="#4ade80" stroke="#000000" stroke-width="1.5" />
-        <text x="60" y="12" font-family="'Space Grotesk', sans-serif" font-size="9.5" fill="#000000" font-weight="900" text-anchor="middle">
+      <g transform="translate(670, -11)">
+        <rect x="0" y="0" width="120" height="20" rx="4" fill="#4ade80" stroke="#000000" stroke-width="2" />
+        <text x="60" y="14" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="0.5">
           ACTIVE JOURNEY 🌿
         </text>
       </g>
     </g>
     
-    <g transform="translate(40, 876)">
+    <g transform="translate(40, 946)">
       <!-- Bullet diamond -->
-      <rect x="0" y="0" width="8" height="8" fill="#000000" transform="rotate(45 4 4)" />
-      <text x="20" y="9" font-family="'Inter', sans-serif" font-size="13" fill="#000000" font-weight="700">
+      <rect x="0" y="-4" width="8" height="8" fill="#000000" transform="rotate(45 4 4)" />
+      <text x="24" y="5" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
         GitWorld Engine rendering pipeline core
       </text>
       
       <!-- Status pill badge -->
-      <g transform="translate(680, -4)">
-        <rect x="0" y="0" width="120" height="18" rx="4" fill="#facc15" stroke="#000000" stroke-width="1.5" />
-        <text x="60" y="12" font-family="'Space Grotesk', sans-serif" font-size="9.5" fill="#000000" font-weight="900" text-anchor="middle">
+      <g transform="translate(670, -11)">
+        <rect x="0" y="0" width="120" height="20" rx="4" fill="#facc15" stroke="#000000" stroke-width="2" />
+        <text x="60" y="14" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="0.5">
           COMPLETED 🏆
         </text>
       </g>
     </g>
     
-    <g transform="translate(40, 902)">
+    <g transform="translate(40, 976)">
       <!-- Bullet diamond -->
-      <rect x="0" y="0" width="8" height="8" fill="#000000" transform="rotate(45 4 4)" />
-      <text x="20" y="9" font-family="'Inter', sans-serif" font-size="13" fill="#000000" font-weight="700">
+      <rect x="0" y="-4" width="8" height="8" fill="#000000" transform="rotate(45 4 4)" />
+      <text x="24" y="5" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
         Real-time automatic location weather sync
       </text>
       
       <!-- Status pill badge -->
-      <g transform="translate(680, -4)">
-        <rect x="0" y="0" width="120" height="18" rx="4" fill="#facc15" stroke="#000000" stroke-width="1.5" />
-        <text x="60" y="12" font-family="'Space Grotesk', sans-serif" font-size="9.5" fill="#000000" font-weight="900" text-anchor="middle">
+      <g transform="translate(670, -11)">
+        <rect x="0" y="0" width="120" height="20" rx="4" fill="#facc15" stroke="#000000" stroke-width="2" />
+        <text x="60" y="14" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="0.5">
           COMPLETED 🏆
         </text>
       </g>
     </g>
     
-    <g transform="translate(40, 928)">
+    <g transform="translate(40, 1006)">
       <!-- Bullet diamond -->
-      <rect x="0" y="0" width="8" height="8" fill="#000000" transform="rotate(45 4 4)" />
-      <text x="20" y="9" font-family="'Inter', sans-serif" font-size="13" fill="#000000" font-weight="700">
+      <rect x="0" y="-4" width="8" height="8" fill="#000000" transform="rotate(45 4 4)" />
+      <text x="24" y="5" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
         Upstream Node.js core exploration
       </text>
       
       <!-- Status pill badge -->
-      <g transform="translate(680, -4)">
-        <rect x="0" y="0" width="120" height="18" rx="4" fill="#38bdf8" stroke="#000000" stroke-width="1.5" />
-        <text x="60" y="12" font-family="'Space Grotesk', sans-serif" font-size="9.5" fill="#000000" font-weight="900" text-anchor="middle">
+      <g transform="translate(670, -11)">
+        <rect x="0" y="0" width="120" height="20" rx="4" fill="#38bdf8" stroke="#000000" stroke-width="2" />
+        <text x="60" y="14" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="0.5">
           WANDERING 🏕️
         </text>
       </g>
     </g>
     
 
-  <!-- ═══ STATS HUD y=974 h=76 ═══ -->
+  <!-- ═══ STATS HUD y=1048 h=76 ═══ -->
   
     <g>
       <!-- Shadow -->
-      <rect x="35" y="979" width="270" height="76" rx="6" fill="#000000" />
+      <rect x="35" y="1053" width="270" height="76" rx="6" fill="#000000" />
       <!-- Main -->
-      <rect x="30" y="974" width="270" height="76" rx="6" fill="#4ade80" stroke="#000000" stroke-width="3" />
-      <text x="42" y="994" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" letter-spacing="1">📝  TRAVEL STREAK</text>
-      <text x="42" y="1022" font-family="'Space Grotesk', sans-serif" font-size="20" fill="#000000" font-weight="900">10 days</text>
-      <text x="42" y="1039" font-family="'Inter', sans-serif" font-size="9.5" fill="#000000" font-weight="700" opacity="0.8">committed in a row</text>
+      <rect x="30" y="1048" width="270" height="76" rx="6" fill="#4ade80" stroke="#000000" stroke-width="3" />
+      <text x="42" y="1068" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" letter-spacing="1">📝  TRAVEL STREAK</text>
+      <text x="42" y="1096" font-family="'Space Grotesk', sans-serif" font-size="20" fill="#000000" font-weight="900">10 days</text>
+      <text x="42" y="1113" font-family="'Inter', sans-serif" font-size="9.5" fill="#000000" font-weight="700" opacity="0.8">committed in a row</text>
     </g>
     
     <g>
       <!-- Shadow -->
-      <rect x="330" y="979" width="270" height="76" rx="6" fill="#000000" />
+      <rect x="330" y="1053" width="270" height="76" rx="6" fill="#000000" />
       <!-- Main -->
-      <rect x="325" y="974" width="270" height="76" rx="6" fill="#38bdf8" stroke="#000000" stroke-width="3" />
-      <text x="337" y="994" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" letter-spacing="1">🌱  SPROUTS GROWN</text>
-      <text x="337" y="1022" font-family="'Space Grotesk', sans-serif" font-size="20" fill="#000000" font-weight="900">414</text>
-      <text x="337" y="1039" font-family="'Inter', sans-serif" font-size="9.5" fill="#000000" font-weight="700" opacity="0.8">total commits</text>
+      <rect x="325" y="1048" width="270" height="76" rx="6" fill="#38bdf8" stroke="#000000" stroke-width="3" />
+      <text x="337" y="1068" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" letter-spacing="1">🌱  SPROUTS GROWN</text>
+      <text x="337" y="1096" font-family="'Space Grotesk', sans-serif" font-size="20" fill="#000000" font-weight="900">416</text>
+      <text x="337" y="1113" font-family="'Inter', sans-serif" font-size="9.5" fill="#000000" font-weight="700" opacity="0.8">total commits</text>
     </g>
     
     <g>
       <!-- Shadow -->
-      <rect x="625" y="979" width="270" height="76" rx="6" fill="#000000" />
+      <rect x="625" y="1053" width="270" height="76" rx="6" fill="#000000" />
       <!-- Main -->
-      <rect x="620" y="974" width="270" height="76" rx="6" fill="#facc15" stroke="#000000" stroke-width="3" />
-      <text x="632" y="994" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" letter-spacing="1">🏡  HOME BIOME</text>
-      <text x="632" y="1022" font-family="'Space Grotesk', sans-serif" font-size="20" fill="#000000" font-weight="900">JS KINGDOM</text>
-      <text x="632" y="1039" font-family="'Inter', sans-serif" font-size="9.5" fill="#000000" font-weight="700" opacity="0.8">Weather: RAIN</text>
+      <rect x="620" y="1048" width="270" height="76" rx="6" fill="#facc15" stroke="#000000" stroke-width="3" />
+      <text x="632" y="1068" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" letter-spacing="1">🏡  HOME BIOME</text>
+      <text x="632" y="1096" font-family="'Space Grotesk', sans-serif" font-size="20" fill="#000000" font-weight="900">JS KINGDOM</text>
+      <text x="632" y="1113" font-family="'Inter', sans-serif" font-size="9.5" fill="#000000" font-weight="700" opacity="0.8">Weather: RAIN</text>
     </g>
     
 
   <!-- Neobrutalist bottom footer -->
-  <text x="450" y="1068" font-family="'Space Grotesk', sans-serif" font-size="10.5" fill="#000000" font-weight="800" text-anchor="middle" letter-spacing="1">
+  <text x="450" y="1148" font-family="'Space Grotesk', sans-serif" font-size="10.5" fill="#000000" font-weight="800" text-anchor="middle" letter-spacing="1">
     ⚡  HARVESTED DAILY BY GITWORLD ENGINE  ·  GITHUB.COM/DASMAT13/GIT-WORLD-ACTION  ⚡
   </text>
+
+  <style>
+    .floating-item {
+      animation: floatAnimation 5s ease-in-out infinite alternate;
+      transform-origin: center;
+    }
+    .floating-item-delay-1 {
+      animation: floatAnimation 7s ease-in-out infinite alternate;
+      animation-delay: 1.5s;
+      transform-origin: center;
+    }
+    .floating-item-delay-2 {
+      animation: floatAnimation 6s ease-in-out infinite alternate;
+      animation-delay: 3s;
+      transform-origin: center;
+    }
+    @keyframes floatAnimation {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(3deg); }
+      100% { transform: translateY(-24px) rotate(-3deg); }
+    }
+    .marquee-group {
+      animation: marqueeText 25s linear infinite;
+    }
+    @keyframes marqueeText {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-650px); }
+    }
+  </style>
 </svg>
