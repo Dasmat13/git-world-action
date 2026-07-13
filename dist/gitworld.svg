@@ -1083,63 +1083,63 @@
           style="animation-delay:4.6s"/><circle class="smoke" cx="870.3" cy="50.0" r="4"
       fill="#aaa" opacity="0.6"
       style="animation-delay:2.00s"/></g>
-  <g class="col" data-week="51"><rect x="882.7" y="85" width="16.3" height="110"
-    fill="#f0c040" rx="1"/><line x1="890.8" y1="85" x2="890.8" y2="73.0"
-      stroke="#e8a020" stroke-width="1.5"/><circle class="blink" cx="890.8" cy="72.0" r="2"
-      fill="#ff4444" style="animation-delay:0.67s"/><rect class="win" x="889.7" y="89.0"
+  <g class="col" data-week="51"><rect x="882.7" y="84" width="16.3" height="111"
+    fill="#f0c040" rx="1"/><line x1="890.8" y1="84" x2="890.8" y2="72.0"
+      stroke="#e8a020" stroke-width="1.5"/><circle class="blink" cx="890.8" cy="71.0" r="2"
+      fill="#ff4444" style="animation-delay:0.67s"/><rect class="win" x="889.7" y="88.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:0.3s"/>
-    <rect class="win" x="894.7" y="89.0"
+    <rect class="win" x="894.7" y="88.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:0.6s"/>
-    <rect class="win" x="884.7" y="99.0"
+    <rect class="win" x="884.7" y="98.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:0.9s"/>
-    <rect class="win" x="889.7" y="99.0"
+    <rect class="win" x="889.7" y="98.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:1.2s"/>
-    <rect class="win" x="884.7" y="109.0"
+    <rect class="win" x="884.7" y="108.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:1.8s"/>
-    <rect class="win" x="894.7" y="109.0"
+    <rect class="win" x="894.7" y="108.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:2.4s"/>
-    <rect class="win" x="889.7" y="119.0"
+    <rect class="win" x="889.7" y="118.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:3.0s"/>
-    <rect class="win" x="894.7" y="119.0"
+    <rect class="win" x="894.7" y="118.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:3.3s"/>
-    <rect class="win" x="884.7" y="129.0"
+    <rect class="win" x="884.7" y="128.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:3.6s"/>
-    <rect class="win" x="889.7" y="129.0"
+    <rect class="win" x="889.7" y="128.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:3.9s"/>
-    <rect class="win" x="884.7" y="139.0"
+    <rect class="win" x="884.7" y="138.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:4.5s"/>
-    <rect class="win" x="894.7" y="139.0"
+    <rect class="win" x="894.7" y="138.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:0.1s"/>
-    <rect class="win" x="889.7" y="149.0"
+    <rect class="win" x="889.7" y="148.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:0.7s"/>
-    <rect class="win" x="894.7" y="149.0"
+    <rect class="win" x="894.7" y="148.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:1.0s"/>
-    <rect class="win" x="884.7" y="159.0"
+    <rect class="win" x="884.7" y="158.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:1.3s"/>
-    <rect class="win" x="889.7" y="159.0"
+    <rect class="win" x="889.7" y="158.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:1.6s"/>
-    <rect class="win" x="884.7" y="169.0"
+    <rect class="win" x="884.7" y="168.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
           style="animation-delay:2.2s"/>
-    <rect class="win" x="894.7" y="169.0"
+    <rect class="win" x="894.7" y="168.0"
           width="2.5" height="2.5" fill="#fffde7" rx="0.5"
-          style="animation-delay:2.8s"/><circle class="smoke" cx="887.6" cy="80.0" r="4"
+          style="animation-delay:2.8s"/><circle class="smoke" cx="887.6" cy="79.0" r="4"
       fill="#aaa" opacity="0.6"
       style="animation-delay:2.40s"/></g>
 
@@ -1272,7 +1272,7 @@
   <g>
     <rect x="8" y="8" width="200" height="22" rx="4" fill="rgba(0,0,0,0.5)"/>
     <text x="14" y="22" font-family="monospace" font-size="10" fill="#ffd700">
-      🌍 Dasmat13's GitWorld · 428 commits
+      🌍 Dasmat13's GitWorld · 429 commits
     </text>
   </g>
   <g>
