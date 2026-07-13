@@ -6,34 +6,152 @@
     </pattern>
   </defs>
 
-  <!-- ═══ BASE BACKDROP ═══ -->
-  <rect width="900" height="1160" fill="#f6f5f0"/>
-  <rect width="900" height="1160" fill="url(#dotGrid)"/>
+  <!-- ═══ BASE BACKDROP (KASHMIR SUNSET STRIPES) ═══ -->
+  <rect x="0" y="0" width="900" height="93.33333333333333" fill="#0f172a" /><rect x="0" y="93.33333333333333" width="900" height="93.33333333333333" fill="#1e293b" /><rect x="0" y="186.66666666666666" width="900" height="93.33333333333333" fill="#334155" />
+  <rect width="900" height="1160" y="280" fill="#f6f5f0"/>
+  <rect width="900" height="1160" y="280" fill="url(#dotGrid)"/>
+
+  <!-- Sun / Moon behind mountains -->
+  <circle cx="480" cy="160" r="72" fill="#f1f5f9" stroke="#000000" stroke-width="4" />
   
-  <!-- Dynamic floating vector shapes -->
-  <g class="floating-item"><path d="M 60,56 Q 60,70 74,70 Q 60,70 60,84 Q 60,70 46,70 Q 60,70 60,56 Z" fill="#facc15" stroke="#000000" stroke-width="2.5" /></g><g class="floating-item-delay-1"><path d="M 130,210 Q 130,220 140,220 Q 130,220 130,230 Q 130,220 120,220 Q 130,220 130,210 Z" fill="#f472b6" stroke="#000000" stroke-width="2.5" /></g><g class="floating-item-delay-2"><g stroke="#000000" stroke-width="4.5" stroke-linecap="round">
-                <line x1="788" y1="80" x2="812" y2="80" />
-                <line x1="800" y1="68" x2="800" y2="92" />
-              </g></g><g class="floating-item"><path d="M 840,219 Q 840,230 851,230 Q 840,230 840,241 Q 840,230 829,230 Q 840,230 840,219 Z" fill="#4ade80" stroke="#000000" stroke-width="2.5" /></g><g class="floating-item-delay-1"><circle cx="730" cy="140" r="8" fill="#fb923c" stroke="#000000" stroke-width="2.5" /></g><g class="floating-item-delay-2"><path d="M 110,138 Q 110,150 122,150 Q 110,150 110,162 Q 110,150 98,150 Q 110,150 110,138 Z" fill="#c084fc" stroke="#000000" stroke-width="2.5" /></g>
+  <!-- Dynamic floating vector stars -->
+  <g class="floating-item"><path d="M 70,50 Q 70,60 80,60 Q 70,60 70,70 Q 70,60 60,60 Q 70,60 70,50 Z" fill="#ffffff" stroke="#000000" stroke-width="2" /></g><g class="floating-item-delay-1"><path d="M 820,78 Q 820,90 832,90 Q 820,90 820,102 Q 820,90 808,90 Q 820,90 820,78 Z" fill="#facc15" stroke="#000000" stroke-width="2" /></g><g class="floating-item-delay-2"><path d="M 190,142 Q 190,150 198,150 Q 190,150 190,158 Q 190,150 182,150 Q 190,150 190,142 Z" fill="#f472b6" stroke="#000000" stroke-width="2" /></g>
+
+  <!-- ═══ HIMALAYAN MOUNTAINS ═══ -->
+  
+    <!-- Back Peak (Left) -->
+    <polygon points="320,130 120,280 520,280" fill="#1e1b4b" stroke="#000000" stroke-width="3" />
+    
+    <!-- Back Peak (Right) -->
+    <polygon points="720,140 520,280 920,280" fill="#1e1b4b" stroke="#000000" stroke-width="3" />
+    
+    <!-- Fore Peak (Left) with Snow Cap -->
+    <g>
+      <polygon points="220,90 20,280 220,280" fill="#312e81" stroke="#000000" stroke-width="3" />
+      <polygon points="220,90 220,280 420,280" fill="#1e1b4b" stroke="#000000" stroke-width="3" />
+      <!-- Snow cap -->
+      <polygon points="220,90 180,140 220,140" fill="#ffffff" stroke="#000000" stroke-width="3" />
+      <polygon points="220,90 220,140 260,140" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
+    </g>
+
+    <!-- Fore Peak (Right) with Snow Cap -->
+    <g>
+      <polygon points="580,100 380,280 580,280" fill="#312e81" stroke="#000000" stroke-width="3" />
+      <polygon points="580,100 580,280 780,280" fill="#1e1b4b" stroke="#000000" stroke-width="3" />
+      <!-- Snow cap -->
+      <polygon points="580,100 540,150 580,150" fill="#ffffff" stroke="#000000" stroke-width="3" />
+      <polygon points="580,100 580,150 620,150" fill="#e2e8f0" stroke="#000000" stroke-width="3" />
+    </g>
+  
+
+  <!-- ═══ VALLEY WATER LAKE LINE ═══ -->
+  <rect x="0" y="268" width="900" height="12" fill="#1e1b4b" stroke="#000000" stroke-width="3" />
+
+  <!-- ═══ FOREGROUND PINE FOREST ═══ -->
+  
+    <g transform="translate(60, 280) scale(0.95)">
+      <!-- Trunk -->
+      <rect x="-4" y="0" width="8" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
+      <!-- Leaf levels -->
+      <polygon points="0,-35 -24,-10 24,-10" fill="#15803d" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-50 -18,-25 18,-25" fill="#166534" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-65 -13,-40 13,-40" fill="#14532d" stroke="#000000" stroke-width="2.5" />
+    </g>
+  
+    <g transform="translate(110, 280) scale(1.15)">
+      <!-- Trunk -->
+      <rect x="-4" y="0" width="8" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
+      <!-- Leaf levels -->
+      <polygon points="0,-35 -24,-10 24,-10" fill="#15803d" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-50 -18,-25 18,-25" fill="#166534" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-65 -13,-40 13,-40" fill="#14532d" stroke="#000000" stroke-width="2.5" />
+    </g>
+  
+    <g transform="translate(170, 280) scale(0.8)">
+      <!-- Trunk -->
+      <rect x="-4" y="0" width="8" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
+      <!-- Leaf levels -->
+      <polygon points="0,-35 -24,-10 24,-10" fill="#15803d" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-50 -18,-25 18,-25" fill="#166534" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-65 -13,-40 13,-40" fill="#14532d" stroke="#000000" stroke-width="2.5" />
+    </g>
+  
+    <g transform="translate(380, 280) scale(1)">
+      <!-- Trunk -->
+      <rect x="-4" y="0" width="8" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
+      <!-- Leaf levels -->
+      <polygon points="0,-35 -24,-10 24,-10" fill="#15803d" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-50 -18,-25 18,-25" fill="#166534" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-65 -13,-40 13,-40" fill="#14532d" stroke="#000000" stroke-width="2.5" />
+    </g>
+  
+    <g transform="translate(420, 280) scale(0.7)">
+      <!-- Trunk -->
+      <rect x="-4" y="0" width="8" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
+      <!-- Leaf levels -->
+      <polygon points="0,-35 -24,-10 24,-10" fill="#15803d" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-50 -18,-25 18,-25" fill="#166534" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-65 -13,-40 13,-40" fill="#14532d" stroke="#000000" stroke-width="2.5" />
+    </g>
+  
+    <g transform="translate(490, 280) scale(0.9)">
+      <!-- Trunk -->
+      <rect x="-4" y="0" width="8" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
+      <!-- Leaf levels -->
+      <polygon points="0,-35 -24,-10 24,-10" fill="#15803d" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-50 -18,-25 18,-25" fill="#166534" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-65 -13,-40 13,-40" fill="#14532d" stroke="#000000" stroke-width="2.5" />
+    </g>
+  
+    <g transform="translate(760, 280) scale(1.2)">
+      <!-- Trunk -->
+      <rect x="-4" y="0" width="8" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
+      <!-- Leaf levels -->
+      <polygon points="0,-35 -24,-10 24,-10" fill="#15803d" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-50 -18,-25 18,-25" fill="#166534" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-65 -13,-40 13,-40" fill="#14532d" stroke="#000000" stroke-width="2.5" />
+    </g>
+  
+    <g transform="translate(820, 280) scale(0.85)">
+      <!-- Trunk -->
+      <rect x="-4" y="0" width="8" height="15" fill="#78350f" stroke="#000000" stroke-width="2" />
+      <!-- Leaf levels -->
+      <polygon points="0,-35 -24,-10 24,-10" fill="#15803d" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-50 -18,-25 18,-25" fill="#166534" stroke="#000000" stroke-width="2.5" />
+      <polygon points="0,-65 -13,-40 13,-40" fill="#14532d" stroke="#000000" stroke-width="2.5" />
+    </g>
+  
 
   <!-- ═══ DIVIDERS ═══ -->
   
-    <!-- Top divider line -->
-    <line x1="0" y1="280" x2="900" y2="280" stroke="#000000" stroke-width="4" />
+    <!-- Lake shore shadow border -->
+    <rect x="-10" y="278" width="920" height="34" fill="#38bdf8" stroke="#000000" stroke-width="3" />
     
-    <!-- Moving Text Marquee block -->
+    <!-- Moving Text Marquee (lake waves) -->
     <g transform="translate(0, 280)">
-      <rect x="-10" y="0" width="920" height="32" fill="#38bdf8" stroke="#000000" stroke-width="3" />
       <g class="marquee-group">
-        <text y="21" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="900" fill="#000000" letter-spacing="1">
-          ⚡ DEPLOY · MONITOR · AUTOMATE · MERGE · REFACTOR · SCALE · SHIELD · COMPILE · OPTIMIZE · ORCHESTRATE · DEPLOY · MONITOR · AUTOMATE · MERGE · REFACTOR · SCALE · SHIELD · COMPILE · OPTIMIZE · ORCHESTRATE
+        <text y="21" font-family="'Space Grotesk', sans-serif" font-size="12.5" font-weight="900" fill="#000000" letter-spacing="1">
+          🌊 KASHMIR DAL LAKE · HIMACHAL HIMALAYAS · DEPLOY · OPTIMIZE · AUTOMATE · ORCHESTRATE · MERGE · REFACTOR · KASHMIR DAL LAKE · HIMACHAL HIMALAYAS · DEPLOY · OPTIMIZE · AUTOMATE · ORCHESTRATE · MERGE · REFACTOR
         </text>
       </g>
     </g>
     
-    <!-- Bottom divider line -->
+    <!-- Shore divider -->
     <line x1="0" y1="312" x2="900" y2="312" stroke="#000000" stroke-width="4" />
   
+
+  <!-- ═══ ANIMATED BIRDS & CLOUDS ═══ -->
+  <!-- Flat drifting cloud -->
+  <g class="floating-cloud">
+    <rect x="0" y="45" width="130" height="22" rx="11" fill="#ffffff" stroke="#000000" stroke-width="3" />
+  </g>
+  <!-- Flying birds -->
+  <g class="flying-bird">
+    <path d="M 0,0 L 6,-5 L 12,0 L 18,-5 L 24,0" fill="none" stroke="#000000" stroke-width="3.5" stroke-linecap="round" />
+  </g>
+  <g class="flying-bird-delay">
+    <path d="M 0,0 L 5,-4 L 10,0 L 15,-4 L 20,0" fill="none" stroke="#000000" stroke-width="3" stroke-linecap="round" />
+  </g>
 
   <!-- ═══ HERO HEADER ═══ -->
   <g transform="translate(150, 336)">
@@ -326,7 +444,7 @@
       <!-- Main -->
       <rect x="325" y="1048" width="270" height="76" rx="6" fill="#38bdf8" stroke="#000000" stroke-width="3" />
       <text x="337" y="1068" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" letter-spacing="1">🌱  SPROUTS GROWN</text>
-      <text x="337" y="1096" font-family="'Space Grotesk', sans-serif" font-size="20" fill="#000000" font-weight="900">416</text>
+      <text x="337" y="1096" font-family="'Space Grotesk', sans-serif" font-size="20" fill="#000000" font-weight="900">417</text>
       <text x="337" y="1113" font-family="'Inter', sans-serif" font-size="9.5" fill="#000000" font-weight="700" opacity="0.8">total commits</text>
     </g>
     
@@ -372,6 +490,24 @@
     @keyframes marqueeText {
       0% { transform: translateX(0); }
       100% { transform: translateX(-650px); }
+    }
+    .flying-bird {
+      animation: birdFly 15s linear infinite;
+    }
+    .flying-bird-delay {
+      animation: birdFly 20s linear infinite;
+      animation-delay: 4s;
+    }
+    @keyframes birdFly {
+      0% { transform: translate(-50px, 90px); }
+      100% { transform: translate(950px, 50px); }
+    }
+    .floating-cloud {
+      animation: cloudFloat 26s linear infinite;
+    }
+    @keyframes cloudFloat {
+      0% { transform: translateX(-150px); }
+      100% { transform: translateX(950px); }
     }
   </style>
 </svg>
