@@ -1,34 +1,57 @@
 import { WorldData } from './world';
 
-const W = 900, H = 1080;
+const W = 900, H = 1160;
 
 export function renderProfileCard(world: WorldData): string {
-  const t   = world.biomeTheme;
+  const t = world.biomeTheme;
   const username = world.username;
 
-  // Pattern-based dot grid background helper for Neobrutalist look
-  const seed = username.split('').reduce((a,c) => a + c.charCodeAt(0), 0);
-  
-  // Vector retro stars (floating objects replacing clouds/fireflies)
-  const floaters = Array.from({length: 15}, (_, i) => {
-    const sx = ((seed * (i + 5) * 443) % W);
-    const sy = (30 + ((seed * (i + 7) * 701) % 200));
-    const r = (i % 3 === 0) ? 14 : 9;
-    // Draw 4-pointed Neobrutalist stars
-    return `<path d="M ${sx},${sy - r} Q ${sx},${sy} ${sx + r},${sy} Q ${sx},${sy} ${sx},${sy + r} Q ${sx},${sy} ${sx - r},${sy} Q ${sx},${sy} ${sx},${sy - r} Z" fill="#000000" opacity="0.8" />`;
+  // Seed for custom variations
+  const seed = username.split('').reduce((a, c) => a + c.charCodeAt(0), 0);
+
+  // Animated Neobrutalist decorative shapes floating in the sky area
+  const shapes = [
+    { x: 60, y: 70, shape: 'star', color: '#facc15', size: 14, anim: 'floating-item' },
+    { x: 130, y: 220, shape: 'star', color: '#f472b6', size: 10, anim: 'floating-item-delay-1' },
+    { x: 800, y: 80, shape: 'plus', color: '#38bdf8', size: 12, anim: 'floating-item-delay-2' },
+    { x: 840, y: 230, shape: 'star', color: '#4ade80', size: 11, anim: 'floating-item' },
+    { x: 730, y: 140, shape: 'circle', color: '#fb923c', size: 8, anim: 'floating-item-delay-1' },
+    { x: 110, y: 150, shape: 'star', color: '#c084fc', size: 12, anim: 'floating-item-delay-2' }
+  ].map(s => {
+    let path = '';
+    if (s.shape === 'star') {
+      path = `<path d="M ${s.x},${s.y - s.size} Q ${s.x},${s.y} ${s.x + s.size},${s.y} Q ${s.x},${s.y} ${s.x},${s.y + s.size} Q ${s.x},${s.y} ${s.x - s.size},${s.y} Q ${s.x},${s.y} ${s.x},${s.y - s.size} Z" fill="${s.color}" stroke="#000000" stroke-width="2.5" />`;
+    } else if (s.shape === 'plus') {
+      path = `<g stroke="#000000" stroke-width="4.5" stroke-linecap="round">
+                <line x1="${s.x - s.size}" y1="${s.y}" x2="${s.x + s.size}" y2="${s.y}" />
+                <line x1="${s.x}" y1="${s.y - s.size}" x2="${s.x}" y2="${s.y + s.size}" />
+              </g>`;
+    } else {
+      path = `<circle cx="${s.x}" cy="${s.y}" r="${s.size}" fill="${s.color}" stroke="#000000" stroke-width="2.5" />`;
+    }
+    return `<g class="${s.anim}">${path}</g>`;
   }).join('');
 
-  // Stepped neobrutalist separator lines (replacing green Ghibli hills at Y=280)
+  // Moving Neobrutalist text marquee separator at Y=280
   const separators = `
     <!-- Top divider line -->
     <line x1="0" y1="280" x2="900" y2="280" stroke="#000000" stroke-width="4" />
-    <!-- Cyan separator band -->
-    <rect x="0" y="280" width="900" height="20" fill="#38bdf8" stroke="#000000" stroke-width="3" />
-    <!-- Yellow separator band -->
-    <rect x="0" y="300" width="900" height="20" fill="#facc15" stroke="#000000" stroke-width="3" />
+    
+    <!-- Moving Text Marquee block -->
+    <g transform="translate(0, 280)">
+      <rect x="-10" y="0" width="920" height="32" fill="#38bdf8" stroke="#000000" stroke-width="3" />
+      <g class="marquee-group">
+        <text y="21" font-family="'Space Grotesk', sans-serif" font-size="12" font-weight="900" fill="#000000" letter-spacing="1">
+          ⚡ DEPLOY · MONITOR · AUTOMATE · MERGE · REFACTOR · SCALE · SHIELD · COMPILE · OPTIMIZE · ORCHESTRATE · DEPLOY · MONITOR · AUTOMATE · MERGE · REFACTOR · SCALE · SHIELD · COMPILE · OPTIMIZE · ORCHESTRATE
+        </text>
+      </g>
+    </g>
+    
+    <!-- Bottom divider line -->
+    <line x1="0" y1="312" x2="900" y2="312" stroke="#000000" stroke-width="4" />
   `;
 
-  // Neobrutalist Panel component: thick border, solid offset shadow, square corner badge
+  // Spacious Neobrutalist Panel component: thick border, solid offset shadow, square corner badge
   const P = (y: number, h: number, title: string, badgeBg = '#facc15') => {
     const rx = 6, x = 20, w = W - 40;
     const badgeW = title.length * 8.5 + 24;
@@ -65,7 +88,7 @@ export function renderProfileCard(world: WorldData): string {
   ];
   
   const bxs = [32, 172, 312, 452, 592, 732];
-  const BR0 = 694, BR1 = 734;
+  const BR0 = 726, BR1 = 772;
   const badges = skills.map((s, i) => {
     const bx = bxs[i % 6];
     const by = i < 6 ? BR0 : BR1;
@@ -80,7 +103,7 @@ export function renderProfileCard(world: WorldData): string {
     `;
   }).join('');
 
-  // Quest lines as Neobrutalist lists with custom status pills
+  // Quest lines spaced out with custom Neobrutalist status badges
   const quests = [
     { t: 'LeaderWorkerSet topology-aware scheduling', s: 'Active Journey 🌿', bg: '#4ade80' },
     { t: 'CompositePodGroup integration (KEP-893)',  s: 'Active Journey 🌿', bg: '#4ade80' },
@@ -89,19 +112,19 @@ export function renderProfileCard(world: WorldData): string {
     { t: 'Upstream Node.js core exploration',         s: 'Wandering 🏕️',      bg: '#38bdf8' }
   ];
   const qItems = quests.map((q, i) => {
-    const qy = 836 + i * 26;
+    const qy = 886 + i * 30; // 30px gaps for breathing room
     return `
-    <g transform="translate(40, ${qy - 12})">
+    <g transform="translate(40, ${qy})">
       <!-- Bullet diamond -->
-      <rect x="0" y="0" width="8" height="8" fill="#000000" transform="rotate(45 4 4)" />
-      <text x="20" y="9" font-family="'Inter', sans-serif" font-size="13" fill="#000000" font-weight="700">
+      <rect x="0" y="-4" width="8" height="8" fill="#000000" transform="rotate(45 4 4)" />
+      <text x="24" y="5" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
         ${q.t}
       </text>
       
       <!-- Status pill badge -->
-      <g transform="translate(680, -4)">
-        <rect x="0" y="0" width="120" height="18" rx="4" fill="${q.bg}" stroke="#000000" stroke-width="1.5" />
-        <text x="60" y="12" font-family="'Space Grotesk', sans-serif" font-size="9.5" fill="#000000" font-weight="900" text-anchor="middle">
+      <g transform="translate(670, -11)">
+        <rect x="0" y="0" width="120" height="20" rx="4" fill="${q.bg}" stroke="#000000" stroke-width="2" />
+        <text x="60" y="14" font-family="'Space Grotesk', sans-serif" font-size="9" fill="#000000" font-weight="900" text-anchor="middle" letter-spacing="0.5">
           ${q.s.toUpperCase()}
         </text>
       </g>
@@ -115,7 +138,7 @@ export function renderProfileCard(world: WorldData): string {
     { icon: '🌱', lbl: 'SPROUTS GROWN', val: `${world.totalContributions}`, sub: 'total commits', bg: '#38bdf8' },
     { icon: '🏡', lbl: 'HOME BIOME',    val: t.label.toUpperCase(),     sub: `Weather: ${world.weatherType.toUpperCase()}`, bg: '#facc15' }
   ];
-  const cardW = 270, cardGap = 25, cardY = 974, cardH = 76;
+  const cardW = 270, cardGap = 25, cardY = 1048, cardH = 76;
   const statCards = stats.map((s, i) => {
     const cx = 30 + i * (cardW + cardGap);
     return `
@@ -143,8 +166,8 @@ export function renderProfileCard(world: WorldData): string {
   <rect width="${W}" height="${H}" fill="#f6f5f0"/>
   <rect width="${W}" height="${H}" fill="url(#dotGrid)"/>
   
-  <!-- Retro floating vector stars -->
-  ${floaters}
+  <!-- Dynamic floating vector shapes -->
+  ${shapes}
 
   <!-- ═══ DIVIDERS ═══ -->
   ${separators}
@@ -166,21 +189,21 @@ export function renderProfileCard(world: WorldData): string {
     </text>
   </g>
 
-  <!-- ═══ ABOUT ME PANEL y=468 h=118 ═══ -->
-  ${P(468, 118, '⚡  ABOUT THE TRAVELER', '#38bdf8')}
-  <text x="40" y="505" font-family="'Inter', sans-serif" font-size="13.5" fill="#000000" font-weight="700">
+  <!-- ═══ ABOUT ME PANEL y=475 h=125 (spacious layout) ═══ -->
+  ${P(475, 125, '⚡  ABOUT THE TRAVELER', '#38bdf8')}
+  <text x="40" y="515" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
     ⚡  <tspan font-weight="900" fill="#facc15" stroke="#000000" stroke-width="0.5">CORE INTERESTS:</tspan> Infrastructure automation, Cloud-Native scaling, Self-healing architectures
   </text>
-  <text x="40" y="531" font-family="'Inter', sans-serif" font-size="13.5" fill="#000000" font-weight="700">
+  <text x="40" y="545" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
     ⚡  <tspan font-weight="900" fill="#facc15" stroke="#000000" stroke-width="0.5">CONTRIBUTING TO:</tspan> Kubernetes SIGs, Node.js Core, Express.js, Backstage Ecosystem
   </text>
-  <text x="40" y="557" font-family="'Inter', sans-serif" font-size="13.5" fill="#000000" font-weight="700">
+  <text x="40" y="575" font-family="'Inter', sans-serif" font-size="12.5" fill="#000000" font-weight="700">
     ⚡  <tspan font-weight="900" fill="#facc15" stroke="#000000" stroke-width="0.5">CONTACT:</tspan> dasmath06@gmail.com   ·   ⚡  Experiments daily with automated recovery pipelines
   </text>
 
-  <!-- ═══ WORLD STATE BAR y=600 h=50 ═══ -->
-  ${P(600, 50, '🏡  CURRENT ENVIRONMENT LOG', '#f472b6')}
-  <text x="${W/2}" y="632" font-family="'Space Grotesk', sans-serif" font-size="13.5" fill="#000000" text-anchor="middle" font-weight="900">
+  <!-- ═══ WORLD STATE BAR y=620 h=55 ═══ -->
+  ${P(620, 55, '🏡  CURRENT ENVIRONMENT LOG', '#f472b6')}
+  <text x="${W/2}" y="653" font-family="'Space Grotesk', sans-serif" font-size="13.5" fill="#000000" text-anchor="middle" font-weight="900">
     🌳 BIOME: <tspan fill="#000000" font-weight="900">${t.label.toUpperCase()}</tspan>
     <tspan dx="15" fill="#000000" opacity="0.3">|</tspan>
     <tspan dx="15">🕰️ TIME: <tspan fill="#38bdf8">${world.timeOfDay.toUpperCase()}</tspan></tspan>
@@ -190,20 +213,49 @@ export function renderProfileCard(world: WorldData): string {
     <tspan dx="15">🎒 STREAK: <tspan fill="#fbbf24">${world.streak} DAYS</tspan></tspan>
   </text>
 
-  <!-- ═══ TECH STACK PANEL y=664 h=118 ═══ -->
-  ${P(664, 118, '🎒  PACKED GEAR (TECH STACK)', '#4ade80')}
+  <!-- ═══ TECH STACK PANEL y=695 h=130 ═══ -->
+  ${P(695, 130, '🎒  PACKED GEAR (TECH STACK)', '#4ade80')}
   ${badges}
 
-  <!-- ═══ ACTIVE QUESTS PANEL y=796 h=162 ═══ -->
-  ${P(796, 162, '🗺️  CURRENT JOURNEY (ACTIVE QUESTS)', '#c084fc')}
+  <!-- ═══ ACTIVE QUESTS PANEL y=845 h=180 ═══ -->
+  ${P(845, 180, '🗺️  CURRENT JOURNEY (ACTIVE QUESTS)', '#c084fc')}
   ${qItems}
 
-  <!-- ═══ STATS HUD y=974 h=76 ═══ -->
+  <!-- ═══ STATS HUD y=1048 h=76 ═══ -->
   ${statCards}
 
   <!-- Neobrutalist bottom footer -->
   <text x="${W/2}" y="${H - 12}" font-family="'Space Grotesk', sans-serif" font-size="10.5" fill="#000000" font-weight="800" text-anchor="middle" letter-spacing="1">
     ⚡  HARVESTED DAILY BY GITWORLD ENGINE  ·  GITHUB.COM/DASMAT13/GIT-WORLD-ACTION  ⚡
   </text>
+
+  <style>
+    .floating-item {
+      animation: floatAnimation 5s ease-in-out infinite alternate;
+      transform-origin: center;
+    }
+    .floating-item-delay-1 {
+      animation: floatAnimation 7s ease-in-out infinite alternate;
+      animation-delay: 1.5s;
+      transform-origin: center;
+    }
+    .floating-item-delay-2 {
+      animation: floatAnimation 6s ease-in-out infinite alternate;
+      animation-delay: 3s;
+      transform-origin: center;
+    }
+    @keyframes floatAnimation {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-12px) rotate(3deg); }
+      100% { transform: translateY(-24px) rotate(-3deg); }
+    }
+    .marquee-group {
+      animation: marqueeText 25s linear infinite;
+    }
+    @keyframes marqueeText {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-650px); }
+    }
+  </style>
 </svg>`;
 }
