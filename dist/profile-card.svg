@@ -4758,19 +4758,19 @@
     <!-- Commits / Altitude -->
     <g transform="translate(0, 0)">
       <text x="0" y="0" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#94a3b8" letter-spacing="1">ALTITUDE (COMMITS)</text>
-      <text x="0" y="20" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="15" fill="#ffffff">469 m</text>
+      <text x="0" y="20" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="15" fill="#ffffff">485 m</text>
     </g>
     
     <!-- Stars / Expedition -->
     <g transform="translate(145, 0)">
       <text x="0" y="0" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#94a3b8" letter-spacing="1">EXPEDITION (STARS)</text>
-      <text x="0" y="20" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="15" fill="#ffffff">2 ★</text>
+      <text x="0" y="20" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="15" fill="#ffffff">4 ★</text>
     </g>
     
     <!-- PRs / Journey -->
     <g transform="translate(290, 0)">
       <text x="0" y="0" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#94a3b8" letter-spacing="1">JOURNEY (PULLS)</text>
-      <text x="0" y="20" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="15" fill="#ffffff">64 prs</text>
+      <text x="0" y="20" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="15" fill="#ffffff">69 prs</text>
     </g>
   </g>
     </g>
