@@ -87,15 +87,15 @@
   <circle class="star" cx="846.0" cy="127.0" r="0.8" fill="#58a6ff" style="animation-delay:1.4s"/>
   <circle class="star" cx="540.0" cy="95.0" r="0.8" fill="#58a6ff" style="animation-delay:1.7s"/>
   
-  <circle class="moon" r="12" fill="#c8d0e0"
-    filter="url(#glow)" style="animation-duration:20s">
-    <animateMotion dur="20s" repeatCount="indefinite"
+  <circle class="moon" r="12" fill="#f5d060"
+    filter="url(#glow)" style="animation-duration:30s">
+    <animateMotion dur="30s" repeatCount="indefinite"
       path="M -20,175 Q 450,-30 920,175"/>
   </circle>
-  <ellipse class="cloud1" cx="100" cy="35" rx="55" ry="16" fill="rgba(180,180,200,0.18)"/>
-  <ellipse class="cloud1" cx="120" cy="28" rx="35" ry="12" fill="rgba(180,180,200,0.18)"/>
-  <ellipse class="cloud2" cx="600" cy="50" rx="65" ry="18" fill="rgba(180,180,200,0.18)"/>
-  <ellipse class="cloud2" cx="625" cy="40" rx="40" ry="13" fill="rgba(180,180,200,0.18)"/>
+  <ellipse class="cloud1" cx="100" cy="35" rx="55" ry="16" fill="rgba(255,255,255,0.12)"/>
+  <ellipse class="cloud1" cx="120" cy="28" rx="35" ry="12" fill="rgba(255,255,255,0.12)"/>
+  <ellipse class="cloud2" cx="600" cy="50" rx="65" ry="18" fill="rgba(255,255,255,0.12)"/>
+  <ellipse class="cloud2" cx="625" cy="40" rx="40" ry="13" fill="rgba(255,255,255,0.12)"/>
   <line class="rain" x1="216.0" y1="162.0" x2="218.0" y2="172.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.00s;animation-duration:0.60s"/>
   <line class="rain" x1="888.0" y1="18.0" x2="890.0" y2="28.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.15s;animation-duration:0.75s"/>
   <line class="rain" x1="660.0" y1="69.0" x2="662.0" y2="79.0" stroke="#7ec8e3" stroke-width="1" opacity="0.7" style="animation-delay:0.30s;animation-duration:0.90s"/>
@@ -1278,13 +1278,13 @@
   <g>
     <rect x="8" y="8" width="200" height="22" rx="4" fill="rgba(0,0,0,0.5)"/>
     <text x="14" y="22" font-family="monospace" font-size="10" fill="#58a6ff">
-      🌍 Dasmat13's GitWorld · 523 commits
+      🌍 Dasmat13's GitWorld · 546 commits
     </text>
   </g>
   <g>
     <rect x="782" y="8" width="110" height="22" rx="4" fill="rgba(0,0,0,0.5)"/>
     <text x="788" y="22" font-family="monospace" font-size="10" fill="#58a6ff">
-      🔥 13d streak
+      🔥 14d streak
     </text>
   </g>
 
