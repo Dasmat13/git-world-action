@@ -197,14 +197,14 @@
     
   <!-- Sky Gradient -->
   <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-    <stop offset="0%" stop-color="var(--sky-top, #f472b6)" />
-    <stop offset="100%" stop-color="var(--sky-bot, #fef08a)" />
+    <stop offset="0%" stop-color="var(--sky-top, #060814)" />
+    <stop offset="100%" stop-color="var(--sky-bot, #1c2242)" />
   </linearGradient>
 
   <!-- River Glacial Gradient -->
   <linearGradient id="riverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-    <stop offset="0%" stop-color="#e0f2fe" />
-    <stop offset="40%" stop-color="#38bdf8" />
+    <stop offset="0%" stop-color="#1e3a8a" />
+    <stop offset="40%" stop-color="#1d4ed8" />
     <stop offset="100%" stop-color="#1d4ed8" />
   </linearGradient>
 
@@ -252,7 +252,7 @@
   <rect width="960" height="500" fill="url(#skyGrad)" />
   
   <!-- Starry space -->
-  <g opacity="0.35">
+  <g opacity="1">
     <path d="M 0,220 Q 300,100 600,180 T 960,80 L 960,180 Q 600,260 300,160 Z" fill="#93c5fd" opacity="0.06" filter="url(#haze-heavy)" />
     <circle cx="158.5635519772768" cy="449.7096773609519" r="1.8765129846520723" fill="#ffffff" class="star-blink" style="animation-delay: 2.67s; opacity: 0.5017105864360929;" />
 <circle cx="390.1228552311659" cy="286.4320634678006" r="1.031998192332685" fill="#ffffff" class="star-blink" style="animation-delay: 0.54s; opacity: 0.6711176858749242;" />
@@ -462,19 +462,14 @@
 
   <!-- God Rays -->
   
-  <g opacity="0.18">
-    <polygon points="480,180 200,480 300,480" fill="#FFECC2" filter="url(#haze-medium)" />
-    <polygon points="480,180 380,480 480,480" fill="#FFECC2" filter="url(#haze-medium)" />
-    <polygon points="480,180 600,480 700,480" fill="#FFECC2" filter="url(#haze-medium)" />
-    <polygon points="480,180 750,480 900,480" fill="#FFECC2" filter="url(#haze-medium)" />
-  </g>
-  
 
   <!-- Sun / Moon -->
   
-  <!-- Sun disc and corona -->
-  <circle cx="480" cy="180" r="85" fill="url(#sunGlowGrad)" class="sun-glow" />
-  <circle cx="480" cy="180" r="40" fill="var(--sun-color)" />
+  <!-- Moon disc and corona -->
+  <circle cx="480" cy="180" r="85" fill="url(#moonGlowGrad)" class="sun-glow" />
+  <circle cx="480" cy="180" r="30" fill="#f8fafc" />
+  <!-- Moon Shadow to form crescent -->
+  <circle cx="468" cy="180" r="30" fill="#071425" opacity="0.85" />
   
 
   <!-- Volumetric Clouds -->
@@ -522,7 +517,7 @@
   <g id="scene-stars">
     
   <!-- Space, starry sky and Milky Way band -->
-  <g opacity="0.35">
+  <g opacity="1">
     <path d="M 0,220 Q 300,100 600,180 T 960,80 L 960,180 Q 600,260 300,160 Z" fill="#93c5fd" opacity="0.06" filter="url(#haze-heavy)" />
     <circle cx="863.435018286109" cy="69.19926781207323" r="1.677787101780996" fill="#ffffff" class="star-blink" style="animation-delay: 1.26s; opacity: 0.6810830398113465;" />
 <circle cx="231.83564320206642" cy="118.66326045244932" r="0.934118116274476" fill="#ffffff" class="star-blink" style="animation-delay: 2.86s; opacity: 0.4225066605838947;" />
@@ -714,9 +709,11 @@
   <!-- 3. Celestial disc -->
   <g id="scene-celestial">
     
-  <!-- Sun disc and radial corona -->
-  <circle cx="480" cy="180" r="85" fill="url(#sunGlowGrad)" class="sun-glow" />
-  <circle cx="480" cy="180" r="40" fill="var(--sun-color)" />
+    <!-- Moon disc and radial corona -->
+    <circle cx="480" cy="180" r="85" fill="url(#moonGlowGrad)" class="sun-glow" />
+    <circle cx="480" cy="180" r="30" fill="#f8fafc" />
+    <!-- Crescent shadow cast -->
+    <circle cx="468" cy="180" r="30" fill="#071425" opacity="0.85" />
   </g>
 
   <!-- 4. Upper Atmosphere Clouds -->
@@ -4034,8 +4031,6 @@
 
   <!-- River Mist -->
   
-  <path d="M 488 295 Q 486 318 484.5 331.5 Q 483 345 480.5 360 Q 478 375 456.5 410 Q 435 445 392.5 502.5 Q 350 560 430 645 Q 510 730 570 825 Q 630 920 520 1030 Q 410 1140 465 1290 L 520 1440" stroke="#ffffff" stroke-width="90" stroke-opacity="0.1" fill="none" filter="url(#mist-blur)" />
-  
 
   <!-- Scenic Wooden Footbridge -->
   
@@ -4466,6 +4461,40 @@
 
   <!-- Night Campfire -->
   
+  <!-- Foreground Campfire Group -->
+  <g transform="translate(500, 1385)">
+    <!-- Ambient orange fire glow -->
+    <circle cx="0" cy="0" r="28" fill="#f97316" fill-opacity="0.15" filter="url(#haze-heavy)" />
+    
+    <!-- Fire logs -->
+    <line x1="-12" y1="8" x2="12" y2="-4" stroke="#451a03" stroke-width="5" stroke-linecap="round" />
+    <line x1="12" y1="8" x2="-12" y2="-4" stroke="#451a03" stroke-width="5" stroke-linecap="round" />
+    
+    <!-- Animated flames -->
+    <path d="M -8,4 Q 0,-24 8,4 Q 4,0 0,6 Q -4,0 -8,4 Z" fill="#ef4444" opacity="0.9">
+      <animate attributeName="d" 
+               values="M -8,4 Q 0,-24 8,4 Q 4,0 0,6 Q -4,0 -8,4 Z;
+                       M -6,4 Q 2,-28 6,4 Q 2,2 0,6 Q -2,2 -6,4 Z;
+                       M -8,4 Q -2,-22 8,4 Q 4,-1 0,6 Q -3,-1 -8,4 Z;
+                       M -8,4 Q 0,-24 8,4 Q 4,0 0,6 Q -4,0 -8,4 Z" 
+               dur="0.8s" repeatCount="indefinite" />
+    </path>
+    <path d="M -4,4 Q 0,-16 4,4 Q 2,2 0,6 Q -2,2 -4,4 Z" fill="#f97316">
+      <animate attributeName="d" 
+               values="M -4,4 Q 0,-16 4,4 Q 2,2 0,6 Q -2,2 -4,4 Z;
+                       M -3,4 Q 1,-19 3,4 Q 1,3 0,6 Q -1,3 -3,4 Z;
+                       M -4,4 Q -1,-14 4,4 Q 2,1 0,6 Q -2,1 -4,4 Z;
+                       M -4,4 Q 0,-16 4,4 Q 2,2 0,6 Q -2,2 -4,4 Z" 
+               dur="0.6s" repeatCount="indefinite" />
+    </path>
+    <path d="M -2,4 Q 0,-8 2,4 Z" fill="#fef08a" />
+    
+    <!-- Smoke rising from campfire -->
+    <path d="M 0,-4 C -2,-12 2,-20 -2,-28 C -6,-36 -2,-44 -6,-52" fill="none" stroke="#78716c" stroke-width="1.8" stroke-linecap="round" opacity="0.35">
+      <animateTransform attributeName="transform" type="translate" values="0,0; 1,-8; -2,-16" dur="2s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.35; 0.6; 0" dur="2s" repeatCount="indefinite" />
+    </path>
+  </g>
   
   </g>
 
@@ -4729,7 +4758,7 @@
     <!-- Commits / Altitude -->
     <g transform="translate(0, 0)">
       <text x="0" y="0" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="#94a3b8" letter-spacing="1">ALTITUDE (COMMITS)</text>
-      <text x="0" y="20" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="15" fill="#ffffff">716 m</text>
+      <text x="0" y="20" font-family="'JetBrains Mono', monospace" font-weight="700" font-size="15" fill="#ffffff">720 m</text>
     </g>
     
     <!-- Stars / Expedition -->

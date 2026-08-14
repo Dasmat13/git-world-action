@@ -23,8 +23,8 @@
 
   <rect width="900" height="260" fill="url(#sky)"/>
   <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#1a0a2e"/>
-    <stop offset="100%" stop-color="#ff7043"/>
+    <stop offset="0%" stop-color="#020510"/>
+    <stop offset="100%" stop-color="#0a0f1e"/>
   </linearGradient></defs>
   <circle class="star" cx="594.0" cy="123.0" r="1.5" fill="#58a6ff" style="animation-delay:0.0s"/>
   <circle class="star" cx="288.0" cy="91.0" r="0.8" fill="#58a6ff" style="animation-delay:0.3s"/>
@@ -1327,28 +1327,20 @@
   </g>
 
   <!-- Birds -->
-  <g class="bird" style="animation-delay:0.0s;animation-duration:18.0s">
-      <path d="M0,58 Q3,55 6,58 Q9,55 12,58" stroke="#58a6ff" stroke-width="1.2" fill="none"/>
-    </g>
-  <g class="bird" style="animation-delay:3.5s;animation-duration:23.0s">
-      <path d="M0,77 Q3,74 6,77 Q9,74 12,77" stroke="#58a6ff" stroke-width="1.2" fill="none"/>
-    </g>
-  <g class="bird" style="animation-delay:7.0s;animation-duration:28.0s">
-      <path d="M0,36 Q3,33 6,36 Q9,33 12,36" stroke="#58a6ff" stroke-width="1.2" fill="none"/>
-    </g>
+  
 
   <!-- HUD label -->
   
   <g>
     <rect x="8" y="8" width="200" height="22" rx="4" fill="rgba(0,0,0,0.5)"/>
     <text x="14" y="22" font-family="monospace" font-size="10" fill="#58a6ff">
-      🌍 Dasmat13's GitWorld · 716 commits
+      🌍 Dasmat13's GitWorld · 720 commits
     </text>
   </g>
   <g>
     <rect x="782" y="8" width="110" height="22" rx="4" fill="rgba(0,0,0,0.5)"/>
     <text x="788" y="22" font-family="monospace" font-size="10" fill="#58a6ff">
-      🔥 41d streak
+      🔥 0d streak
     </text>
   </g>
 
