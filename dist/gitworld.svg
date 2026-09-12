@@ -1225,20 +1225,53 @@
     <rect class="win" x="877.4" y="179.0"
           width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
           style="animation-delay:1.5s"/></g>
-  <g class="col" data-week="51"><rect x="882.7" y="165" width="16.3" height="30"
-    fill="#3178c6" rx="1"/><polygon points="882.7,165 890.8,157.0 899.0,165"
-      fill="#1a5fa0"/><rect class="win" x="889.7" y="169.0"
+  <g class="col" data-week="51"><rect x="882.7" y="110" width="16.3" height="85"
+    fill="#3178c6" rx="1"/><line x1="890.8" y1="110" x2="890.8" y2="98.0"
+      stroke="#1a5fa0" stroke-width="1.5"/><circle class="blink" cx="890.8" cy="97.0" r="2"
+      fill="#ff4444" style="animation-delay:0.67s"/><rect class="win" x="889.7" y="114.0"
           width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
           style="animation-delay:0.3s"/>
-    <rect class="win" x="894.7" y="169.0"
+    <rect class="win" x="894.7" y="114.0"
           width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
           style="animation-delay:0.6s"/>
-    <rect class="win" x="884.7" y="179.0"
+    <rect class="win" x="884.7" y="124.0"
           width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
           style="animation-delay:0.9s"/>
-    <rect class="win" x="889.7" y="179.0"
+    <rect class="win" x="889.7" y="124.0"
           width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
-          style="animation-delay:1.2s"/></g>
+          style="animation-delay:1.2s"/>
+    <rect class="win" x="884.7" y="134.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:1.8s"/>
+    <rect class="win" x="894.7" y="134.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:2.4s"/>
+    <rect class="win" x="889.7" y="144.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:3.0s"/>
+    <rect class="win" x="894.7" y="144.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:3.3s"/>
+    <rect class="win" x="884.7" y="154.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:3.6s"/>
+    <rect class="win" x="889.7" y="154.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:3.9s"/>
+    <rect class="win" x="884.7" y="164.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:4.5s"/>
+    <rect class="win" x="894.7" y="164.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:0.1s"/>
+    <rect class="win" x="889.7" y="174.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:0.7s"/>
+    <rect class="win" x="894.7" y="174.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:1.0s"/><circle class="smoke" cx="887.6" cy="105.0" r="4"
+      fill="#9bb" opacity="0.6"
+      style="animation-delay:2.40s"/></g>
 
   <!-- Train -->
   
@@ -1369,7 +1402,7 @@
   <g>
     <rect x="8" y="8" width="200" height="22" rx="4" fill="rgba(0,0,0,0.5)"/>
     <text x="14" y="22" font-family="monospace" font-size="10" fill="#58a6ff">
-      🌍 Dasmat13's GitWorld · 929 commits
+      🌍 Dasmat13's GitWorld · 938 commits
     </text>
   </g>
   <g>
