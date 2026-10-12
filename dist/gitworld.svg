@@ -1345,11 +1345,26 @@
           style="animation-delay:1.0s"/><circle class="smoke" cx="870.3" cy="105.0" r="4"
       fill="#9bb" opacity="0.6"
       style="animation-delay:2.00s"/></g>
-  <g>
-    <rect x="882.7" y="189" width="16.3" height="6" fill="#0a2040"/>
-    <rect x="887.6" y="189" width="2" height="5" fill="#5a3a1a"/>
-    <ellipse cx="888.6" cy="187.0" rx="4" ry="4" fill="#1f6feb"/>
-  </g>
+  <g class="col" data-week="51"><rect x="882.7" y="153" width="16.3" height="42"
+    fill="#3178c6" rx="1"/><polygon points="882.7,153 890.8,145.0 899.0,153"
+      fill="#1a5fa0"/><rect class="win" x="889.7" y="157.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:0.3s"/>
+    <rect class="win" x="894.7" y="157.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:0.6s"/>
+    <rect class="win" x="884.7" y="167.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:0.9s"/>
+    <rect class="win" x="889.7" y="167.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:1.2s"/>
+    <rect class="win" x="884.7" y="177.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:1.8s"/>
+    <rect class="win" x="894.7" y="177.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:2.4s"/></g>
 
   <!-- Train -->
   
@@ -1480,13 +1495,13 @@
   <g>
     <rect x="8" y="8" width="200" height="22" rx="4" fill="rgba(0,0,0,0.5)"/>
     <text x="14" y="22" font-family="monospace" font-size="10" fill="#58a6ff">
-      🌍 Dasmat13's GitWorld · 995 commits
+      🌍 Dasmat13's GitWorld · 999 commits
     </text>
   </g>
   <g>
     <rect x="782" y="8" width="110" height="22" rx="4" fill="rgba(0,0,0,0.5)"/>
     <text x="788" y="22" font-family="monospace" font-size="10" fill="#58a6ff">
-      🔥 0d streak
+      🔥 6d streak
     </text>
   </g>
 
