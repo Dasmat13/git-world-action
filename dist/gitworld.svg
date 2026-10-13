@@ -1345,26 +1345,37 @@
           style="animation-delay:1.0s"/><circle class="smoke" cx="870.3" cy="105.0" r="4"
       fill="#9bb" opacity="0.6"
       style="animation-delay:2.00s"/></g>
-  <g class="col" data-week="51"><rect x="882.7" y="153" width="16.3" height="42"
-    fill="#3178c6" rx="1"/><polygon points="882.7,153 890.8,145.0 899.0,153"
-      fill="#1a5fa0"/><rect class="win" x="889.7" y="157.0"
+  <g class="col" data-week="51"><rect x="882.7" y="133" width="16.3" height="62"
+    fill="#3178c6" rx="1"/><rect class="win" x="889.7" y="137.0"
           width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
           style="animation-delay:0.3s"/>
-    <rect class="win" x="894.7" y="157.0"
+    <rect class="win" x="894.7" y="137.0"
           width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
           style="animation-delay:0.6s"/>
-    <rect class="win" x="884.7" y="167.0"
+    <rect class="win" x="884.7" y="147.0"
           width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
           style="animation-delay:0.9s"/>
-    <rect class="win" x="889.7" y="167.0"
+    <rect class="win" x="889.7" y="147.0"
           width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
           style="animation-delay:1.2s"/>
-    <rect class="win" x="884.7" y="177.0"
+    <rect class="win" x="884.7" y="157.0"
           width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
           style="animation-delay:1.8s"/>
-    <rect class="win" x="894.7" y="177.0"
+    <rect class="win" x="894.7" y="157.0"
           width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
-          style="animation-delay:2.4s"/></g>
+          style="animation-delay:2.4s"/>
+    <rect class="win" x="889.7" y="167.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:3.0s"/>
+    <rect class="win" x="894.7" y="167.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:3.3s"/>
+    <rect class="win" x="884.7" y="177.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:3.6s"/>
+    <rect class="win" x="889.7" y="177.0"
+          width="2.5" height="2.5" fill="#e0f0ff" rx="0.5"
+          style="animation-delay:3.9s"/></g>
 
   <!-- Train -->
   
@@ -1495,13 +1506,13 @@
   <g>
     <rect x="8" y="8" width="200" height="22" rx="4" fill="rgba(0,0,0,0.5)"/>
     <text x="14" y="22" font-family="monospace" font-size="10" fill="#58a6ff">
-      🌍 Dasmat13's GitWorld · 999 commits
+      🌍 Dasmat13's GitWorld · 1002 commits
     </text>
   </g>
   <g>
     <rect x="782" y="8" width="110" height="22" rx="4" fill="rgba(0,0,0,0.5)"/>
     <text x="788" y="22" font-family="monospace" font-size="10" fill="#58a6ff">
-      🔥 6d streak
+      🔥 0d streak
     </text>
   </g>
 
